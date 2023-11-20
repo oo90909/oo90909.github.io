@@ -73,6 +73,56 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-区块链安全/defi靶场/assembly" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/assembly/" class="article-date">
+  <time class="dt-published" datetime="2023-11-20T13:14:54.983Z" itemprop="datePublished">2023-11-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/assembly/">assembly</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在uniswap中看到了可以代替create2的方式<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/assembly/image.png" alt="Alt text"><br>于是想去把create2搞懂，但最后没能成功，其实没这个必要，用以前的老方法一样的，但我觉得还是应该把官方创造合约的方法搞明白</p>
+<p>又回到了以前记录汇编学习的地方，发现其实并没有把很多参数搞懂（现在越发觉得搞得非常透彻才是首当其冲，为了非常透彻应该在很短的时间内进行大量的螺旋式学习）</p>
+<p>在研究参数时，发现push的playground出了问题，push32本来该在stack中增加一栏的，但是最后在memory中增加了好几行。于是怀疑evmplayground有问题，想要在更权威的地方试一下，就研究起了assembly（remix中试一试）</p>
+<p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/assembly/image-2.png" alt="Alt text"></p>
+<p>在solidity中尝试用assembly时，发现yul和assembly并不是一个东西，也发现mload无法与solidity的栈交互，会返回一个值，但是只能pop（），消除掉，而无法像evmplayground那样进栈</p>
+<p>关于mload：<br>001122c00000ccddeeffccaaaabb00ccdd00aabb05600aacc000bb550000af<br>a0|00a0000000000000000000000000000000000000000000000000000000000000|</p>
+<p>此刻mload(0):从第二个32byte的第0个字节开始向左数32byte，为什么这么绕不是从左往右顺着数呢？<br>1122c00000ccddeeffccaaaabb00ccdd00aabb05600aacc000bb550000afa0</p>
+<p>因为如果有很多0的话(如果1122c00000ccddeeffccaaaabb00都是0)，结果就是：<br>ccaaaabb00ccdd00aabb05600aacc000bb550000afa0<br>只有高位的0是多余的才解释的通（544不会写成00544这样）<br>为什么又要从第二个32byte开始数而不是第一个呢？因为要保证取到32bytes，所以需要预留32bytes</p>
+<p>于是就出现了这样匪夷所思的结果<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/assembly/image-3.png" alt="Alt text"></p>
+<p>不仅如此，mstore也是类似的存储方式，从右往左存，且至少保证32bytes所以需要预留32bytes<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/assembly/image-4.png" alt="Alt text"><br>如果数据更长就会变成：<br>1<br>0xabcd<br>00000000000000000000000000000000000000000000000000000000000000ab|cd</p>
+<p>或者<br>mstore(40,a0):</p>
+<p>0000000000000000000000000000000000000000000000000000000000000000|0000000000000000000000000000000000000000000000000000000000000000|00000000000000000000000000000000000000000000000000000000000000a0|</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/assembly/" data-id="clp6xikkf0000a0ud6paqggxr" data-title="assembly" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-readme/关于写博客的规定" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/11/20/readme/%E5%85%B3%E4%BA%8E%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%A7%84%E5%AE%9A/" class="article-date">
@@ -83,13 +133,25 @@
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/11/20/readme/%E5%85%B3%E4%BA%8E%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%A7%84%E5%AE%9A/">博客规定</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <p>博客的文件夹属于完全分类法，学习的知识、工具第一次在哪个靶场接触到，就严格将这些东西放在对应的靶场文件夹下面</p>
+<p>如果接触的这个工具或者知识不属于任何一个靶场，则写到<strong>其他</strong>文件夹里面</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/20/readme/%E5%85%B3%E4%BA%8E%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%A7%84%E5%AE%9A/" data-id="clp6gdswh0002x8ud0sykckob" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/20/readme/%E5%85%B3%E4%BA%8E%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%A7%84%E5%AE%9A/" data-id="clp6gdswh0002x8ud0sykckob" data-title="博客规定" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -111,13 +173,23 @@
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2/">uniswap2</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="e-content article-entry" itemprop="articleBody">
       
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2/" data-id="clp6gdswl0006x8udb7n3byh1" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2/" data-id="clp6gdswl0006x8udb7n3byh1" data-title="uniswap2" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -143,7 +215,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/">uniswap.md</a>
+      <a class="p-name article-title" href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/">uniswap1和uniswap2的区别</a>
     </h1>
   
 
@@ -172,7 +244,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/" data-id="clp6gdswk0004x8ud6hmm5e4o" data-title="uniswap.md" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/" data-id="clp6gdswk0004x8ud6hmm5e4o" data-title="uniswap1和uniswap2的区别" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -336,7 +408,7 @@
         <p>打开source ，在此打开vscode，编译markdown文件（在markdown插入图片：需要在生成的目录里面复制一遍图片，目录名必须和.md一样）</p>
 <p>像这样，在vscode里面没法看到有图片的效果，需要本地预览才行</p>
 <p><img src="/2023/11/05/readme/%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/image.png" alt="Alt text"><br>，点击右上角的书可以预览blog页面，用hexo s命令可以本地预览（和放在网上效果一样）</p>
-<p>加title：在.md文档头部加这样的东西</p>
+<p>加title：在.md文档头部加这样的东西,三个都要加</p>
 <p><img src="/2023/11/05/readme/%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/image-1.png" alt="Alt text"><br>然后 再在source那个页面运行hexo clean， hexo g，hexo d的命令就可以在 oo90909.github.io里面看到了</p>
 
       
@@ -436,23 +508,23 @@
       <ul>
         
           <li>
-            <a href="/2023/11/20/readme/%E5%85%B3%E4%BA%8E%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%A7%84%E5%AE%9A/">(no title)</a>
+            <a href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/assembly/">assembly</a>
           </li>
         
           <li>
-            <a href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2/">(no title)</a>
+            <a href="/2023/11/20/readme/%E5%85%B3%E4%BA%8E%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%A7%84%E5%AE%9A/">博客规定</a>
           </li>
         
           <li>
-            <a href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/">uniswap.md</a>
+            <a href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2/">uniswap2</a>
+          </li>
+        
+          <li>
+            <a href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/">uniswap1和uniswap2的区别</a>
           </li>
         
           <li>
             <a href="/2023/11/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/hardhat/hardhat%E5%88%9D%E5%A7%8B/">hardhat必看.md</a>
-          </li>
-        
-          <li>
-            <a href="/2023/11/05/readme/newpapername/">grammer</a>
           </li>
         
       </ul>
