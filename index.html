@@ -89,27 +89,27 @@
 <p>是一个协议，该协议用来进行代币与代币之间的代换</p>
 <p>为每一个token创建交易所</p>
 <p>理论上交易所和ERC20一一对应，但不会检查是否是一一对应关系，所以gas消耗低，但是用户有个在他们信得过的交易所进行交易</p>
-<p>#汇率计算<br>interval&#x3D;token_pool*eth_pool<br>每一次存入一定量的ETH（ERC20 token），合约会为了维持interval不变，返还相应的ERC20 token（ETH）给msg.sender<br>token的价格公式<br><img src="/image.png" alt="Alt text"></p>
-<p>推导：▲x&#x2F;▲y代表：在这次交易中，每一个y交换了多少个x，也就是y的价格<br>因此py&#x3D;▲x&#x2F;▲y<br><img src="/image-1.png" alt="Alt text"><br>当▲x很小时，右边&#x3D;x&#x2F;y，也就是y的价格</p>
+<p>#汇率计算<br>interval&#x3D;token_pool*eth_pool<br>每一次存入一定量的ETH（ERC20 token），合约会为了维持interval不变，返还相应的ERC20 token（ETH）给msg.sender<br>token的价格公式<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image.png" alt="Alt text"></p>
+<p>推导：▲x&#x2F;▲y代表：在这次交易中，每一个y交换了多少个x，也就是y的价格<br>因此py&#x3D;▲x&#x2F;▲y<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-1.png" alt="Alt text"><br>当▲x很小时，右边&#x3D;x&#x2F;y，也就是y的价格</p>
 <p>#流动性提供</p>
-<p>流动性提供：某个token刚创建时，需要存入一定的token和ETH（存入的比例需要和原来的ETH与token的比例相同）<br><img src="/image-2.png" alt="Alt text"><br>这里的s是流动性池中的独有代币</p>
+<p>流动性提供：某个token刚创建时，需要存入一定的token和ETH（存入的比例需要和原来的ETH与token的比例相同）<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-2.png" alt="Alt text"><br>这里的s是流动性池中的独有代币</p>
 <p>每一次interval都会因为gasfee而轻微增加，涨幅并不大，所以可以尝试用反比例函数来理解</p>
 <p>为什么会有人提供流动性呢？因为可以随时抽出流动性<br>增长的手续费会增加到池子中，这个时候抽出s的话就会赚到部分的手续费（按你投入的流动性比例来看）</p>
 <p>提供流动性的损失：在提供流动性的过程中，两代币的汇率会发生变化，可能自己的流动性比例会变小，因此有可能自己拿回的某种代币或ETH代币反而不如之前多<br>同时也会面临敞口风险：在存入代币的过程中，流动性提供者需要购买另一种代币，可能会有风险</p>
 <p>也可以进行token1与token2的代换，先将token1换算成ETH，再将ETH换算成token2.</p>
 <p>#uniswap2新特性</p>
 <p>可以直接为token1和token2创建对合约，需要的手续费更少（A-&gt;ETH,ETH-&gt;B，这里要交两倍的手续费），在有损失时流动性提供者损失会更少，<br>如果ETH在uniswap1两种绑定美元的稳定币交易时发生了价格变化，那无疑对交易者是有损失的，容易滑铁卢<br>交易对数量的激增会让寻找两种token的交易路径变困难，但是可以用链下或者链上的路由器处理（不是很明白这里的技术）<br>无偿损失的概率会变小（不是很理解）</p>
-<p>#价格语言机：<br>公式：<br>时间加权公式：每秒价格的和<br><img src="/image-3.png" alt="Alt text"><br>t1到t2间的平均价格，用这个表示下个区块每秒的价格（以太坊15秒产生一个区块，这期间价格不变）<br><img src="/image-4.png" alt="Alt text"><br>例子：<br><img src="/image-5.png" alt="Alt text"><br>要注意：一个exchange中两种币的价格不一定是倒数</p>
-<p>由于需要存储价格，而solidity又没有小数类型，所以要用这种方式来存储，最下面就是计算加权累计值的代码<br><img src="/image-6.png" alt="Alt text"></p>
-<p>#闪电贷<br>闪电贷的交易手续费和交易前后的交易池需要满足：<br><img src="/image-7.png" alt="Alt text"></p>
+<p>#价格语言机：<br>公式：<br>时间加权公式：每秒价格的和<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-3.png" alt="Alt text"><br>t1到t2间的平均价格，用这个表示下个区块每秒的价格（以太坊15秒产生一个区块，这期间价格不变）<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-4.png" alt="Alt text"><br>例子：<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-5.png" alt="Alt text"><br>要注意：一个exchange中两种币的价格不一定是倒数</p>
+<p>由于需要存储价格，而solidity又没有小数类型，所以要用这种方式来存储，最下面就是计算加权累计值的代码<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-6.png" alt="Alt text"></p>
+<p>#闪电贷<br>闪电贷的交易手续费和交易前后的交易池需要满足：<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-7.png" alt="Alt text"></p>
 <p>#元交易</p>
 <p>交易者可以离线签名然后让转发者代替自己进行链上交易，一个转发者可以一次性发起多个这样的交易，<br>然后可以节约交易费用（不理解），对LP Token的使用更加灵活？</p>
-<p>#合约重构<br><img src="/image-8.png" alt="Alt text"><br>Uniswap2把所有和钱有关的部分放在了core中，1中使用的Vpyer合约语言，2使用的是solidity语言</p>
+<p>#合约重构<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-8.png" alt="Alt text"><br>Uniswap2把所有和钱有关的部分放在了core中，1中使用的Vpyer合约语言，2使用的是solidity语言</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/" data-id="clp6c7s680002f8udbwfs9ej9" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/" data-id="clp6cqecb0004e8ud2daf5vty" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -140,7 +140,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/hardhat/hardhat%E5%88%9D%E5%A7%8B/" data-id="clp6c7s690003f8ud32kgbp3u" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/hardhat/hardhat%E5%88%9D%E5%A7%8B/" data-id="clp6cqece0006e8ud8kd5gh6e" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -168,7 +168,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/delegatecall/" data-id="clp6c7s5t0000f8ud575n388j" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/delegatecall/" data-id="clp6cqeca0003e8ud0hen5z2g" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -196,72 +196,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%B8%B8%E7%94%A8%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/" data-id="clp6c7s650001f8ud2f7l197a" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-newpapername" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/11/13/newpapername/" class="article-date">
-  <time class="dt-published" datetime="2023-11-13T14:16:36.969Z" itemprop="datePublished">2023-11-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <!DOCTYPE html><html><head>
-      <title>newpapername</title>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      
-      <link rel="stylesheet" href="file:///c:\Users\Administrator\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.10\crossnote\dependencies\katex\katex.min.css">
-      
-      
-      
-      
-      
-      <style>
-      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
-/* Please visit the URL below for more information: */
-/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
-
-      </style>
-      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
-  document.addEventListener("DOMContentLoaded", function () {
-    // your code here
-  });
-</script></head><body for="html-export">
-    
-    
-      <div class="crossnote markdown-preview  ">
-      
-
-      </div>
-      
-      
-    
-    
-    
-    
-    
-    
-  
-    </body></html>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/13/newpapername/" data-id="clowzmycl00001gud8m6h0epg" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%B8%B8%E7%94%A8%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86/" data-id="clp6cqecc0005e8udbfh3d2pe" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -298,7 +233,7 @@
         <p>#grammer<br>this blog is some simple grammer about markdown</p>
 <p>###1.标题<br>####标题<br>#####标题<br>######标题<br>######最多的就是6个#的标题</p>
 <p>###2.字体（用的不多，会粗体即可）</p>
-<p><em>斜体</em><br><strong>粗体</strong><br><em><strong>粗斜体</strong></em><br>&emsp;&emsp;<br>&emsp;&emsp;<br>[空行处每一行都需要添加这个]<br>&emsp;&emsp;<br>&emsp;&emsp;<br>###3.插入图片（直接粘贴图片就好）<br><img src="/image.png" alt="Alt text"><br>&emsp;&emsp;</p>
+<p><em>斜体</em><br><strong>粗体</strong><br><em><strong>粗斜体</strong></em><br>&emsp;&emsp;<br>&emsp;&emsp;<br>[空行处每一行都需要添加这个]<br>&emsp;&emsp;<br>&emsp;&emsp;<br>###3.插入图片（直接粘贴图片就好）<br><img src="/2023/11/05/newpapername/image.png" alt="Alt text"><br>&emsp;&emsp;</p>
 <p>###4.插入链接（可以直接插入，但建议用文字来代替链接）<br>用文字：<br><a href="https://oo90909.github.io/">my blog website</a>’<br>直接放链接：<br><a href="https://oo90909.github.io/">https://oo90909.github.io/</a></p>
 <p>###5.灰色框<br>段落前添加`&#96;&#96;,段落后添加&#96;&#96;&#96;,即可在中间位置识别为代码块<br>&emsp;&emsp;</p>
 <p>前面的`&#96;&#96;后面添加语言可以识别这种语言</p>
@@ -348,7 +283,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/05/newpapername/" data-id="cloljmpkd00005wudgpnl5a17" data-title="grammer" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/05/newpapername/" data-id="clp6cqebv0000e8ud790z1q0c" data-title="grammer" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -386,7 +321,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/05/newpapername_/" data-id="clowztkkm00011gud4nkh0apc" data-title="newpapername" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/05/newpapername_/" data-id="clp6cqec40001e8udfwme77ih" data-title="newpapername" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -437,7 +372,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/09/27/hello-world/" data-id="cloliv5qi0000rsud191v7x43" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/09/27/hello-world/" data-id="clp6cqec80002e8ud5h5od5te" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -496,7 +431,7 @@
           </li>
         
           <li>
-            <a href="/2023/11/13/newpapername/">(no title)</a>
+            <a href="/2023/11/05/newpapername/">grammer</a>
           </li>
         
       </ul>

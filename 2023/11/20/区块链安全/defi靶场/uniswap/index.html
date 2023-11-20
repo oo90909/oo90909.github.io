@@ -13,20 +13,20 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="#uniswapUniswap 白皮书（中文版） (hearrain.com) 是一个协议，该协议用来进行代币与代币之间的代换 为每一个token创建交易所 理论上交易所和ERC20一一对应，但不会检查是否是一一对应关系，所以gas消耗低，但是用户有个在他们信得过的交易所进行交易 #汇率计算interval&#x3D;token_pool*eth_pool每一次存入一定量的ETH（ERC20 to">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://oo90909.github.io/image.png">
-<meta property="og:image" content="https://oo90909.github.io/image-1.png">
-<meta property="og:image" content="https://oo90909.github.io/image-2.png">
-<meta property="og:image" content="https://oo90909.github.io/image-3.png">
-<meta property="og:image" content="https://oo90909.github.io/image-4.png">
-<meta property="og:image" content="https://oo90909.github.io/image-5.png">
-<meta property="og:image" content="https://oo90909.github.io/image-6.png">
-<meta property="og:image" content="https://oo90909.github.io/image-7.png">
-<meta property="og:image" content="https://oo90909.github.io/image-8.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-1.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-2.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-3.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-4.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-5.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-6.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-7.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-8.png">
 <meta property="article:published_time" content="2023-11-20T03:11:27.340Z">
-<meta property="article:modified_time" content="2023-11-20T03:16:37.605Z">
+<meta property="article:modified_time" content="2023-11-20T03:32:13.589Z">
 <meta property="article:author" content="fathergun">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://oo90909.github.io/image.png">
+<meta name="twitter:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -101,27 +101,27 @@
 <p>是一个协议，该协议用来进行代币与代币之间的代换</p>
 <p>为每一个token创建交易所</p>
 <p>理论上交易所和ERC20一一对应，但不会检查是否是一一对应关系，所以gas消耗低，但是用户有个在他们信得过的交易所进行交易</p>
-<p>#汇率计算<br>interval&#x3D;token_pool*eth_pool<br>每一次存入一定量的ETH（ERC20 token），合约会为了维持interval不变，返还相应的ERC20 token（ETH）给msg.sender<br>token的价格公式<br><img src="/image.png" alt="Alt text"></p>
-<p>推导：▲x&#x2F;▲y代表：在这次交易中，每一个y交换了多少个x，也就是y的价格<br>因此py&#x3D;▲x&#x2F;▲y<br><img src="/image-1.png" alt="Alt text"><br>当▲x很小时，右边&#x3D;x&#x2F;y，也就是y的价格</p>
+<p>#汇率计算<br>interval&#x3D;token_pool*eth_pool<br>每一次存入一定量的ETH（ERC20 token），合约会为了维持interval不变，返还相应的ERC20 token（ETH）给msg.sender<br>token的价格公式<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image.png" alt="Alt text"></p>
+<p>推导：▲x&#x2F;▲y代表：在这次交易中，每一个y交换了多少个x，也就是y的价格<br>因此py&#x3D;▲x&#x2F;▲y<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-1.png" alt="Alt text"><br>当▲x很小时，右边&#x3D;x&#x2F;y，也就是y的价格</p>
 <p>#流动性提供</p>
-<p>流动性提供：某个token刚创建时，需要存入一定的token和ETH（存入的比例需要和原来的ETH与token的比例相同）<br><img src="/image-2.png" alt="Alt text"><br>这里的s是流动性池中的独有代币</p>
+<p>流动性提供：某个token刚创建时，需要存入一定的token和ETH（存入的比例需要和原来的ETH与token的比例相同）<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-2.png" alt="Alt text"><br>这里的s是流动性池中的独有代币</p>
 <p>每一次interval都会因为gasfee而轻微增加，涨幅并不大，所以可以尝试用反比例函数来理解</p>
 <p>为什么会有人提供流动性呢？因为可以随时抽出流动性<br>增长的手续费会增加到池子中，这个时候抽出s的话就会赚到部分的手续费（按你投入的流动性比例来看）</p>
 <p>提供流动性的损失：在提供流动性的过程中，两代币的汇率会发生变化，可能自己的流动性比例会变小，因此有可能自己拿回的某种代币或ETH代币反而不如之前多<br>同时也会面临敞口风险：在存入代币的过程中，流动性提供者需要购买另一种代币，可能会有风险</p>
 <p>也可以进行token1与token2的代换，先将token1换算成ETH，再将ETH换算成token2.</p>
 <p>#uniswap2新特性</p>
 <p>可以直接为token1和token2创建对合约，需要的手续费更少（A-&gt;ETH,ETH-&gt;B，这里要交两倍的手续费），在有损失时流动性提供者损失会更少，<br>如果ETH在uniswap1两种绑定美元的稳定币交易时发生了价格变化，那无疑对交易者是有损失的，容易滑铁卢<br>交易对数量的激增会让寻找两种token的交易路径变困难，但是可以用链下或者链上的路由器处理（不是很明白这里的技术）<br>无偿损失的概率会变小（不是很理解）</p>
-<p>#价格语言机：<br>公式：<br>时间加权公式：每秒价格的和<br><img src="/image-3.png" alt="Alt text"><br>t1到t2间的平均价格，用这个表示下个区块每秒的价格（以太坊15秒产生一个区块，这期间价格不变）<br><img src="/image-4.png" alt="Alt text"><br>例子：<br><img src="/image-5.png" alt="Alt text"><br>要注意：一个exchange中两种币的价格不一定是倒数</p>
-<p>由于需要存储价格，而solidity又没有小数类型，所以要用这种方式来存储，最下面就是计算加权累计值的代码<br><img src="/image-6.png" alt="Alt text"></p>
-<p>#闪电贷<br>闪电贷的交易手续费和交易前后的交易池需要满足：<br><img src="/image-7.png" alt="Alt text"></p>
+<p>#价格语言机：<br>公式：<br>时间加权公式：每秒价格的和<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-3.png" alt="Alt text"><br>t1到t2间的平均价格，用这个表示下个区块每秒的价格（以太坊15秒产生一个区块，这期间价格不变）<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-4.png" alt="Alt text"><br>例子：<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-5.png" alt="Alt text"><br>要注意：一个exchange中两种币的价格不一定是倒数</p>
+<p>由于需要存储价格，而solidity又没有小数类型，所以要用这种方式来存储，最下面就是计算加权累计值的代码<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-6.png" alt="Alt text"></p>
+<p>#闪电贷<br>闪电贷的交易手续费和交易前后的交易池需要满足：<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-7.png" alt="Alt text"></p>
 <p>#元交易</p>
 <p>交易者可以离线签名然后让转发者代替自己进行链上交易，一个转发者可以一次性发起多个这样的交易，<br>然后可以节约交易费用（不理解），对LP Token的使用更加灵活？</p>
-<p>#合约重构<br><img src="/image-8.png" alt="Alt text"><br>Uniswap2把所有和钱有关的部分放在了core中，1中使用的Vpyer合约语言，2使用的是solidity语言</p>
+<p>#合约重构<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-8.png" alt="Alt text"><br>Uniswap2把所有和钱有关的部分放在了core中，1中使用的Vpyer合约语言，2使用的是solidity语言</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/" data-id="clp6c7s680002f8udbwfs9ej9" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/" data-id="clp6cqecb0004e8ud2daf5vty" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -188,7 +188,7 @@
           </li>
         
           <li>
-            <a href="/2023/11/13/newpapername/">(no title)</a>
+            <a href="/2023/11/05/newpapername/">grammer</a>
           </li>
         
       </ul>
