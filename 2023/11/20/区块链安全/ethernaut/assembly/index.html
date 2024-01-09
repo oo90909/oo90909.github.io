@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>assembly | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="在uniswap中看到了可以代替create2的方式于是想去把create2搞懂，但最后没能成功，其实没这个必要，用以前的老方法一样的，但我觉得还是应该把官方创造合约的方法搞明白 又回到了以前记录汇编学习的地方，发现其实并没有把很多参数搞懂（现在越发觉得搞得非常透彻才是首当其冲，为了非常透彻应该在很短的时间内进行大量的螺旋式学习） 在研究参数时，发现push的playground出了问题，push">
+<meta property="og:type" content="article">
+<meta property="og:title" content="assembly">
+<meta property="og:url" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="在uniswap中看到了可以代替create2的方式于是想去把create2搞懂，但最后没能成功，其实没这个必要，用以前的老方法一样的，但我觉得还是应该把官方创造合约的方法搞明白 又回到了以前记录汇编学习的地方，发现其实并没有把很多参数搞懂（现在越发觉得搞得非常透彻才是首当其冲，为了非常透彻应该在很短的时间内进行大量的螺旋式学习） 在研究参数时，发现push的playground出了问题，push">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-30.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-32.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-33.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-34.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-5.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-1.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-2.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-3.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-4.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-5.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-7.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-8.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-9.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-10.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-11.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-12.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-20.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-13.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-14.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-17.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-16.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-15.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-19.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-18.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-22.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-21.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-27.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-23.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-25.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-26.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-28.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-29.png">
+<meta property="article:published_time" content="2023-11-20T13:14:54.983Z">
+<meta property="article:modified_time" content="2023-12-10T15:33:09.877Z">
+<meta property="article:author" content="fathergun">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-30.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oo90909.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-区块链安全/ethernaut/assembly" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/" class="article-date">
+  <time class="dt-published" datetime="2023-11-20T13:14:54.983Z" itemprop="datePublished">2023-11-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      assembly
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在uniswap中看到了可以代替create2的方式<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-30.png" alt="Alt text"><br>于是想去把create2搞懂，但最后没能成功，其实没这个必要，用以前的老方法一样的，但我觉得还是应该把官方创造合约的方法搞明白</p>
+<p>又回到了以前记录汇编学习的地方，发现其实并没有把很多参数搞懂（现在越发觉得搞得非常透彻才是首当其冲，为了非常透彻应该在很短的时间内进行大量的螺旋式学习）</p>
+<p>在研究参数时，发现push的playground出了问题，push32本来该在stack中增加一栏的，但是最后在memory中增加了好几行。于是怀疑evmplayground有问题，想要在更权威的地方试一下，就研究起了assembly（remix中试一试）</p>
+<p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-32.png" alt="Alt text"></p>
+<p>在solidity中尝试用assembly时，发现yul和assembly并不是一个东西，也发现mload无法与solidity的栈交互，会返回一个值，但是只能pop（），消除掉，而无法像evmplayground那样进栈</p>
+<hr>
+<p>关于mload：<br>001122c00000ccddeeffccaaaabb00ccdd00aabb05600aacc000bb550000af<br>a0|00a0000000000000000000000000000000000000000000000000000000000000|</p>
+<p>此刻mload(0):从第一个32byte的第32个字节开始向左数32byte，为什么这么绕不是从左往右顺着数呢？<br>1122c00000ccddeeffccaaaabb00ccdd00aabb05600aacc000bb550000afa0</p>
+<p>因为如果有很多0的话(如果1122c00000ccddeeffccaaaabb00都是0)，结果就是：<br>ccaaaabb00ccdd00aabb05600aacc000bb550000afa0<br>只有高位的0是多余的才解释的通（544不会写成00544这样）<br>为什么又要从第二个32byte开始数而不是第一个呢？因为要保证取到32bytes，所以需要预留32bytes</p>
+<p>于是就出现了这样匪夷所思的结果<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-33.png" alt="Alt text"></p>
+<hr>
+<p>不仅如此，mstore也是类似的存储方式，从右往左存，且至少保证32bytes所以需要预留32bytes<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-34.png" alt="Alt text"><br>如果数据更长就会变成：<br>1<br>0xabcd<br>00000000000000000000000000000000000000000000000000000000000000ab|cd</p>
+<p>或者<br>mstore(40,a0):</p>
+<p>0000000000000000000000000000000000000000000000000000000000000000|0000000000000000000000000000000000000000000000000000000000000000|00000000000000000000000000000000000000000000000000000000000000a0|</p>
+<hr>
+<h3 id="接下来开始更正更多的结论"><a href="#接下来开始更正更多的结论" class="headerlink" title="接下来开始更正更多的结论"></a>接下来开始更正更多的结论</h3><p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-5.png" alt="Alt text"></p>
+<p>以magicNumber为例，弄懂每一个solidity语法对应的opcode命令<br>并搞懂常用的assembly如何替换opcode<br>最后用assembly来写这里的命令</p>
+<p>codecopy反而正常的多</p>
+<p>凡是取的数据具有数字意义的，都是从右往左边取（这种情况需要提前空出32byte），具有代码意义的，都是从左往右取，不管哪种情况，数参数（offset）都是从左往右数</p>
+<hr>
+<h3 id="程序分析"><a href="#程序分析" class="headerlink" title="程序分析"></a>程序分析</h3><p><a target="_blank" rel="noopener" href="https://docs.soliditylang.org/en/latest/analysing-compilation-output.html">第一篇代码</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.5.0 &lt;0.9.0;</span><br><span class="line">contract C &#123;</span><br><span class="line">    function one() public pure returns (uint) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image.png" alt="Alt text"><br>经历了18以前<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-1.png" alt="Alt text"><br>经历了18以后<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-2.png" alt="Alt text"><br>1a以后<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-3.png" alt="Alt text"><br>1b以后<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-4.png" alt="Alt text"><br>是一样的</p>
+<p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-5.png" alt="Alt text"></p>
+<p>编译时字节码，只会走到return那里，返回运行时字节码</p>
+<p>为什么calldataload可以运行，明明没有任何msg.data<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-7.png" alt="Alt text"><br>那么这里的0x901717d10000000…0000又是从何而来呢<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-8.png" alt="Alt text"><br>这里怎么有e0这么多位<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-9.png" alt="Alt text"><br>最后变成了这样<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-10.png" alt="Alt text"></p>
+<p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-11.png" alt="Alt text"><br>jump5开始时的栈，30是tag4，这里为什么还要加个00（00好像是对memory有影响，查了发现现在的版本没这个了）<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-12.png" alt="Alt text"><br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-20.png" alt="Alt text"><br>jump4开始时的栈，所以target5的目的就是让其存一个1<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-13.png" alt="Alt text"></p>
+<p>tag4跳完了，3b是tag6<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-14.png" alt="Alt text"><br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-17.png" alt="Alt text"></p>
+<p>跳完tag7，73是tag15<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-16.png" alt="Alt text"></p>
+<p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-15.png" alt="Alt text"></p>
+<p>跳完tag10，栈顶增加了一个1和5c(tag12)<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-19.png" alt="Alt text"><br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-18.png" alt="Alt text"></p>
+<p>跳完了tag13，5c完成了使命<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-22.png" alt="Alt text"><br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-21.png" alt="Alt text"></p>
+<p>调完了tag12，memory有变化，可以说这里的80是为了在这里存数据用的<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-27.png" alt="Alt text"><br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-23.png" alt="Alt text"></p>
+<p>跳完了tag15，<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-25.png" alt="Alt text"><br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-26.png" alt="Alt text"></p>
+<p>跳完了tag6<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-28.png" alt="Alt text"><br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-29.png" alt="Alt text"></p>
+<p>总结：大多数冗余的操作都是因为jump需要，执行的最多的就是jump，pop，push</p>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://ethereum.stackexchange.com/questions/135183/why-is-there-a-log-opcode-being-created-from-my-solidity-code-when-i-dont-hav">第二篇代码</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity 0.8.15;</span><br><span class="line"></span><br><span class="line">contract SSimpleStorage &#123;</span><br><span class="line">    uint256 storedNumber;</span><br><span class="line"></span><br><span class="line">    function storeNumber(uint256 newNumber) external &#123;</span><br><span class="line">        storedNumber = newNumber;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function readNumber() external view returns (uint256) &#123;</span><br><span class="line">        return storedNumber;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/" data-id="clr5va9a1000hxcudd01l8nrs" data-title="assembly" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/11/22/readme/%E7%BB%8F%E6%B5%8E/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          经济
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/11/20/readme/%E5%85%B3%E4%BA%8E%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%A7%84%E5%AE%9A/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">博客规定</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/08/%E6%9D%82%E6%96%87/%E6%AF%9B%E6%B3%BD%E4%B8%9C/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/07/%E6%9D%82%E6%96%87/%E5%92%8B/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/06/%E6%9D%82%E6%96%87/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 fathergun<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

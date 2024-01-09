@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>jump | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="用了结构体来存储，甚至用来充当mstore的第一个变量，看起来很懵逼，第一个变量不是offset数字吗？结构体要如何充当mstore的第一个变量？ 得到一个结论：结构体充当存储位置时，往往也是一个具体的插槽，如这里的0x80 执行存储之前的堆栈是这样的(storage没有值)执行之后 后来发现，如果把方法换成withdraw，0x80的值也是0x167所以方法不一样对存储的数据没有任何不同，因此这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jump">
+<meta property="og:url" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="用了结构体来存储，甚至用来充当mstore的第一个变量，看起来很懵逼，第一个变量不是offset数字吗？结构体要如何充当mstore的第一个变量？ 得到一个结论：结构体充当存储位置时，往往也是一个具体的插槽，如这里的0x80 执行存储之前的堆栈是这样的(storage没有值)执行之后 后来发现，如果把方法换成withdraw，0x80的值也是0x167所以方法不一样对存储的数据没有任何不同，因此这">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image-1.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image-2.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image-3.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image-4.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image-6.png">
+<meta property="article:published_time" content="2023-11-27T08:58:00.000Z">
+<meta property="article:modified_time" content="2023-12-02T05:21:30.692Z">
+<meta property="article:author" content="fathergun">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oo90909.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-区块链安全/其他/jump" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/" class="article-date">
+  <time class="dt-published" datetime="2023-11-27T08:58:00.000Z" itemprop="datePublished">2023-11-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      jump
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>用了结构体来存储，甚至用来充当mstore的第一个变量，看起来很懵逼，第一个变量不是offset数字吗？<br>结构体要如何充当mstore的第一个变量？</p>
+<p>得到一个结论：结构体充当存储位置时，往往也是一个具体的插槽，如这里的0x80</p>
+<p>执行存储之前的堆栈是这样的(storage没有值)<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image.png" alt="Alt text"><br>执行之后<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image-1.png" alt="Alt text"></p>
+<p>后来发现，如果把方法换成withdraw，0x80的值也是0x167<br>所以方法不一样对存储的数据没有任何不同，因此这里的差异只能体现在编译出来的opcode</p>
+<p>执行完28行以后<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image-2.png" alt="Alt text"></p>
+<p>想了很久，仍然没有思路。。。当我不知道怎么做的时候，合约名提醒了我</p>
+<hr>
+<p>思路:调用debug后得知，程序停在了jump这里，jump 168，发现0x168后面没有jumpdest，所以没法执行，那么是否存在一种可能，某个jumpdest可以跳过withdrew的require？</p>
+<p>356</p>
+<p><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image-3.png" alt="Alt text"><br>这里有很多jumpdest</p>
+<p>寻找到了call函数，也是本篇合约里面唯一的call，说明这里就是withdrew的那部分，那么call前面的第一个jumpdest就是需要跳到的位置，<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image-4.png" alt="Alt text"></p>
+<p>经过计算，得到了这个数据，是130<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image-6.png" alt="Alt text"></p>
+<p>isSolved:true</p>
+<p>本地remix跑通了，但是网页版跑不了。。。<br>网页版也不能debug，如果编译出来的opcode不一样也看不到，就这样吧，我尽力了</p>
+<p>还没结束，有没有可能部署的时候多了一段代码</p>
+<p>这是本地代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806364d98f6e146100515780636a1f9e1914610080575b600080fd5b34801561005d57600080fd5b5061006661008a565b604051808215151515815260200191505060405180910390f35b6100886100ab565b005b6000803073ffffffffffffffffffffffffffffffffffffffff163114905090565b6100b3610249565b6000341415151561012c576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252600b8152602001807f73656e64206d6f6e65792100000000000000000000000000000000000000000081525060200191505060405180910390fd5b610167816000019067ffffffffffffffff16908167ffffffffffffffff1681525050348151018152610164816000015163ffffffff16565b50565b61016f610171565b565b6000341415156101e9576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260088152602001807f6e6f206d6f6e657900000000000000000000000000000000000000000000000081525060200191505060405180910390fd5b3373ffffffffffffffffffffffffffffffffffffffff166108fc3073ffffffffffffffffffffffffffffffffffffffff16319081150290604051600060405180830381858888f19350505050158015610246573d6000803e3d6000fd5b50565b60206040519081016040528061025e81525090565bfe00a165627a7a7230582036b6db795f3d2506047a2bdd25aa341d1b7d0d30f7bf2b72966af15e963a6af90029</span><br></pre></td></tr></table></figure>
+
+<p>这是上链的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">60806040526004361061004b5763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166364d98f6e81146100505780636a1f9e1914610079575b600080fd5b34801561005c57600080fd5b50610065610083565b604080519115158252519081900360200190f35b610081610089565b005b30311590565b6100916101c4565b3415156100ff57604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152600b60248201527f73656e64206d6f6e657921000000000000000000000000000000000000000000604482015290519081900360640190fd5b3467ffffffffffffffff610120160180825261011d9063ffffffff16565b50565b61012861012a565b565b341561019757604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152600860248201527f6e6f206d6f6e6579000000000000000000000000000000000000000000000000604482015290519081900360640190fd5b6040513390303180156108fc02916000818181858888f1935050505015801561011d573d6000803e3d6000fd5b60408051602081019091526101d7815290565bfe00a165627a7a7230582048e92681d6d38d52fd4cde04a96d8e77b5a18916af1adf6cba1088c86ded54ad0029</span><br></pre></td></tr></table></figure>
+
+
+<p>攻击代码(获取部署来的runtimecode)：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">contract GetCode &#123;</span><br><span class="line"> function getAddressCode(address _target) public view returns (bytes memory</span><br><span class="line">code) &#123;</span><br><span class="line"> uint size;</span><br><span class="line"> assembly &#123;</span><br><span class="line"> size := extcodesize(_target)</span><br><span class="line"> code := mload(0x40)</span><br><span class="line"> mstore(0x40, add(code, and(add(add(size, 0x20), 0x1f), not(0x1f))))</span><br><span class="line"> mstore(code, size)</span><br><span class="line"> extcodecopy(_target, add(code, 0x20), 0, size)</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/" data-id="clr5va9a1000gxcud3a4p6lld" data-title="jump" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Vault
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/11/25/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/magicChallenge/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/08/%E6%9D%82%E6%96%87/%E6%AF%9B%E6%B3%BD%E4%B8%9C/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/07/%E6%9D%82%E6%96%87/%E5%92%8B/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/06/%E6%9D%82%E6%96%87/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 fathergun<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

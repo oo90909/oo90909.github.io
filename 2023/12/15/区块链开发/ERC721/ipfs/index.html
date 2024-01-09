@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="ipfs:代替原来的http协议ipfs协议是基于内容寻址，每一个文件、歌曲、电影都会被计算出一个hash，然后ipfs会基于hash寻找 下载ipfs节点以后要使用ipfs init -profile server来初始化，防止被检测系统检测到 配置环境（自己配置，别按照教程上教的配置） 使用命令行上传一份文件到ipfs： 查看ipfs文件（后面是cid）： 用网络的方式：用这个命令启动以后（现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://oo90909.github.io/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ipfs:代替原来的http协议ipfs协议是基于内容寻址，每一个文件、歌曲、电影都会被计算出一个hash，然后ipfs会基于hash寻找 下载ipfs节点以后要使用ipfs init -profile server来初始化，防止被检测系统检测到 配置环境（自己配置，别按照教程上教的配置） 使用命令行上传一份文件到ipfs： 查看ipfs文件（后面是cid）： 用网络的方式：用这个命令启动以后（现">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://oo90909.github.io/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-1.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-2.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-3.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-4.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-5.png">
+<meta property="og:image" content="https://oo90909.github.io/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-6.png">
+<meta property="article:published_time" content="2023-12-15T12:20:07.544Z">
+<meta property="article:modified_time" content="2023-12-27T14:09:24.123Z">
+<meta property="article:author" content="fathergun">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://oo90909.github.io/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oo90909.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-区块链开发/ERC721/ipfs" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/" class="article-date">
+  <time class="dt-published" datetime="2023-12-15T12:20:07.544Z" itemprop="datePublished">2023-12-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>ipfs:<br>代替原来的http协议<br>ipfs协议是基于内容寻址，每一个文件、歌曲、电影都会被计算出一个hash，然后ipfs会基于hash寻找</p>
+<p>下载ipfs节点以后要使用<br>ipfs init -profile server<br>来初始化，防止被检测系统检测到</p>
+<h3 id="配置环境（自己配置，别按照教程上教的配置）"><a href="#配置环境（自己配置，别按照教程上教的配置）" class="headerlink" title="配置环境（自己配置，别按照教程上教的配置）"></a>配置环境（自己配置，别按照教程上教的配置）</h3><p><img src="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-1.png" alt="Alt text"></p>
+<p>使用命令行上传一份文件到ipfs：<br><img src="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image.png" alt="Alt text"></p>
+<h3 id="查看ipfs文件（后面是cid）："><a href="#查看ipfs文件（后面是cid）：" class="headerlink" title="查看ipfs文件（后面是cid）："></a>查看ipfs文件（后面是cid）：</h3><p><img src="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-2.png" alt="Alt text"></p>
+<p>用网络的方式：<br>用这个命令启动以后（现在你也是一个ipfs节点了）：<br><img src="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-3.png" alt="Alt text"></p>
+<p>可以直接复制链接：<br><img src="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-4.png" alt="Alt text"></p>
+<p>也可以用curl命令<br><img src="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-5.png" alt="Alt text"></p>
+<p>还可以在线观看：<br>在顶部输入localhost:5001&#x2F;webui<br>就可以进入下面的界面<br><img src="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-6.png" alt="Alt text"><br>点击刚刚上传的文件即可</p>
+<p>不知道为什么，ipfs这里访问5001那个发现没有更新，但是访问8080是<br>可以访问到的，说明上传成功了的，以后就用8080来演示ipfs就好了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/" data-id="clr5va9a2000jxcud6i8sf4zm" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/01/06/%E6%9D%82%E6%96%87/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/12/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/nodejs%E8%AF%AD%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/01/08/%E6%9D%82%E6%96%87/%E6%AF%9B%E6%B3%BD%E4%B8%9C/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/07/%E6%9D%82%E6%96%87/%E5%92%8B/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/01/06/%E6%9D%82%E6%96%87/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 fathergun<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
