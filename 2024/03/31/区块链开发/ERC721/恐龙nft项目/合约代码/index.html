@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>dragon solidity | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="一共有一篇合约一篇library BreedingBarn.sol 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dragon solidity">
+<meta property="og:url" content="https://oo90909.github.io/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/%E6%81%90%E9%BE%99nft%E9%A1%B9%E7%9B%AE/%E5%90%88%E7%BA%A6%E4%BB%A3%E7%A0%81/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一共有一篇合约一篇library BreedingBarn.sol 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-03-31T08:58:00.000Z">
+<meta property="article:modified_time" content="2024-03-31T09:43:47.800Z">
+<meta property="article:author" content="fathergun">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oo90909.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-区块链开发/ERC721/恐龙nft项目/合约代码" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/%E6%81%90%E9%BE%99nft%E9%A1%B9%E7%9B%AE/%E5%90%88%E7%BA%A6%E4%BB%A3%E7%A0%81/" class="article-date">
+  <time class="dt-published" datetime="2024-03-31T08:58:00.000Z" itemprop="datePublished">2024-03-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      dragon solidity
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>一共有一篇合约一篇library</p>
+<p>BreedingBarn.sol</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.16;</span><br><span class="line"></span><br><span class="line">import &quot;hardhat/console.sol&quot;;</span><br><span class="line">import &quot;./ku.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract BreedingBarn &#123;</span><br><span class="line">    address public admin;</span><br><span class="line">address public  Market;</span><br><span class="line">using ku for uint256;</span><br><span class="line">using  ku for  address;</span><br><span class="line">//恐龙对象</span><br><span class="line">    struct Dinosaur &#123;</span><br><span class="line">        uint256 id;</span><br><span class="line">        bool isMale;</span><br><span class="line">        bool isPaired;</span><br><span class="line">        string species;</span><br><span class="line">        string color;</span><br><span class="line">        uint256 rarity;</span><br><span class="line">        address owner;</span><br><span class="line">        string pictrueUri;//图片uri</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">//龙蛋对象</span><br><span class="line">    struct Egg &#123;</span><br><span class="line">        uint256 id;</span><br><span class="line">        uint256 parentId1;</span><br><span class="line">        uint256 parentId2;</span><br><span class="line">        string species;</span><br><span class="line">        address owner;</span><br><span class="line">        bool isHatched;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">     </span><br><span class="line"></span><br><span class="line">    Dinosaur[] public dinosaurs;</span><br><span class="line">    Egg[] public eggs;</span><br><span class="line">    function dinLength()public view   returns (uint256)&#123;</span><br><span class="line">return dinosaurs.length;</span><br><span class="line">    &#125;</span><br><span class="line">    function eggLength()public view   returns (uint256)&#123;</span><br><span class="line">return dinosaurs.length;</span><br><span class="line">    &#125;</span><br><span class="line">    //孵化开始的时间戳</span><br><span class="line">    mapping (uint256=&gt;uint256) public  hatchTimer;</span><br><span class="line">    //记录价格</span><br><span class="line">    mapping (uint256=&gt;uint256) public  dinPrice;</span><br><span class="line">    mapping (uint256=&gt;uint256) public  eggPrice;</span><br><span class="line">    //记录上传者</span><br><span class="line">    mapping  (uint256=&gt;address)  public  dinSeller ;</span><br><span class="line">    mapping (uint256=&gt;address) public  eggSeller;</span><br><span class="line"></span><br><span class="line">    mapping (address=&gt;uint256) public hatchBarn;</span><br><span class="line">    mapping (uint256=&gt;uint256) public femalePregnancy;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    constructor(address _Market) &#123;</span><br><span class="line">        admin = msg.sender;</span><br><span class="line">        Market=_Market;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">    function getDinosaurValue(uint256 id, uint  choose)  public view  returns(string memory)&#123;</span><br><span class="line">        Dinosaur storage d=dinosaurs[id];</span><br><span class="line">        if (choose==0)return d.id.toString();</span><br><span class="line">        if (choose==1)&#123;</span><br><span class="line">            bool m=d.isMale;</span><br><span class="line">            if (m==true)return &quot;male&quot;;</span><br><span class="line">            else return &quot;female&quot;;</span><br><span class="line">        &#125; </span><br><span class="line">        if (choose==2)&#123;</span><br><span class="line">            bool m=d.isPaired;</span><br><span class="line">            if (m==true)return &quot;pregnant&quot;;</span><br><span class="line">            else return &quot;no&quot;;</span><br><span class="line">        &#125;  </span><br><span class="line">        if (choose==3)   return d.species;      </span><br><span class="line">        if (choose==4)  return d.color;</span><br><span class="line">        if (choose==5)  return d.rarity.toString();</span><br><span class="line">        // if (choose==6)  return d.owner.addressToString();</span><br><span class="line">        if (choose==7) return d.pictrueUri;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">function getEggValue(uint256 id, uint  choose)  public view  returns(string memory)&#123;</span><br><span class="line">        Egg storage d=eggs[id];</span><br><span class="line">        if (choose==0)return d.id.toString();</span><br><span class="line">        if (choose==1) return d.parentId1.toString();</span><br><span class="line">        if (choose==2)return d.parentId2.toString();</span><br><span class="line">        if (choose==3)   return d.species;      </span><br><span class="line">         if (choose==5)&#123;</span><br><span class="line">            bool m=d.isHatched;</span><br><span class="line">            if (m==true)return &quot;hatching&quot;;</span><br><span class="line">            else return &quot;no&quot;;</span><br><span class="line">        &#125; </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        function getOwner(bool isDin,uint256 id)public view returns (address)&#123;</span><br><span class="line">            if (isDin==true)&#123;</span><br><span class="line">return dinosaurs[id].owner;</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">return eggs[id].owner;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">//只有管理员可以手动增加恐龙</span><br><span class="line">    function addDinosaur(bool _isMale, string memory _species, string memory _color, uint256 _rarity, address _owner)  public  &#123;</span><br><span class="line">       </span><br><span class="line"></span><br><span class="line">//get image uri</span><br><span class="line">string memory uri=getImage(false,_species,_color,_rarity);</span><br><span class="line">//add dinosaurs</span><br><span class="line">        dinosaurs.push(Dinosaur(dinosaurs.length, _isMale, false, _species, _color, _rarity, _owner,uri));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//恐龙交配需要持有者拥有相同种类的雌雄两只恐龙</span><br><span class="line">    function pairDinosaurs(uint256 dinosaurId1, uint256 dinosaurId2) public returns (uint256) &#123;</span><br><span class="line">        require(dinosaurId1 &lt; dinosaurs.length &amp;&amp; dinosaurId2 &lt; dinosaurs.length, &quot;Dinosaur ID out of range.&quot;);</span><br><span class="line">        require(dinosaurs[dinosaurId1].isMale != dinosaurs[dinosaurId2].isMale, &quot;Dinosaurs must be of opposite genders.&quot;);</span><br><span class="line">        if (dinosaurs[dinosaurId1].isMale==false)&#123;</span><br><span class="line">            require(femalePregnancy[dinosaurId1]+100&lt;block.timestamp,&quot;The female is still pregnant&quot;);</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            require(femalePregnancy[dinosaurId2]+100&lt;block.timestamp,&quot;The female is still pregnant&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        require(dinosaurs[dinosaurId1].owner==dinosaurs[dinosaurId2].owner&amp;&amp;dinosaurs[dinosaurId1].owner==msg.sender,&quot;you don`t have these two dinosaurs&quot;);</span><br><span class="line">        string memory s1=dinosaurs[dinosaurId1].species;</span><br><span class="line">        string memory s2=dinosaurs[dinosaurId2].species;</span><br><span class="line">        require(keccak256(abi.encodePacked(s1))==keccak256(abi.encodePacked(s2)),&quot;Two dinosaurs must be one specie.&quot;);</span><br><span class="line">        </span><br><span class="line">        if (dinosaurs[dinosaurId1].isMale==false)&#123;</span><br><span class="line">        dinosaurs[dinosaurId1].isPaired = true;</span><br><span class="line">        femalePregnancy[dinosaurId1]=block.timestamp;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">        dinosaurs[dinosaurId2].isPaired = true;</span><br><span class="line">        femalePregnancy[dinosaurId2]=block.timestamp;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        eggs.push(Egg(eggs.length, dinosaurId1, dinosaurId2,s1,msg.sender, false));</span><br><span class="line">        return eggs.length - 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//恐龙孵化</span><br><span class="line">    function hatchEgg(uint256 eggId) public &#123;</span><br><span class="line">        require(eggId &lt; eggs.length, &quot;Egg ID out of range.&quot;);</span><br><span class="line">        require(eggs[eggId].isHatched == false, &quot;The egg has already hatched.&quot;);</span><br><span class="line">        require(eggs[eggId].owner==msg.sender,&quot;you don`t have this egg&quot;);</span><br><span class="line">                hatchBarn[msg.sender]+=1;</span><br><span class="line">        require(hatchBarn[msg.sender]&lt;=6,&quot;you only have six breedingbarn&quot;);</span><br><span class="line">        eggs[eggId].isHatched = true;</span><br><span class="line">        hatchTimer[eggId] = block.timestamp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//取走恐龙</span><br><span class="line">    function getOffEgg(uint256 eggId) public   &#123;</span><br><span class="line">        require(msg.sender==eggs[eggId].owner);</span><br><span class="line">        uint256 hatchTime=100;</span><br><span class="line">require(hatchTimer[eggId]+hatchTime&lt;block.timestamp,&quot;hatching...&quot;);</span><br><span class="line">console.log(unicode&quot;time permits&quot;);</span><br><span class="line">  bool _isMale=false;</span><br><span class="line">  if (block.timestamp%2==1)_isMale=true;</span><br><span class="line">    string memory _color=&quot;red&quot;;</span><br><span class="line">if (block.number%2==1)&#123;</span><br><span class="line">_color=&quot;blue&quot;;</span><br><span class="line">&#125;</span><br><span class="line">//get the rarity</span><br><span class="line">uint256 first=block.timestamp%6;</span><br><span class="line">if (first==1||first==0)first+=2;</span><br><span class="line">uint256 _rarity=first/2;</span><br><span class="line">//get uri</span><br><span class="line">string memory uri= getImage(false, eggs[eggId].species, _color, _rarity);</span><br><span class="line">    dinosaurs.push(Dinosaur(dinosaurs.length, _isMale, false, eggs[eggId].species, _color, _rarity, eggs[eggId].owner,uri));</span><br><span class="line">console.log(&quot;dinosaur birth the id&quot;,dinosaurs.length);</span><br><span class="line">console.log(&quot;color is &quot;,_color);</span><br><span class="line">console.log(&quot;rarity is &quot;,_rarity);</span><br><span class="line"></span><br><span class="line">if (eggId!=eggs.length-1)&#123;</span><br><span class="line">  </span><br><span class="line">    for (uint256 i =eggId;i&lt;eggs.length-1;i++)&#123;</span><br><span class="line">eggs[i]=eggs[i+1];</span><br><span class="line">console.log(unicode&quot;eggs array move:&quot;,i );</span><br><span class="line">    &#125; </span><br><span class="line">    delete eggs[eggs.length-1];</span><br><span class="line">&#125;else &#123;</span><br><span class="line">        delete eggs[eggId];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function getWhoseDinosaur(address _owner,uint which)public view  returns (uint256,uint256)&#123;</span><br><span class="line"></span><br><span class="line">uint length=0;</span><br><span class="line">for (uint256 i=0; i&lt;dinosaurs.length;i++) </span><br><span class="line">&#123;</span><br><span class="line">    if (dinosaurs[i].owner==_owner) length++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">require(length!=0,&quot;you do not have a dinosaur&quot;);</span><br><span class="line"></span><br><span class="line">uint256[] memory whose=new uint256[](length);</span><br><span class="line">uint count=0;</span><br><span class="line">for (uint256 i=0; i&lt;dinosaurs.length;i++) </span><br><span class="line">&#123;if (dinosaurs[i].owner==_owner)&#123;</span><br><span class="line">    whose[count]=dinosaurs[i].id;</span><br><span class="line">    count++;</span><br><span class="line">&#125; </span><br><span class="line">&#125;</span><br><span class="line">return  (whose[which],length);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getWhoseEgg(address _owner,uint which)public view  returns (uint256,uint256)&#123;</span><br><span class="line"></span><br><span class="line">uint length=0;</span><br><span class="line">for (uint256 i=0; i&lt;eggs.length;i++) </span><br><span class="line">&#123;</span><br><span class="line">    if (eggs[i].owner==_owner) length++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">require(length!=0,&quot;you do not have a egg&quot;);</span><br><span class="line"></span><br><span class="line">uint256[] memory whose=new uint256[](length);</span><br><span class="line">uint count=0;</span><br><span class="line">for (uint256 i=0; i&lt;eggs.length;i++) </span><br><span class="line">&#123;if (eggs[i].owner==_owner)&#123;</span><br><span class="line">    whose[count]=eggs[i].id;</span><br><span class="line">    count++;</span><br><span class="line">&#125; </span><br><span class="line">&#125;</span><br><span class="line">return  (whose[which],length);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//上传商品</span><br><span class="line">function upload(bool isdin,uint256 id,uint256 price) public  returns(bool)&#123;</span><br><span class="line">    if (isdin==true)&#123;</span><br><span class="line">require(dinosaurs[id].owner==msg.sender,&quot;please upload your own dinosaur&quot;);</span><br><span class="line">dinosaurs[id].owner=Market;</span><br><span class="line">dinPrice[id]=price;</span><br><span class="line">dinSeller[id]=msg.sender;</span><br><span class="line">return  true;</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">require(eggs[id].owner==msg.sender,&quot;please upload your own egg&quot;);</span><br><span class="line">eggs[id].owner=Market;</span><br><span class="line">eggPrice[id]=price;</span><br><span class="line">eggSeller[id]=msg.sender;</span><br><span class="line">return  true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function buy(bool isDin,uint256 id)public payable returns (bool)&#123;</span><br><span class="line">    console.log(unicode&quot;成功进入buy方法,isDin是:&quot;,isDin);</span><br><span class="line">    console.log(unicode&quot;id是:&quot;,id);</span><br><span class="line">    if (isDin==true)&#123;</span><br><span class="line">    require(msg.value&gt;=dinPrice[id],&quot;money not enough&quot;);</span><br><span class="line">    console.log(unicode&quot;转账之前：&quot;,dinSeller[id]);</span><br><span class="line">    console.log(unicode&quot;转账之前：&quot;,dinPrice[id]);</span><br><span class="line">    payable (dinSeller[id]).transfer(dinPrice[id]);</span><br><span class="line">    delete dinSeller[id];</span><br><span class="line">    dinosaurs[id].owner=msg.sender;</span><br><span class="line">    payable (msg.sender).transfer(msg.value-dinPrice[id]);</span><br><span class="line">    delete dinPrice[id];</span><br><span class="line">return true;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    require(msg.value&gt;=eggPrice[id],&quot;money not enough&quot;);</span><br><span class="line">    payable (eggSeller[id]).transfer(eggPrice[id]);</span><br><span class="line">    delete eggSeller[id];</span><br><span class="line">    eggs[id].owner=msg.sender;</span><br><span class="line">    payable (msg.sender).transfer(msg.value-eggPrice[id]);</span><br><span class="line">    delete eggPrice[id];</span><br><span class="line">return true;</span><br><span class="line">&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">function getImage(bool isEgg,string memory _species,string memory color,uint256 rarity)private pure returns (string memory)&#123;</span><br><span class="line"></span><br><span class="line">if (isEgg==true)&#123;return &quot;http://127.0.0.1:8080/ipfs/QmbBVnwSx3H1dnmNGBCVkSwigwCvX9JowDT4ukrwTuPGwk&quot;;&#125;</span><br><span class="line"></span><br><span class="line">bytes32  b=keccak256(abi.encodePacked(&quot;blue&quot;));</span><br><span class="line">bytes32  r=keccak256(abi.encodePacked(&quot;red&quot;));</span><br><span class="line">bytes32  pt=keccak256(abi.encodePacked(&quot;pterosaur&quot;));</span><br><span class="line">bytes32  ta=keccak256(abi.encodePacked(&quot;tanystropheus&quot;));</span><br><span class="line">bytes32  ty=keccak256(abi.encodePacked(&quot;Tyrannosaurus&quot;));</span><br><span class="line"></span><br><span class="line">if (keccak256(abi.encodePacked(color))==b&amp;&amp;keccak256(abi.encodePacked(_species))==pt)&#123;//翼龙 蓝色</span><br><span class="line"></span><br><span class="line">if (rarity==1)&#123;return &quot;https://picst.sunbangyan.cn/2023/12/29/be6db32ab3c9b423288d588fb54c9237.jpeg&quot;;&#125;</span><br><span class="line">else if (rarity==2)&#123;return &quot;http://127.0.0.1:8080/ipfs/QmarMZpvkYpnRUqEfg5BVoHrWNh521LTDwUD7TJYYJazYN&quot;;&#125;</span><br><span class="line">else&#123; return &quot;http://127.0.0.1:8080/ipfs/QmS1yivA7WnfAtMDif968cvitKmkqzJMC2jZwkkjCm19wy&quot;;&#125;</span><br><span class="line"></span><br><span class="line">&#125;else if (keccak256(abi.encodePacked(color))==r&amp;&amp;keccak256(abi.encodePacked(_species))==pt)&#123;//翼龙 红</span><br><span class="line"></span><br><span class="line">if (rarity==1)&#123;return &quot;http://127.0.0.1:8080/ipfs/QmVs2utEiwyCxBUBhDmzkQYzBvvnimLAU8D1arZqfYynoy&quot;;&#125;</span><br><span class="line">else if (rarity==2)&#123;return &quot;http://127.0.0.1:8080/ipfs/QmUxgh2HkuctL1pJvEm3VdmQLVeTqNd8wgNMQ3oxeuFcoi&quot;;&#125;</span><br><span class="line">else&#123; return &quot;http://127.0.0.1:8080/ipfs/QmeT1spX2UzJqVKQUxFkoNt1m214HRthW6J1A61wxRWkxh&quot;;&#125;</span><br><span class="line"></span><br><span class="line">&#125;else if (keccak256(abi.encodePacked(color))==b&amp;&amp;keccak256(abi.encodePacked(_species))==ty)&#123;//三角龙 蓝 </span><br><span class="line"></span><br><span class="line">if (rarity==1)&#123;   return &quot;https://picst.sunbangyan.cn/2023/12/29/7272a76c3528f995011c7f5e46df35da.jpeg&quot;;&#125;</span><br><span class="line">else if (rarity==2)&#123;return &quot;https://picdm.sunbangyan.cn/2023/12/29/45d8294babec34f27e386f4082570813.jpeg&quot;;&#125;</span><br><span class="line">else&#123; return &quot;https://picdm.sunbangyan.cn/2023/12/29/1b7893f8ed04593724006f81cc34d328.jpeg&quot;;&#125;</span><br><span class="line"></span><br><span class="line">&#125;else if (keccak256(abi.encodePacked(color))==r&amp;&amp;keccak256(abi.encodePacked(_species))==pt)&#123;//三角龙 红</span><br><span class="line"></span><br><span class="line">    if (rarity==1)&#123;   return &quot;http://127.0.0.1:8080/ipfs/QmSPiyWzXcyrREubamCPmwgA9csM5Fc86WtmhR8Kt6ty3e&quot;;&#125;</span><br><span class="line">else if (rarity==2)&#123;return &quot;http://127.0.0.1:8080/ipfs/QmdWvGFUJa3WKnN3B9AkpuYr34xSTWrCvWqVDzoHCGt74r&quot;;&#125;</span><br><span class="line">else&#123; return &quot;http://127.0.0.1:8080/ipfs/Qme2wq1BAVNsBMkdYvQ4sbQCygaSTo6Rd39xGHexhK1gnC&quot;;&#125;</span><br><span class="line"></span><br><span class="line">&#125;else if (keccak256(abi.encodePacked(color))==r&amp;&amp;keccak256(abi.encodePacked(_species))==ta)&#123;//暴龙 蓝</span><br><span class="line"></span><br><span class="line">    if (rarity==1)&#123;   return &quot;https://picst.sunbangyan.cn/2023/12/29/506b76b27c266ecad0a61a0714009480.jpeg&quot;;&#125;</span><br><span class="line">else if (rarity==2)&#123;return &quot;https://picss.sunbangyan.cn/2023/12/29/cd83956bab3c3d5a6548f94dbb0cec76.jpeg&quot;;&#125;</span><br><span class="line">else&#123; return &quot;https://picdl.sunbangyan.cn/2023/12/29/7bccc3f72a9f418c67592b9ca9f5b0a6.jpeg&quot;;&#125;</span><br><span class="line"></span><br><span class="line">&#125;else if (keccak256(abi.encodePacked(color))==r&amp;&amp;keccak256(abi.encodePacked(_species))==ty)&#123;//暴龙 红 x</span><br><span class="line"></span><br><span class="line">     if (rarity==1)&#123;   return &quot;https://picst.sunbangyan.cn/2023/12/29/d8e4a0dd805d69f61bca3106493ead1c.jpeg&quot;;&#125;</span><br><span class="line">else if (rarity==2)&#123;return &quot;https://picst.sunbangyan.cn/2023/12/29/b62a2993c6a4003328bbe161d91f790c.jpeg&quot;;&#125;</span><br><span class="line">else&#123; return &quot;https://picdl.sunbangyan.cn/2023/12/29/4135215e0ab8c215228de15dbb69d6fa.jpeg&quot;;&#125;</span><br><span class="line"></span><br><span class="line">&#125;else &#123;return  &quot;&quot;;&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.16;</span><br><span class="line"></span><br><span class="line">library ku&#123;</span><br><span class="line">function toString(uint _num) internal pure  returns (string memory) &#123;</span><br><span class="line">        if (_num == 0) &#123;</span><br><span class="line">            return &quot;0&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        uint num = _num;</span><br><span class="line">        uint length;</span><br><span class="line">        while (num != 0) &#123;</span><br><span class="line">            length++;</span><br><span class="line">            num /= 10;</span><br><span class="line">        &#125;</span><br><span class="line">        bytes memory str = new bytes(length);</span><br><span class="line">        uint i = length - 1;</span><br><span class="line">        while (_num != 0) &#123;</span><br><span class="line">            str[i] = bytes1(uint8(48 + _num % 10));</span><br><span class="line">            unchecked&#123;</span><br><span class="line">            i--;</span><br><span class="line">            &#125;</span><br><span class="line">            _num /= 10;</span><br><span class="line">        &#125;</span><br><span class="line">        return string(str);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function addressToString(address _address) public pure  returns (string memory) &#123;</span><br><span class="line">        bytes20 value = bytes20(uint160(_address));</span><br><span class="line">        bytes memory alphabet = &quot;0123456789abcdef&quot;;</span><br><span class="line"></span><br><span class="line">        bytes memory str = new bytes(42);</span><br><span class="line">        str[0] = &#x27;0&#x27;;</span><br><span class="line">        str[1] = &#x27;x&#x27;;</span><br><span class="line">        for (uint i = 0; i &lt; 20; i++) &#123;</span><br><span class="line">            str[2+i*2] = alphabet[uint(uint8(value[i + 12] &gt;&gt; 4))];</span><br><span class="line">            str[3+i*2] = alphabet[uint(uint8(value[i + 12] &amp; 0x0f))];</span><br><span class="line">        &#125;</span><br><span class="line">        return string(str);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/%E6%81%90%E9%BE%99nft%E9%A1%B9%E7%9B%AE/%E5%90%88%E7%BA%A6%E4%BB%A3%E7%A0%81/" data-id="clufc6bcr001ix0udh8uce4ki" data-title="dragon solidity" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/03/25/python/anaconda/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/%E6%81%90%E9%BE%99nft%E9%A1%B9%E7%9B%AE/%E5%90%88%E7%BA%A6%E4%BB%A3%E7%A0%81/">dragon solidity</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/25/python/anaconda/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/25/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/slither%20install/">slither install</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/23/%E5%95%86%E7%A7%91/%E5%AD%A6%E4%B9%A0%E5%95%86%E7%A7%91%E7%9A%84%E7%9B%AE%E7%9A%84/">purpose to learn financy</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 fathergun<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
