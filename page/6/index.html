@@ -73,6 +73,67 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-区块链安全/defi靶场/uniswap2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2/" class="article-date">
+  <time class="dt-published" datetime="2023-11-20T04:58:22.969Z" itemprop="datePublished">2023-11-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2/">uniswap2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>发现一个东西：<br>using for 中的对象会充当使用的方法的第一个参数</p>
+<p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2/image.png" alt="Alt text"></p>
+<p>明明这里有两个参数，但是调用的时候只传入了一个参数</p>
+<p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2/image-1.png" alt="Alt text"></p>
+<p>这里是先减再乘</p>
+<p>使用者调用addliqidlity的时候，是不会立刻发送交易的，是在一定时间之后再发生，</p>
+<p>期望增加的两种代币数值最终只有一种代币会满足</p>
+<p>permit方法没有介绍</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">... </span><br><span class="line">// 检查交易是否过期</span><br><span class="line">ensure(deadline)</span><br><span class="line">&#123;</span><br><span class="line">// 移除流动性，Router获得不定数量的 token，数量为 amountETH 的 WETH</span><br><span class="line">    (, amountETH) = removeLiquidity(</span><br><span class="line">        token,</span><br><span class="line">        WETH,</span><br><span class="line">        liquidity,</span><br><span class="line">        amountTokenMin,</span><br><span class="line">        amountETHMin,</span><br><span class="line">        address(this),</span><br><span class="line">        deadline</span><br><span class="line">    );</span><br><span class="line">    // 向 to 地址发送全部 token</span><br><span class="line">    TransferHelper.safeTransfer(token, to, IERC20(token).balanceOf(address(this)));</span><br><span class="line">    // 将数量为 amountETH 的 WETH 换成 ETH</span><br><span class="line">    IWETH(WETH).withdraw(amountETH);</span><br><span class="line">    // 向 to 地址发送数量为 amountToken 的 ETH</span><br><span class="line">    TransferHelper.safeTransferETH(to, amountETH);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这里WETH是什么，是一种寄存，可以转化为ETH</p>
+<p> TransferHelper.safeTransfer(token, to, IERC20(token).balanceOf(address(this)));这行代码中TransferHelper是什么？应该是IERC20的地址（币的地址，不然这种写法没见过），也不对啊，币地址是token，先暂时理解为他想要我理解的意思</p>
+<p> 这个方法会先将所有的币都转移给合约本身，再把tokne转给用户，再将WETH换成ETH（不知道为什么这样），最后转给用户</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> function removeLiquidity(</span><br><span class="line">    address tokenA,</span><br><span class="line">    address tokenB,</span><br><span class="line">    uint liquidity,</span><br><span class="line">    uint amountAMin,</span><br><span class="line">    uint amountBMin,</span><br><span class="line">    address to,</span><br><span class="line">    uint deadline</span><br><span class="line">) public virtual override ensure(deadline) returns (uint amountA, uint amountB) &#123;</span><br><span class="line">   ensure(deadline) </span><br><span class="line">    // 获取 token, WETH 的流动池地址</span><br><span class="line">    address pair = UniswapV2Library.pairFor(factory, tokenA, tokenB);</span><br><span class="line">    // 用户向流动池发送数量为 liquidity 的 LP</span><br><span class="line">    IUniswapV2Pair(pair).transferFrom(msg.sender, pair, liquidity);</span><br><span class="line">    // 流动池销毁 LP 并向 to 地址发送数量为 amount0 的 token0 和 amount1 的 token1</span><br><span class="line">    (uint amount0, uint amount1) = IUniswapV2Pair(pair).burn(to);</span><br><span class="line">    // 计算出 tokenA, tokenB 中谁是 token0,token1</span><br><span class="line">    (address token0,) = UniswapV2Library.sortTokens(tokenA, tokenB);</span><br><span class="line">    // 如果实际获得的 amountA &lt; amountAMin 或者 amountB &lt; amountBMin，那么交易失败</span><br><span class="line">    (amountA, amountB) = tokenA == token0 ? (amount0, amount1) : (amount1, amount0);</span><br><span class="line">    require(amountA &gt;= amountAMin, &#x27;UniswapV2Router: INSUFFICIENT_A_AMOUNT&#x27;);</span><br><span class="line">    require(amountB &gt;= amountBMin, &#x27;UniswapV2Router: INSUFFICIENT_B_AMOUNT&#x27;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<p>LP币是如何存储的？是ERC20吗</p>
+<p>uniswap v2 rounter是用户与合约交互使用的合约，不是uniswap合约的一部分</p>
+<p>EIP712:对结构化数据进行hash加密的标准</p>
+<p>几种公式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//在router中addliqudity时计算应该投入的amountB：</span><br><span class="line"> amountB = amountA.mul(reserveB) / reserveA;</span><br><span class="line"></span><br><span class="line"> //在burn合约中需要重新计算amount并补差价</span><br><span class="line">  amount0 = liquidity.mul(balance0) / _totalSupply; // using balances ensures pro-rata distribution</span><br><span class="line">  amount1 = liquidity.mul(balance1) / _totalSupply; // using balances ensures pro-rata distribution</span><br><span class="line"> _safeTransfer(_token0, to, amount0);</span><br><span class="line"> _safeTransfer(_token1, to, amount1);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>router中的函数难道都只是计算？</p>
+<p>_addLiquidity：传入两币地址，想要增加的两币数量，最少获得的两币数量，返回实际能传入的两币数量（并未真的传）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2/" data-id="clufcs0v0000flguda0w6380p" data-title="uniswap2" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-区块链安全/defi靶场/uniswap" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/" class="article-date">
@@ -116,7 +177,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/" data-id="clufc6bc5000ex0ud801j03ge" data-title="uniswap1和uniswap2的区别" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/" data-id="clufcs0uz000elguddj9ocngl" data-title="uniswap1和uniswap2的区别" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -167,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/hardhat/hardhat%E5%88%9D%E5%A7%8B/" data-id="clufc6bcq001hx0udgbv7b7wd" data-title="hardhat必看.md" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/hardhat/hardhat%E5%88%9D%E5%A7%8B/" data-id="clufcs0vk001ilgudhn245b61" data-title="hardhat必看.md" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -254,7 +315,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/05/readme/newpapername/" data-id="clufc6bbz0003x0ud6miabedp" data-title="grammer" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/05/readme/newpapername/" data-id="clufcs0us0005lgud7zbs0n45" data-title="grammer" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -297,7 +358,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/05/readme/%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/" data-id="clufc6bc10006x0udgd7ahtbp" data-title="Operational processes" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/05/readme/%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/" data-id="clufcs0ut0006lgud70qnc1rc" data-title="Operational processes" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -335,7 +396,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/05/%E5%95%86%E7%A7%91/%E5%B7%A5%E7%A8%8B%E7%BB%8F%E6%B5%8E%E5%AD%A6/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%87%91%E8%9E%8D/usdt%E3%80%81usdc/" data-id="clufc6bcs001jx0ud3bk72mxh" data-title="Operational processes" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/05/%E5%95%86%E7%A7%91/%E5%B7%A5%E7%A8%8B%E7%BB%8F%E6%B5%8E%E5%AD%A6/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%87%91%E8%9E%8D/usdt%E3%80%81usdc/" data-id="clufcs0vo001klgudaryohaeg" data-title="Operational processes" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -386,7 +447,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/09/27/readme/hello-world/" data-id="clufc6bbx0001x0ud4sfieu38" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/09/27/readme/hello-world/" data-id="clufcs0um0001lgudh4x948bj" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -438,6 +499,10 @@
           </li>
         
           <li>
+            <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/%E6%81%90%E9%BE%99nft%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA/">project show</a>
+          </li>
+        
+          <li>
             <a href="/2024/03/25/python/anaconda/">(no title)</a>
           </li>
         
@@ -447,10 +512,6 @@
         
           <li>
             <a href="/2024/03/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/slither%20install/">slither install</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/23/%E5%95%86%E7%A7%91/%E5%AD%A6%E4%B9%A0%E5%95%86%E7%A7%91%E7%9A%84%E7%9B%AE%E7%9A%84/">purpose to learn financy</a>
           </li>
         
       </ul>

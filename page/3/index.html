@@ -73,6 +73,49 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-区块链安全/其他/checkContract" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/01/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/checkContract/" class="article-date">
+  <time class="dt-published" datetime="2024-01-27T08:58:00.000Z" itemprop="datePublished">2024-01-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/01/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/checkContract/">checkContract</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>在constructor中，可以利用extcodesize&#x3D;0这一特性冒充非合约地址</p>
+<p>所以一般只能检查</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 利用 extcodesize 检查是否为合约</span><br><span class="line">   function isContract(address account) public view returns (bool) &#123;</span><br><span class="line">       // extcodesize &gt; 0 的地址一定是合约地址</span><br><span class="line">       // 但是合约在构造函数时候 extcodesize 为0</span><br><span class="line">       uint size;</span><br><span class="line">       assembly &#123;</span><br><span class="line">           size := extcodesize(account)</span><br><span class="line">       &#125;</span><br><span class="line">       return size &gt; 0;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>预防方法：<br>用tx.origin&#x3D;&#x3D;msg.sender来判断是否是合约地址</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function realContract(address account) public view returns (bool) &#123;</span><br><span class="line">    return (tx.origin == msg.sender);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/01/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/checkContract/" data-id="clufcs0vb000vlgudgc6f4nd1" data-title="checkContract" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-区块链安全/其他/foundry" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/01/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/foundry/" class="article-date">
@@ -100,7 +143,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/01/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/foundry/" data-id="clufc6bce0012x0ud08qq0685" data-title="foundry" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/01/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/foundry/" data-id="clufcs0vc000wlgudg7xz9rpk" data-title="foundry" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -158,7 +201,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/01/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/%E7%AD%BE%E5%90%8D/" data-id="clufc6bc7000ix0ud9unb1pdk" data-title="EIP712" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/01/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/%E7%AD%BE%E5%90%8D/" data-id="clufcs0v1000glgud7sy57dl3" data-title="EIP712" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -216,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/01/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/EIP712/" data-id="clufc6bc5000dx0udehj122iv" data-title="EIP712" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/01/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/EIP712/" data-id="clufcs0uz000dlgud5vesc6dh" data-title="EIP712" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -246,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/01/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/foundry%E6%9E%84%E5%BB%BA/" data-id="clufc6bck001fx0udf57vamk1" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/01/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/foundry%E6%9E%84%E5%BB%BA/" data-id="clufcs0vi001blgud43iugii5" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -277,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/01/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/curl/" data-id="clufc6bcj001ex0uddilc0r49" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/01/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/curl/" data-id="clufcs0vh001algudbam771zd" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -332,7 +375,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/01/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84/" data-id="clufc6bc30009x0udae3leqvw" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/01/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84/" data-id="clufcs0uo0002lgudfs3ae34h" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -373,7 +416,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/01/15/readme/%E9%9D%A2%E8%AF%95/" data-id="clufc6bc20008x0udf2do4yt5" data-title="面试" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/01/15/readme/%E9%9D%A2%E8%AF%95/" data-id="clufcs0uv0008lgudbq9m52l5" data-title="面试" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -414,7 +457,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/01/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/create2/" data-id="clufc6bc9000ox0ud8hyh37sw" data-title="create2" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/01/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/create2/" data-id="clufcs0v5000mlgud8x7q89yf" data-title="create2" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -452,40 +495,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/01/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/decompile/" data-id="clufc6bca000px0udd240bwjf" data-title="decompile tool" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-杂文/毛泽东" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/01/08/%E6%9D%82%E6%96%87/%E6%AF%9B%E6%B3%BD%E4%B8%9C/" class="article-date">
-  <time class="dt-published" datetime="2024-01-08T07:49:45.178Z" itemprop="datePublished">2024-01-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>1.独立自主:走自己的路，把立足点放在依靠自己的基础上，同时积极争取外援，与其他国家合作<br>2.实事求是：从实际出发，理论联系实际，坚持在实践中检验真理和发展真理<br>3.群众路线：一切为了群众，一切起源于群众，从群众中来，到群众中去，把党的正确主张变为群众的自觉行动</p>
-<p>新民主主义革命理论的形成依据：<br>1.近代中国基本国情和中国革命的时代特征：由于封建统治的无能，中国处于一个半殖民地半封建社会的国情，中国的民主革命经历了从旧民主主义革命向新民主主义转变的过程，具有鲜明的时代特征，五四运动是中国转变的标志（两种革命的区别就是一个是蒋介石的革命，一个是毛泽东的革命）<br>2.中国新民主主义革命的实践基础：中国新民主主义经历了艰辛的发展和实践，奠定了革命理论形成的基础</p>
-<p>新民主主义基本纲领的内容：<br>1.政治纲领：推翻帝国主义封建社会，建立一个由无产阶级领导，工农阶级为基础，其余各阶级专政的新民主主义社会<br>2.经济纲领：将封建地主的土地没收分给农民，将官僚资产阶级的资产没收归国家所有，保护民族工商业<br>3.文华纲领：无产阶级领导的反帝反封建的文华，既大众的科学的文华</p>
-<p>党的基本路线：带领全国各族人民，以经济建设为中心，坚持四项基本原则，坚持改革开放，艰苦创业，自力更生，把我国塑造成富强，民主，文明的社会主义现代化强国</p>
-<p>分布式的几个算法：</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/01/08/%E6%9D%82%E6%96%87/%E6%AF%9B%E6%B3%BD%E4%B8%9C/" data-id="clufc6bc4000bx0udgscxa6uk" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/01/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/decompile/" data-id="clufcs0v6000nlgudepoyehc5" data-title="decompile tool" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -537,6 +547,10 @@
           </li>
         
           <li>
+            <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/%E6%81%90%E9%BE%99nft%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA/">project show</a>
+          </li>
+        
+          <li>
             <a href="/2024/03/25/python/anaconda/">(no title)</a>
           </li>
         
@@ -546,10 +560,6 @@
         
           <li>
             <a href="/2024/03/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/slither%20install/">slither install</a>
-          </li>
-        
-          <li>
-            <a href="/2024/03/23/%E5%95%86%E7%A7%91/%E5%AD%A6%E4%B9%A0%E5%95%86%E7%A7%91%E7%9A%84%E7%9B%AE%E7%9A%84/">purpose to learn financy</a>
           </li>
         
       </ul>
