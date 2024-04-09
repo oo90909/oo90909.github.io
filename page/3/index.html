@@ -73,6 +73,257 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-区块链安全/其他/startexe" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/startexe/" class="article-date">
+  <time class="dt-published" datetime="2024-03-16T03:52:16.170Z" itemprop="datePublished">2024-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>calldataSize&gt;&#x3D;4</p>
+<p>调用a777d0dc</p>
+<p>追加的参数小于ffffffffffffffff</p>
+<p>calldataload[4]+1f<br>之后和</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/03/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/startexe/" data-id="clus3dvlu0019joud8l8d2wns" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-区块链安全/ethernaut/assembly2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly2/" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T08:58:00.000Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly2/">assembly2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>不同的jump对应不同的参数，参数是由什么决定的？<br>判断是否是合约时：extcodesize？ 0，非0 然后iszero，用这个结果来做区别</p>
+<p>判断地址位数是否正确：用ffff…(40位)来and最后判等</p>
+<p>两个平台执行程序，字节码是不变的，但为什么一个能跑通，一个不能？因为环境<br>环境是否完全通过字节码生成的？</p>
+<p>执行一段代码之前EVM会做什么，有什么是opcode不能做的，就是比如说calldata是需要先编译好的传进来</p>
+<p>0x40 - 0x5f (32 bytes): currently allocated memory size (aka. free memory pointer)<br>一开始这里存放的是0x80，是说memory0x80以后可以随便使用，0x00~0x80合约需要自己使用</p>
+<p>storage是在部署合约字节码中</p>
+<p>calldata：合约字节码，调用函数的参数  什么时候是什么？<br>部署合约时是字节码，调用函数时是函数参数，<br>数组那些如何在calldata中存储？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">abi.encodeWithSignature(&quot;transferTo(address,uint256)&quot;, owner,ms.balance);</span><br><span class="line"></span><br><span class="line">//其他的wtf网上去看</span><br><span class="line"></span><br><span class="line">//再介绍一种0.8.11引入的新方式</span><br><span class="line">function (address payable ,uint256) external functionToCall=TxUserWallet(ms).transferTo;</span><br><span class="line">return  abi.encodeCall(functionToCall,(owner,1111));</span><br></pre></td></tr></table></figure>
+
+<p>只要有jumpi，就一定有for或者if或者别的条件判断的语句，一般是用jumpi来跳到结束程序的位置（如无payable传入value）</p>
+<p>每一个数字相加减一定都有溢出检查</p>
+<p>关于delegateCall的调用：如果fun A调用fun B，调用A时传入了value，那这个value会传递到B去</p>
+<p>这里setStart是delegateCall的目标函数<br><img src="/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly2/image-4.png" alt="Alt text"><br>delegateCall之后的第一个jumpi之前，没有callvalue，因为函数是nonpayable的<br><img src="/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly2/image-1.png" alt="Alt text"></p>
+<p><img src="/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly2/image-3.png" alt="Alt text"><br>delegateCall之后的第一个jumpi之前，有callvalue，因为函数是<br>payable<br><img src="/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly2/image-2.png" alt="Alt text"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly2/" data-id="clus3dvl6000pjoudbda84nz8" data-title="assembly2" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-区块链安全/其他/tx.origin" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/tx.origin/" class="article-date">
+  <time class="dt-published" datetime="2024-03-13T08:58:00.000Z" itemprop="datePublished">2024-03-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/tx.origin/">tx.origin</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>不同的jump对应不同的参数，参数是由什么决定的？<br>判断是否是合约时：extcodesize？ 0，非0 然后iszero，用这个结果来做区别</p>
+<p>判断地址位数是否正确：用ffff…(40位)来and最后判等</p>
+<p>两个平台执行程序，字节码是不变的，但为什么一个能跑通，一个不能？因为环境<br>环境是否完全通过字节码生成的？</p>
+<p>执行一段代码之前EVM会做什么，有什么是opcode不能做的，就是比如说calldata是需要先编译好的传进来</p>
+<p>0x40 - 0x5f (32 bytes): currently allocated memory size (aka. free memory pointer)<br>一开始这里存放的是0x80，是说memory0x80以后可以随便使用，0x00~0x80合约需要自己使用</p>
+<p>storage是在部署合约字节码中</p>
+<p>calldata：合约字节码，调用函数的参数  什么时候是什么？<br>部署合约时是字节码，调用函数时是函数参数，<br>数组那些如何在calldata中存储？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">abi.encodeWithSignature(&quot;transferTo(address,uint256)&quot;, owner,ms.balance);</span><br><span class="line"></span><br><span class="line">//其他的wtf网上去看</span><br><span class="line"></span><br><span class="line">//再介绍一种0.8.11引入的新方式</span><br><span class="line">function (address payable ,uint256) external functionToCall=TxUserWallet(ms).transferTo;</span><br><span class="line">return  abi.encodeCall(functionToCall,(owner,1111));</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>编译两篇合约的时候，假设合约A调用合约B，会先执行合约A的constructor，</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/tx.origin/" data-id="clus3dvls0018joudbmlgfz5o" data-title="tx.origin" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-区块链安全/其他/BoxGame" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/02/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/BoxGame/" class="article-date">
+  <time class="dt-published" datetime="2024-03-02T05:46:08.291Z" itemprop="datePublished">2024-03-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>var 8 0xa0+code.length+0x24<br>var 9 0xa0+code.length+0x20<br>var10 0xc5d2460100000…00<br>var11 0xc5d2460100000…00     0xc5d2460100000…0e0<br>var12 0xa0+code.length+0x24    0xa0+code.length+0x44<br>var13 0xa0+code.length+0x20    0xa0+code.length+0x40</p>
+<p>temp11 0xa0+code.length+0x20<br>temp12 0xa0+code.length+0x24</p>
+<p><img src="/2024/03/02/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/BoxGame/image.png" alt="Alt text"><br>这个判断是什么？明明var11是强塞（暂时不看）</p>
+<p><img src="/2024/03/02/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/BoxGame/image-1.png" alt="Alt text"></p>
+<p>初始状态（var5 &gt;&#x3D; memory[var4:var4 + 0x20]之前的）<br>memory<br>0x20</p>
+<p>0x40  0x000…80  0xa0+code.length</p>
+<p>0x60</p>
+<p>0x80  code.length</p>
+<p>0xa0 </p>
+<pre><code>code
+</code></pre>
+<p>0x100 </p>
+<p>var 1 0x006c<br>var 2 0x04    address<br>var 3 msg.data.length-0x04 code.length<br>var 4 0x00..80<br>var 5 0x00</p>
+<p>temp 0 0x00..80<br>temp 1 address<br>temp 2 code.length</p>
+<hr>
+<p>执行完for循环以后<br>memory<br>0x20</p>
+<p>0x40  0x000…80  0xa0+code.length</p>
+<p>0x60</p>
+<p>0x80  code.length</p>
+<p>0xa0 </p>
+<pre><code>code
+</code></pre>
+<p>0x100 </p>
+<p>var 1 0x006c<br>var 2 0x04    address<br>var 3 msg.data.length-0x04 code.length<br>var 4 0x00..80<br>var 5 0x00  0x01~code.length<br>var 6 0x00..80<br>var 7 0x00</p>
+<p>temp 0 0x00..80<br>temp 1 address<br>temp 2 code.length</p>
+<p>要求code<br>!&#x3D;<br>11110000..(0xfc个)..000</p>
+<p>11111111<br>&amp;<br>m8<br>!&#x3D;<br>1111 0000 0000..          00 (不能是这种)  f0</p>
+<p>1111 0001 0000..          00 (不能是这种)  f1</p>
+<p>1111 0010 0000..          00 (不能是这种)  f2</p>
+<p>1111 0100 0000..          00 (不能是这种)  f4</p>
+<p>1111 1010 0000..          00 (不能是这种)  fa</p>
+<p>1111 1111 0000..          xx (不能是这种)  ff</p>
+<p>memory[var6 + var7 + 0x20:var6 + var7 + 0x20 + 0x20] &amp; ~((0x01 &lt;&lt; 0xf8) - 0x01) &#x3D;&#x3D; 0x0f &lt;&lt; 0xfc</p>
+<p>为什么</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">for(uint256 i = 0; i &lt; code.length; i++) &#123;//这里有个细节，如果var7=code.length的话，</span><br><span class="line">//按理说范围应该波及到memory[a0+code.length,a0+code.length+0x20],可是for循环只到了code.length,</span><br><span class="line">//是因为每一次的20bytes都只需要看第一byte的值</span><br><span class="line">           require(code[i] != 0xf0); // CREATE</span><br><span class="line">           require(code[i] != 0xf1); // CALL</span><br><span class="line">           require(code[i] != 0xf2); // CALLCODE</span><br><span class="line">           require(code[i] != 0xf4); // DELEGATECALL</span><br><span class="line">           require(code[i] != 0xfa); // STATICCALL</span><br><span class="line">           require(code[i] != 0xff); // SELFDESTRUCT</span><br><span class="line">       &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p>label_01F2完成后：<br>memory<br>0x20</p>
+<p>0x40  0x000…80  0xa0+code.length  0xa0+code.length+0x24  </p>
+<p>0x60</p>
+<p>0x80  code.length</p>
+<p>0xa0 </p>
+<pre><code>code
+</code></pre>
+<p>0x100 0x04</p>
+<p>0x120 0xc5d24601000…00</p>
+<p>var 1 0x006c<br>var 2 0x04    address<br>var 3 msg.data.length-0x04 code.length<br>var 4 0x00..80<br>var 5 0x00  0x01~code.length  address<br>var 6 0x00..80  0xa0+code.length<br>var 7 0x00  0xa0+code.length+0x24<br>var 8 0xa0+code.length+0x24<br>var 9 0xa0+code.length+0x20<br>var10 0x04<br>var11 0x04<br>var12 0xa0+code.length+0x24<br>var 13 0xa0+code.length+0x20</p>
+<p>temp 0 0x00..80<br>temp 1 address<br>temp 2 code.length<br>temp 3 0xa0+code.length<br>temp 4 0xa0+code.length+0x20</p>
+<hr>
+<p>memory<br>0x20</p>
+<p>0x40  0x000…80  0xa0+code.length  0xa0+code.length+0x24 0xa0+code.length+0x44+returndata.length </p>
+<p>0x60</p>
+<p>0x80  code.length</p>
+<p>0xa0 </p>
+<pre><code>code
+</code></pre>
+<p>0x100 0x04</p>
+<p>0x120 0xc5d24601000…00  0xc5d24601c5d2460100…00 0xc5d24601000000100..0<br>0xc5d24601000…00<br>0x140 returndata.length(前4bytes内)returndata</p>
+<p>0x160 returndata(前4bytes内)</p>
+<p>var 1 0x006c<br>var 2 0x04    address<br>var 3 msg.data.length-0x04 code.length<br>var 4 0x00..80<br>var 5 0x00  0x01~code.length  address<br>var 6 0x00..80  0xa0+code.length   returndata.length  0xa0+code.length+0x24<br>var 7 0x00  0xa0+code.length+0x24  returndata.length<br>var 8 0xa0+code.length+0x24<br>var 9 0xa0+code.length+0x20<br>var10 0x04<br>var11 0x04<br>var12 0xa0+code.length+0x24<br>var13 0xa0+code.length+0x20</p>
+<p>temp 0 0x00..80<br>temp 1 address<br>temp 2 code.length<br>temp 3 0xa0+code.length<br>temp 4 0xa0+code.length+0x20<br>temp 5 ffff…fff<br>temp 6 0xa0+code.length+0x24<br>temp 7 0xa0+code.length+0x24<br>temp 8 returndata(这里假设有返回值，且temp得到的是returndata)<br>temp 9 0xa0+code.length+0x24<br>temp10 returndata.length</p>
+<p>要求攻击合约：<br>A：只有一个fallback函数，且函数内容需要用create2创建一个合约c，返回合约地址<br>B：调用BoxGame的payForFlag，参数传合约A的地址，之后再调用sendFlag<br>C: 在A中用create2创建的合约，里面只需要有个selfdestrct到B合约就行了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/03/02/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/BoxGame/" data-id="clus3dvlb000vjoud3s4u2dsh" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-区块链安全/其他/计算机组成原理相关" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/02/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%9B%B8%E5%85%B3/" class="article-date">
+  <time class="dt-published" datetime="2024-02-22T08:13:07.867Z" itemprop="datePublished">2024-02-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/02/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%9B%B8%E5%85%B3/" data-id="clus3dvlx001djoud8qbi1ajw" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-区块链安全/solidity文档相关bug/solidity文档阅读" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/02/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/solidity%E6%96%87%E6%A1%A3%E7%9B%B8%E5%85%B3bug/solidity%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/" class="article-date">
@@ -136,7 +387,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/02/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/solidity%E6%96%87%E6%A1%A3%E7%9B%B8%E5%85%B3bug/solidity%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/" data-id="clufjd19g001aekud5jgx04fw" data-title="solidity文档" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/02/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/solidity%E6%96%87%E6%A1%A3%E7%9B%B8%E5%85%B3bug/solidity%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB/" data-id="clus3dvl9000tjoud6p8kfss4" data-title="solidity文档" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -164,7 +415,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/02/06/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2Core/" data-id="clufjd196000gekudb0gu20o5" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/02/06/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap2Core/" data-id="clus3dvl5000njoud3j7s0dze" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -209,7 +460,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/01/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Dos/" data-id="clufjd197000iekud604terkm" data-title="DOS" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/01/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Dos/" data-id="clus3dvlb000wjoud6nyq9k00" data-title="DOS" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -252,7 +503,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/01/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/checkContract/" data-id="clufjd199000pekud4j43eu2q" data-title="checkContract" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/01/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/checkContract/" data-id="clus3dvle0011joud5oh9cgbi" data-title="checkContract" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -291,239 +542,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/01/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/foundry/" data-id="clufjd19a000rekud75ov9vfm" data-title="foundry" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/defi靶场/签名" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/01/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/%E7%AD%BE%E5%90%8D/" class="article-date">
-  <time class="dt-published" datetime="2024-01-22T04:34:30.534Z" itemprop="datePublished">2024-01-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/01/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/%E7%AD%BE%E5%90%8D/">EIP712</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://learnblockchain.cn/article/5012">签名分类介绍</a></p>
-<p><a target="_blank" rel="noopener" href="https://learnblockchain.cn/books/geth/part3/rlp.html">RLP编码规则</a></p>
-<p><img src="/2024/01/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/%E7%AD%BE%E5%90%8D/image.png" alt="Alt text"><br>why 重放保护</p>
-<p><img src="/2024/01/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/%E7%AD%BE%E5%90%8D/image-1.png" alt="Alt text"><br>why 重放攻击</p>
-<h3 id="签名交易"><a href="#签名交易" class="headerlink" title="签名交易"></a>签名交易</h3><p>tx记忆：npltvcd<br>{<br>拿破仑 TV CD</p>
-<p>}</p>
-<p>交易过程：</p>
-<p><img src="/2024/01/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/%E7%AD%BE%E5%90%8D/image-2.png" alt="Alt text"></p>
-<p><img src="/2024/01/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/%E7%AD%BE%E5%90%8D/image-3.png" alt="Alt text"><br>RLP反向验证可以得到签名者地址吗？</p>
-<p>对这两种过程的记忆：正：RKER   反：RE</p>
-<p>私钥签名，公钥验签中的过程都是对E的描述</p>
-<h3 id="签名消息"><a href="#签名消息" class="headerlink" title="签名消息"></a>签名消息</h3><p>data需要如下要素生成</p>
-<p><img src="/2024/01/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/%E7%AD%BE%E5%90%8D/image-4.png" alt="Alt text"></p>
-<h3 id="预编译合约："><a href="#预编译合约：" class="headerlink" title="预编译合约："></a>预编译合约：</h3><p>这里这个地址为什么是0x1？<br><img src="/2024/01/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/%E7%AD%BE%E5%90%8D/DQCO~X048@7573G%5B6X4$K~9.png" alt="Alt text"><br><img src="/2024/01/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/%E7%AD%BE%E5%90%8D/%7BY9Q%7D@QW8Q_9PGXCM_4NJ%7BA.png" alt="Alt text"><br>因为这是预编译合约<br><a target="_blank" rel="noopener" href="https://www.evm.codes/precompiled?fork=shanghai">预编译合约在这里找到介绍</a></p>
-<p>可以将交易签名分为三类：</p>
-<p>普通以太坊交易签名：”\x19Ethereum Signed Message:\n32”<br>EIP191：前缀是0x1900&#x2F;0x1945（加入地址参数，防止双花攻击）<br>EIP712：前缀是0x1901（再EIP191之上做的改良）</p>
-<p>EIP155：<br>加入chainId：防止跨链重放</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> DOMAIN_SEPARATOR = keccak256(</span><br><span class="line">            abi.encode(</span><br><span class="line">                keccak256(&#x27;EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)&#x27;),</span><br><span class="line">                keccak256(bytes(name)),</span><br><span class="line">                keccak256(bytes(&#x27;1&#x27;)),</span><br><span class="line">                chainId,</span><br><span class="line">                address(this)</span><br><span class="line">            )</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line"> function permit(address owner, address spender, uint value, uint deadline, uint8 v, bytes32 r, bytes32 s) external &#123;</span><br><span class="line">        require(deadline &gt;= block.timestamp, &#x27;UniswapV2: EXPIRED&#x27;);</span><br><span class="line">        bytes32 digest = keccak256(</span><br><span class="line">            abi.encodePacked(</span><br><span class="line">                &#x27;\x19\x01&#x27;,</span><br><span class="line">                DOMAIN_SEPARATOR,</span><br><span class="line">                keccak256(abi.encode(PERMIT_TYPEHASH, owner, spender, value, nonces[owner]++, deadline))</span><br><span class="line">            )</span><br><span class="line">        );</span><br><span class="line">        address recoveredAddress = ecrecover(digest, v, r, s);</span><br><span class="line">        require(recoveredAddress != address(0) &amp;&amp; recoveredAddress == owner, &#x27;UniswapV2: INVALID_SIGNATURE&#x27;);</span><br><span class="line">        _approve(owner, spender, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>EIP712结构<br><img src="/2024/01/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/%E7%AD%BE%E5%90%8D/image-5.png" alt="Alt text"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/01/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/%E7%AD%BE%E5%90%8D/" data-id="clufjd196000hekud18bz5pip" data-title="EIP712" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/defi靶场/EIP712" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/01/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/EIP712/" class="article-date">
-  <time class="dt-published" datetime="2024-01-20T05:17:50.980Z" itemprop="datePublished">2024-01-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/01/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/EIP712/">EIP712</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>EIP712:对在以太坊上传递的数据（json）进行拆分方式，加密方式的规定</p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/40596830">中文介绍</a></p>
-<p>拿solidity做例子，要举一反三别的语言</p>
-<p><img src="/2024/01/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/EIP712/image.png" alt="Alt text"></p>
-<p><img src="/2024/01/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/EIP712/image-2.png" alt="Alt text"></p>
-<p>encodeType:一种编码结构体的方法，结构体的总称</p>
-<p>encodeData:编码结构中各种成员值的方法（不同类型的编码结果不一样）</p>
-<p>这两种编码方法是否是形参</p>
-<p>结构体是引用类型，结构是单独得一种类型</p>
-<p>两种方法的作用都是为了编码结构类型（而非单纯的结构体）</p>
-<p>domainSeparator是一个经过hashStruct以后的EIP712Domain结构（用于消息验证签名的）<br><img src="/2024/01/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/EIP712/image-1.png" alt="Alt text"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST --data &#x27;&#123;&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;eth_signTypedData&quot;,&quot;params&quot;:[&quot;0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826&quot;, &#123;&quot;types&quot;:&#123;&quot;EIP712Domain&quot;:[&#123;&quot;name&quot;:&quot;name&quot;,&quot;type&quot;:&quot;string&quot;&#125;,&#123;&quot;name&quot;:&quot;version&quot;,&quot;type&quot;:&quot;string&quot;&#125;,&#123;&quot;name&quot;:&quot;chainId&quot;,&quot;type&quot;:&quot;uint256&quot;&#125;,&#123;&quot;name&quot;:&quot;verifyingContract&quot;,&quot;type&quot;:&quot;address&quot;&#125;],&quot;Person&quot;:[&#123;&quot;name&quot;:&quot;name&quot;,&quot;type&quot;:&quot;string&quot;&#125;,&#123;&quot;name&quot;:&quot;wallet&quot;,&quot;type&quot;:&quot;address&quot;&#125;],&quot;Mail&quot;:[&#123;&quot;name&quot;:&quot;from&quot;,&quot;type&quot;:&quot;Person&quot;&#125;,&#123;&quot;name&quot;:&quot;to&quot;,&quot;type&quot;:&quot;Person&quot;&#125;,&#123;&quot;name&quot;:&quot;contents&quot;,&quot;type&quot;:&quot;string&quot;&#125;]&#125;,&quot;primaryType&quot;:&quot;Mail&quot;,&quot;domain&quot;:&#123;&quot;name&quot;:&quot;Ether Mail&quot;,&quot;version&quot;:&quot;1&quot;,&quot;chainId&quot;:1,&quot;verifyingContract&quot;:&quot;0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC&quot;&#125;,&quot;message&quot;:&#123;&quot;from&quot;:&#123;&quot;name&quot;:&quot;Cow&quot;,&quot;wallet&quot;:&quot;0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826&quot;&#125;,&quot;to&quot;:&#123;&quot;name&quot;:&quot;Bob&quot;,&quot;wallet&quot;:&quot;0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB&quot;&#125;,&quot;contents&quot;:&quot;Hello, Bob!&quot;&#125;&#125;],&quot;id&quot;:1&#125;&#x27;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// using ethereumjs-util 7.1.3</span></span><br><span class="line"><span class="keyword">const</span> ethUtil = <span class="built_in">require</span>(<span class="string">&#x27;ethereumjs-util&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// using ethereumjs-abi 0.6.9</span></span><br><span class="line"><span class="keyword">const</span> abi = <span class="built_in">require</span>(<span class="string">&#x27;ethereumjs-abi&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// using chai 4.3.4</span></span><br><span class="line"><span class="keyword">const</span> chai = <span class="built_in">require</span>(<span class="string">&#x27;chai&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> typedData = &#123;</span><br><span class="line">    <span class="attr">types</span>: &#123;</span><br><span class="line">        <span class="title class_">EIP712Domain</span>: [</span><br><span class="line">            &#123; <span class="attr">name</span>: <span class="string">&#x27;name&#x27;</span>, <span class="attr">type</span>: <span class="string">&#x27;string&#x27;</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">name</span>: <span class="string">&#x27;version&#x27;</span>, <span class="attr">type</span>: <span class="string">&#x27;string&#x27;</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">name</span>: <span class="string">&#x27;chainId&#x27;</span>, <span class="attr">type</span>: <span class="string">&#x27;uint256&#x27;</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">name</span>: <span class="string">&#x27;verifyingContract&#x27;</span>, <span class="attr">type</span>: <span class="string">&#x27;address&#x27;</span> &#125;,</span><br><span class="line">        ],</span><br><span class="line">        <span class="title class_">Person</span>: [</span><br><span class="line">            &#123; <span class="attr">name</span>: <span class="string">&#x27;name&#x27;</span>, <span class="attr">type</span>: <span class="string">&#x27;string&#x27;</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">name</span>: <span class="string">&#x27;wallet&#x27;</span>, <span class="attr">type</span>: <span class="string">&#x27;address&#x27;</span> &#125;</span><br><span class="line">        ],</span><br><span class="line">        <span class="title class_">Mail</span>: [</span><br><span class="line">            &#123; <span class="attr">name</span>: <span class="string">&#x27;from&#x27;</span>, <span class="attr">type</span>: <span class="string">&#x27;Person&#x27;</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">name</span>: <span class="string">&#x27;to&#x27;</span>, <span class="attr">type</span>: <span class="string">&#x27;Person&#x27;</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">name</span>: <span class="string">&#x27;contents&#x27;</span>, <span class="attr">type</span>: <span class="string">&#x27;string&#x27;</span> &#125;</span><br><span class="line">        ],</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">primaryType</span>: <span class="string">&#x27;Mail&#x27;</span>,</span><br><span class="line">    <span class="attr">domain</span>: &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;Ether Mail&#x27;</span>,</span><br><span class="line">        <span class="attr">version</span>: <span class="string">&#x27;1&#x27;</span>,</span><br><span class="line">        <span class="attr">chainId</span>: <span class="number">1</span>,</span><br><span class="line">        <span class="attr">verifyingContract</span>: <span class="string">&#x27;0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">message</span>: &#123;</span><br><span class="line">        <span class="attr">from</span>: &#123;</span><br><span class="line">            <span class="attr">name</span>: <span class="string">&#x27;Cow&#x27;</span>,</span><br><span class="line">            <span class="attr">wallet</span>: <span class="string">&#x27;0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826&#x27;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">to</span>: &#123;</span><br><span class="line">            <span class="attr">name</span>: <span class="string">&#x27;Bob&#x27;</span>,</span><br><span class="line">            <span class="attr">wallet</span>: <span class="string">&#x27;0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB&#x27;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">contents</span>: <span class="string">&#x27;Hello, Bob!&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> types = typedData.<span class="property">types</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Recursively finds all the dependencies of a type</span></span><br><span class="line"><span class="comment">//将primaryType中所有子项按照深度优先顺序放在数组里面，并返回</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">dependencies</span>(<span class="params">primaryType, found = []</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (found.<span class="title function_">includes</span>(primaryType)) &#123;</span><br><span class="line">        <span class="keyword">return</span> found;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (types[primaryType] === <span class="literal">undefined</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> found;</span><br><span class="line">    &#125;</span><br><span class="line">    found.<span class="title function_">push</span>(primaryType);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> field <span class="keyword">of</span> types[primaryType]) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> dep <span class="keyword">of</span> <span class="title function_">dependencies</span>(field.<span class="property">type</span>, found)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!found.<span class="title function_">includes</span>(dep)) &#123;</span><br><span class="line">                found.<span class="title function_">push</span>(dep);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> found;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">encodeType</span>(<span class="params">primaryType</span>) &#123;</span><br><span class="line">    <span class="comment">// Get dependencies primary first, then alphabetical</span></span><br><span class="line">    <span class="keyword">let</span> deps = <span class="title function_">dependencies</span>(primaryType);</span><br><span class="line">    deps = deps.<span class="title function_">filter</span>(<span class="function"><span class="params">t</span> =&gt;</span> t != primaryType);</span><br><span class="line">    deps = [primaryType].<span class="title function_">concat</span>(deps.<span class="title function_">sort</span>());</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Format as a string with fields</span></span><br><span class="line">    <span class="keyword">let</span> result = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> type <span class="keyword">of</span> deps) &#123;</span><br><span class="line">        result += <span class="string">`<span class="subst">$&#123;type&#125;</span>(<span class="subst">$&#123;types[type].map((&#123; name, type &#125;) =&gt; <span class="string">`<span class="subst">$&#123;type&#125;</span> <span class="subst">$&#123;name&#125;</span>`</span>).join(<span class="string">&#x27;,&#x27;</span>)&#125;</span>)`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">typeHash</span>(<span class="params">primaryType</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> ethUtil.<span class="title function_">keccakFromString</span>(<span class="title function_">encodeType</span>(primaryType), <span class="number">256</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">encodeData</span>(<span class="params">primaryType, data</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> encTypes = [];</span><br><span class="line">    <span class="keyword">let</span> encValues = [];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Add typehash</span></span><br><span class="line">    encTypes.<span class="title function_">push</span>(<span class="string">&#x27;bytes32&#x27;</span>);</span><br><span class="line">    encValues.<span class="title function_">push</span>(<span class="title function_">typeHash</span>(primaryType));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Add field contents</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> field <span class="keyword">of</span> types[primaryType]) &#123;</span><br><span class="line">        <span class="keyword">let</span> value = data[field.<span class="property">name</span>];</span><br><span class="line">        <span class="keyword">if</span> (field.<span class="property">type</span> == <span class="string">&#x27;string&#x27;</span> || field.<span class="property">type</span> == <span class="string">&#x27;bytes&#x27;</span>) &#123;</span><br><span class="line">            encTypes.<span class="title function_">push</span>(<span class="string">&#x27;bytes32&#x27;</span>);</span><br><span class="line">            value = ethUtil.<span class="title function_">keccakFromString</span>(value, <span class="number">256</span>);</span><br><span class="line">            encValues.<span class="title function_">push</span>(value);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (types[field.<span class="property">type</span>] !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">            encTypes.<span class="title function_">push</span>(<span class="string">&#x27;bytes32&#x27;</span>);</span><br><span class="line">            value = ethUtil.<span class="title function_">keccak256</span>(<span class="title function_">encodeData</span>(field.<span class="property">type</span>, value));</span><br><span class="line">            encValues.<span class="title function_">push</span>(value);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (field.<span class="property">type</span>.<span class="title function_">lastIndexOf</span>(<span class="string">&#x27;]&#x27;</span>) === field.<span class="property">type</span>.<span class="property">length</span> - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="string">&#x27;TODO: Arrays currently unimplemented in encodeData&#x27;</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            encTypes.<span class="title function_">push</span>(field.<span class="property">type</span>);</span><br><span class="line">            encValues.<span class="title function_">push</span>(value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> abi.<span class="title function_">rawEncode</span>(encTypes, encValues);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">structHash</span>(<span class="params">primaryType, data</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> ethUtil.<span class="title function_">keccak256</span>(<span class="title function_">encodeData</span>(primaryType, data));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">signHash</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> ethUtil.<span class="title function_">keccak256</span>(</span><br><span class="line">        <span class="title class_">Buffer</span>.<span class="title function_">concat</span>([</span><br><span class="line">            <span class="title class_">Buffer</span>.<span class="title function_">from</span>(<span class="string">&#x27;1901&#x27;</span>, <span class="string">&#x27;hex&#x27;</span>),</span><br><span class="line">            <span class="title function_">structHash</span>(<span class="string">&#x27;EIP712Domain&#x27;</span>, typedData.<span class="property">domain</span>),</span><br><span class="line">            <span class="title function_">structHash</span>(typedData.<span class="property">primaryType</span>, typedData.<span class="property">message</span>),</span><br><span class="line">        ]),</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> privateKey = ethUtil.<span class="title function_">keccakFromString</span>(<span class="string">&#x27;cow&#x27;</span>, <span class="number">256</span>);</span><br><span class="line"><span class="keyword">const</span> address = ethUtil.<span class="title function_">privateToAddress</span>(privateKey);</span><br><span class="line"><span class="keyword">const</span> sig = ethUtil.<span class="title function_">ecsign</span>(<span class="title function_">signHash</span>(), privateKey);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> expect = chai.<span class="property">expect</span>;</span><br><span class="line"><span class="title function_">expect</span>(<span class="title function_">encodeType</span>(<span class="string">&#x27;Mail&#x27;</span>)).<span class="property">to</span>.<span class="title function_">equal</span>(<span class="string">&#x27;Mail(Person from,Person to,string contents)Person(string name,address wallet)&#x27;</span>);</span><br><span class="line"><span class="title function_">expect</span>(ethUtil.<span class="title function_">bufferToHex</span>(<span class="title function_">typeHash</span>(<span class="string">&#x27;Mail&#x27;</span>))).<span class="property">to</span>.<span class="title function_">equal</span>(</span><br><span class="line">    <span class="string">&#x27;0xa0cedeb2dc280ba39b857546d74f5549c3a1d7bdc2dd96bf881f76108e23dac2&#x27;</span>,</span><br><span class="line">);</span><br><span class="line"><span class="title function_">expect</span>(ethUtil.<span class="title function_">bufferToHex</span>(<span class="title function_">encodeData</span>(typedData.<span class="property">primaryType</span>, typedData.<span class="property">message</span>))).<span class="property">to</span>.<span class="title function_">equal</span>(</span><br><span class="line">    <span class="string">&#x27;0xa0cedeb2dc280ba39b857546d74f5549c3a1d7bdc2dd96bf881f76108e23dac2fc71e5fa27ff56c350aa531bc129ebdf613b772b6604664f5d8dbe21b85eb0c8cd54f074a4af31b4411ff6a60c9719dbd559c221c8ac3492d9d872b041d703d1b5aadf3154a261abdd9086fc627b61efca26ae5702701d05cd2305f7c52a2fc8&#x27;</span>,</span><br><span class="line">);</span><br><span class="line"><span class="title function_">expect</span>(ethUtil.<span class="title function_">bufferToHex</span>(<span class="title function_">structHash</span>(typedData.<span class="property">primaryType</span>, typedData.<span class="property">message</span>))).<span class="property">to</span>.<span class="title function_">equal</span>(</span><br><span class="line">    <span class="string">&#x27;0xc52c0ee5d84264471806290a3f2c4cecfc5490626bf912d01f240d7a274b371e&#x27;</span>,</span><br><span class="line">);</span><br><span class="line"><span class="title function_">expect</span>(ethUtil.<span class="title function_">bufferToHex</span>(<span class="title function_">structHash</span>(<span class="string">&#x27;EIP712Domain&#x27;</span>, typedData.<span class="property">domain</span>))).<span class="property">to</span>.<span class="title function_">equal</span>(</span><br><span class="line">    <span class="string">&#x27;0xf2cee375fa42b42143804025fc449deafd50cc031ca257e0b194a650a912090f&#x27;</span>,</span><br><span class="line">);</span><br><span class="line"><span class="title function_">expect</span>(ethUtil.<span class="title function_">bufferToHex</span>(<span class="title function_">signHash</span>())).<span class="property">to</span>.<span class="title function_">equal</span>(<span class="string">&#x27;0xbe609aee343fb3c4b28e1df9e632fca64fcfaede20f02e86244efddf30957bd2&#x27;</span>);</span><br><span class="line"><span class="title function_">expect</span>(ethUtil.<span class="title function_">bufferToHex</span>(address)).<span class="property">to</span>.<span class="title function_">equal</span>(<span class="string">&#x27;0xcd2a3d9f938e13cd947ec05abc7fe734df8dd826&#x27;</span>);</span><br><span class="line"><span class="title function_">expect</span>(sig.<span class="property">v</span>).<span class="property">to</span>.<span class="title function_">equal</span>(<span class="number">28</span>);</span><br><span class="line"><span class="title function_">expect</span>(ethUtil.<span class="title function_">bufferToHex</span>(sig.<span class="property">r</span>)).<span class="property">to</span>.<span class="title function_">equal</span>(<span class="string">&#x27;0x4355c47d63924e8a72e509b65029052eb6c299d53a04e167c5775fd466751c9d&#x27;</span>);</span><br><span class="line"><span class="title function_">expect</span>(ethUtil.<span class="title function_">bufferToHex</span>(sig.<span class="property">s</span>)).<span class="property">to</span>.<span class="title function_">equal</span>(<span class="string">&#x27;0x07299936d304c153f6443dfa05f40ff007d72911b6f72307f996231605b91562&#x27;</span>);</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/2024/01/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/EIP712/image-3.png" alt="Alt text"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/01/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/EIP712/" data-id="clufjd194000dekud9l5lf53e" data-title="EIP712" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/报错/foundry构建" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/01/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/foundry%E6%9E%84%E5%BB%BA/" class="article-date">
-  <time class="dt-published" datetime="2024-01-19T04:43:18.123Z" itemprop="datePublished">2024-01-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><img src="/2024/01/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/foundry%E6%9E%84%E5%BB%BA/image.png" alt="Alt text"><br>解决方法：</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/briansmith/ring/issues/1282">将target 为。。。gun换成。。。mavn</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/01/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/foundry%E6%9E%84%E5%BB%BA/" data-id="clufjd19i001iekudawo84cvm" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/报错/curl" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/01/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/curl/" class="article-date">
-  <time class="dt-published" datetime="2024-01-18T09:29:24.455Z" itemprop="datePublished">2024-01-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>下载foundryup的时候遇到如下问题</p>
-<p>报错如下<br><img src="/2024/01/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/curl/image-1.png" alt="Alt text"></p>
-<p>解决办法：<br>更改域名<br>8.8.8.8<br>8.8.4.4</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/01/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/curl/" data-id="clufjd19h001fekud054d9f2u" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/学习路径" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/01/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84/" class="article-date">
-  <time class="dt-published" datetime="2024-01-18T02:37:31.846Z" itemprop="datePublished">2024-01-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>理论前置：</p>
-<p>钱包密钥产生流程<br>ABC构成D，理清楚这里的ABCD是什么就行了，相关的安全EIP712都要实现，靶场中会出现</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/ethereumbook/ethereumbook">更加了解以太坊</a><br>有一本书的量<br>从solidty的底层运行机理联系到以太坊，并不断扩充新知识，需要多读几遍，每一遍读只需要着重读并记忆和自己已经学习的知识有联系的东西，理解没有联系的东西（不需要记下来）</p>
-<p>几百个金融基础(1 hour each)<br>并无学习经验，粗略想的话至少达到理解每个公式的程度</p>
-<p>solidity开发基础<br>wtf学院的开发案例<br>尽量从安全漏洞的角度去开发，这样可以严谨记忆开发代码</p>
-<p><a target="_blank" rel="noopener" href="https://learnblockchain.cn/docs/foundry/i18n/zh/getting-started/installation.html">foundry框架</a><br>先粗略看一遍文档，不需要每个代码都敲一遍，然后再回来看需要敲什么（优先于hardhat）</p>
-<p>英语：目前需要提示英语读文的能力，多写，多分析老外的说话习惯，口语习惯，</p>
-<p>ERCxxx<br>做靶场的时候该读就读<br>protocol（是什么？）安全规则<br>性质<br>解决什么问题<br>强调技术是什么</p>
-<p>需要编写工具来验证漏洞</p>
-<p>常见攻击手法：<br>在swc中查看</p>
-<p>三个靶场，用来检擦学习效率</p>
-<p>solodit：审计报告</p>
-<p>看很多审计报告总结出你自己的chainlist</p>
-<p>多去开拓审计报告</p>
-<p>审计报告的流程：<br>step1：看项目赛道，了解项目的大致用途</p>
-<p>系统存在什么功能</p>
-<p>列出external，internal，public，private</p>
-<p>分清楚所有角色，理清楚各个角色可以和各种方法的互动</p>
-<p>列出和处理资产有关的功能</p>
-<p>理解清楚开发者的注解，并不断挑战其理解的内容</p>
-<p>查看该项目是否是fork以前的某个项目，并以此为基础查看过去的相关审计报告</p>
-<p>run forge covrage 看测试的涵盖率</p>
-<p>step2：<br>工具<br>画图工具</p>
-<p>扫描工具（误报率高，可以看开发者对安全注不注重）<br><img src="/2024/01/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84/image.png" alt="Alt text"></p>
-<p>step3：<br>看是否存在常见错误<br>看是否按照eip标准来开发</p>
-<p>step4：<br>开发poc，测试，证明漏洞是成立的</p>
-<p>step5：<br>写报告，需要附上poc<br>修补建议</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/01/18/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84/" data-id="clufjd1930009ekud6mrmhark" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/01/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/foundry/" data-id="clus3dvlg0015joud05hzdjkc" data-title="foundry" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -539,7 +558,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -558,7 +577,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
     </div>
   </div>
 
@@ -571,23 +590,23 @@
       <ul>
         
           <li>
-            <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E9%9F%B3%E4%B9%90%E5%B9%B3%E5%8F%B0/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA/">(no title)</a>
+            <a href="/2024/04/08/TypeScript/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/ctf%E6%AF%94%E8%B5%9B/">ctf工具箱</a>
+            <a href="/2024/04/07/TypeScript/%E5%8C%BA%E5%88%86/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/%E6%81%90%E9%BE%99nft%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA/">dragon-nft</a>
+            <a href="/2024/04/07/TypeScript/%E6%B3%9B%E5%9E%8B/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E9%9F%B3%E4%B9%90%E5%B9%B3%E5%8F%B0/%E5%90%88%E7%BA%A6/">music solidity</a>
+            <a href="/2024/04/06/%E5%95%86%E7%A7%91/%E7%82%92%E5%B8%81/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/%E6%81%90%E9%BE%99nft%E9%A1%B9%E7%9B%AE/%E5%90%88%E7%BA%A6%E4%BB%A3%E7%A0%81/">dragon solidity</a>
+            <a href="/2024/04/01/TypeScript/first/">(no title)</a>
           </li>
         
       </ul>

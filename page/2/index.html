@@ -73,6 +73,192 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-python/anaconda" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/25/python/anaconda/" class="article-date">
+  <time class="dt-published" datetime="2024-03-25T14:33:29.112Z" itemprop="datePublished">2024-03-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>pip 下载的东西都在<br>D:\software\pycharm\python\Lib\site-packages</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//ubuntu中打开anaconda命令行的命令：</span><br><span class="line"></span><br><span class="line">source ~/anaconda3/bin/activate</span><br><span class="line"></span><br><span class="line">//想进入python3.10.11的环境，使用命令：</span><br><span class="line">conda activate forMythirl    </span><br><span class="line">//也就是                                          </span><br><span class="line"></span><br><span class="line">conda activate </span><br><span class="line">//这里的名字就叫env-name</span><br><span class="line"></span><br><span class="line">conda env list</span><br><span class="line">//查看已经创建的环境</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">To deactivate an active environment, use</span>                                      </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"> </span>                                                                             </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">    $ conda deactivate</span>     </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/beauthy/article/details/126050382">acaconda常见操作指令</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/03/25/python/anaconda/" data-id="clus3dvkw000cjoud0xit8smk" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-区块链安全/报错/slither install" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/slither%20install/" class="article-date">
+  <time class="dt-published" datetime="2024-03-24T14:57:56.000Z" itemprop="datePublished">2024-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/slither%20install/">slither install</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>install docker<br>didn’t solve<br>when i want to mklink to share memory in c,i can’t open the docker desktop</p>
+<p>when i want to use command </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">py -m pip install slither-analyzer</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//i met</span><br><span class="line">ValueError: check_hostname requires server_hostname</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//or</span><br><span class="line">git clone https://github.com/crytic/slither.git &amp;&amp; cd slither</span><br><span class="line">python3 -m pip install .</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//i met</span><br><span class="line"></span><br><span class="line">WARNING: Discarding file:///D:/software/tools/slither. Command errored out with exit status 2: &#x27;D:\software\pycharm\python\python.exe&#x27; &#x27;C:\Users\Administrator\AppData\Local\Temp\pip-standalone-pip-umdp2gta\__env_pip__.zip\pip&#x27; install --ignore-installed --no-user --prefix &#x27;C:\Users\Administrator\AppData\Local\Temp\pip-build-env-hme37_a2\overlay&#x27; --no-warn-script-location --no-binary :none: --only-binary :none: -i https://pypi.org/simple -- &#x27;setuptools&gt;=40.8.0&#x27; wheel Check the logs for full command output.</span><br><span class="line">ERROR: Command errored out with exit status 2: &#x27;D:\software\pycharm\python\python.exe&#x27; &#x27;C:\Users\Administrator\AppData\Local\Temp\pip-standalone-pip-umdp2gta\__env_pip__.zip\pip&#x27; install --ignore-installed --no-user --prefix &#x27;C:\Users\Administrator\AppData\Local\Temp\pip-build-env-hme37_a2\overlay&#x27; --no-warn-script-location --no-binary :none: --only-binary :none: -i https://pypi.org/simple -- &#x27;setuptools&gt;=40.8.0&#x27; wheel Check the logs for full command output.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>I want a Docker to help me~!</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/crytic/slither/discussions">this is the discussion website in github</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/03/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/slither%20install/" data-id="clus3dvm2001ijoud0ylzc53s" data-title="slither install" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-next.js/first" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/23/next.js/first/" class="article-date">
+  <time class="dt-published" datetime="2024-03-23T14:00:56.000Z" itemprop="datePublished">2024-03-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/23/next.js/first/">how to build a project of next.js</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/03/23/next.js/first/" data-id="clus3dvki0003joudh0b3fm1h" data-title="how to build a project of next.js" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-商科/学习商科的目的" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/23/%E5%95%86%E7%A7%91/%E5%AD%A6%E4%B9%A0%E5%95%86%E7%A7%91%E7%9A%84%E7%9B%AE%E7%9A%84/" class="article-date">
+  <time class="dt-published" datetime="2024-03-23T14:00:56.000Z" itemprop="datePublished">2024-03-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2024/03/23/%E5%95%86%E7%A7%91/%E5%AD%A6%E4%B9%A0%E5%95%86%E7%A7%91%E7%9A%84%E7%9B%AE%E7%9A%84/">purpose to learn financy</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>when you audit a project,you will see many equations ,which infuluence the finace structure<br>maybe you understand the equations more will make you know more about whether this project will be arbitrage </p>
+<p>so ,the core of learning this business studies is to learn its equations ,understand it ,study with contract be attacked,but there is no need to learn too much about this , it’s not your duty,it’s finanacial analyst’s duty.</p>
+<p>you need:<br>predict the short-time bazaar change(core point is what many properties change),you’d better predict every property you can</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/03/23/%E5%95%86%E7%A7%91/%E5%AD%A6%E4%B9%A0%E5%95%86%E7%A7%91%E7%9A%84%E7%9B%AE%E7%9A%84/" data-id="clus3dvky000fjoudankjhi41" data-title="purpose to learn financy" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-区块链安全/其他/软连接" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/23/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E8%BD%AF%E8%BF%9E%E6%8E%A5/" class="article-date">
+  <time class="dt-published" datetime="2024-03-23T07:18:19.739Z" itemprop="datePublished">2024-03-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>解决c盘空间不足的问题：<br>mklink，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mklink /j &quot;C:\Program Files\Docker&quot; &quot;D:\Program Files\Docker&quot;</span><br></pre></td></tr></table></figure>
+<p>进入第一个目录其实就是进入第二个目录。下载的东西也会进入第二个目录中，然后在第一个目录中有快捷方式，不过程序貌似并不知道这件事</p>
+<p>需要注意的是：当c盘中文件已经存在的时候，无法执行此命令，所以需要提取预判需要转移的文件夹民主（网上搜或者根据自己之前的经验）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/03/23/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E8%BD%AF%E8%BF%9E%E6%8E%A5/" data-id="clus3dvm0001gjoud0fqufwm8" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-区块链安全/solidity文档相关bug/0.8.0重大改变" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/solidity%E6%96%87%E6%A1%A3%E7%9B%B8%E5%85%B3bug/0.8.0%E9%87%8D%E5%A4%A7%E6%94%B9%E5%8F%98/" class="article-date">
@@ -100,7 +286,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/solidity%E6%96%87%E6%A1%A3%E7%9B%B8%E5%85%B3bug/0.8.0%E9%87%8D%E5%A4%A7%E6%94%B9%E5%8F%98/" data-id="clufjd19f0018ekudcxricbvj" data-title="0.8.0重大改变" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/solidity%E6%96%87%E6%A1%A3%E7%9B%B8%E5%85%B3bug/0.8.0%E9%87%8D%E5%A4%A7%E6%94%B9%E5%8F%98/" data-id="clus3dvl7000qjoud51ihhtsu" data-title="0.8.0重大改变" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -128,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/03/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/audit%20report/" data-id="clufjd199000oekudg7761s7l" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/03/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/audit%20report/" data-id="clus3dvle0012joud2gdh7sgl" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -158,7 +344,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/03/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%90%88%E7%BA%A6%E6%94%BB%E5%87%BB%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/%E8%8B%B1%E8%AF%AD%E7%9F%AD%E8%AF%AD%E5%AD%A6%E4%B9%A0/" data-id="clufjd19g0019ekudcni36ams" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/03/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%90%88%E7%BA%A6%E6%94%BB%E5%87%BB%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/%E8%8B%B1%E8%AF%AD%E7%9F%AD%E8%AF%AD%E5%AD%A6%E4%B9%A0/" data-id="clus3dvly001ejoudh9e80sor" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -189,7 +375,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/03/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E7%BD%91%E7%AB%99/" data-id="clufjd19b000wekudebid6xuc" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/03/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E7%BD%91%E7%AB%99/" data-id="clus3dvlv001ajoudgk8zehh0" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -219,258 +405,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/03/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Wombo%20Combo/" data-id="clufjd198000mekudfsmt2f8q" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/其他/startexe" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/startexe/" class="article-date">
-  <time class="dt-published" datetime="2024-03-16T03:52:16.170Z" itemprop="datePublished">2024-03-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>calldataSize&gt;&#x3D;4</p>
-<p>调用a777d0dc</p>
-<p>追加的参数小于ffffffffffffffff</p>
-<p>calldataload[4]+1f<br>之后和</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/03/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/startexe/" data-id="clufjd19b000vekudaaz5857s" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/其他/tx.origin" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/tx.origin/" class="article-date">
-  <time class="dt-published" datetime="2024-03-13T08:58:00.000Z" itemprop="datePublished">2024-03-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/tx.origin/">tx.origin</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>不同的jump对应不同的参数，参数是由什么决定的？<br>判断是否是合约时：extcodesize？ 0，非0 然后iszero，用这个结果来做区别</p>
-<p>判断地址位数是否正确：用ffff…(40位)来and最后判等</p>
-<p>两个平台执行程序，字节码是不变的，但为什么一个能跑通，一个不能？因为环境<br>环境是否完全通过字节码生成的？</p>
-<p>执行一段代码之前EVM会做什么，有什么是opcode不能做的，就是比如说calldata是需要先编译好的传进来</p>
-<p>0x40 - 0x5f (32 bytes): currently allocated memory size (aka. free memory pointer)<br>一开始这里存放的是0x80，是说memory0x80以后可以随便使用，0x00~0x80合约需要自己使用</p>
-<p>storage是在部署合约字节码中</p>
-<p>calldata：合约字节码，调用函数的参数  什么时候是什么？<br>部署合约时是字节码，调用函数时是函数参数，<br>数组那些如何在calldata中存储？</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">abi.encodeWithSignature(&quot;transferTo(address,uint256)&quot;, owner,ms.balance);</span><br><span class="line"></span><br><span class="line">//其他的wtf网上去看</span><br><span class="line"></span><br><span class="line">//再介绍一种0.8.11引入的新方式</span><br><span class="line">function (address payable ,uint256) external functionToCall=TxUserWallet(ms).transferTo;</span><br><span class="line">return  abi.encodeCall(functionToCall,(owner,1111));</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>编译两篇合约的时候，假设合约A调用合约B，会先执行合约A的constructor，</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/tx.origin/" data-id="clufjd19c000xekuda38n2mhx" data-title="tx.origin" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/ethernaut/assembly2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly2/" class="article-date">
-  <time class="dt-published" datetime="2024-03-13T08:58:00.000Z" itemprop="datePublished">2024-03-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly2/">assembly2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>不同的jump对应不同的参数，参数是由什么决定的？<br>判断是否是合约时：extcodesize？ 0，非0 然后iszero，用这个结果来做区别</p>
-<p>判断地址位数是否正确：用ffff…(40位)来and最后判等</p>
-<p>两个平台执行程序，字节码是不变的，但为什么一个能跑通，一个不能？因为环境<br>环境是否完全通过字节码生成的？</p>
-<p>执行一段代码之前EVM会做什么，有什么是opcode不能做的，就是比如说calldata是需要先编译好的传进来</p>
-<p>0x40 - 0x5f (32 bytes): currently allocated memory size (aka. free memory pointer)<br>一开始这里存放的是0x80，是说memory0x80以后可以随便使用，0x00~0x80合约需要自己使用</p>
-<p>storage是在部署合约字节码中</p>
-<p>calldata：合约字节码，调用函数的参数  什么时候是什么？<br>部署合约时是字节码，调用函数时是函数参数，<br>数组那些如何在calldata中存储？</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">abi.encodeWithSignature(&quot;transferTo(address,uint256)&quot;, owner,ms.balance);</span><br><span class="line"></span><br><span class="line">//其他的wtf网上去看</span><br><span class="line"></span><br><span class="line">//再介绍一种0.8.11引入的新方式</span><br><span class="line">function (address payable ,uint256) external functionToCall=TxUserWallet(ms).transferTo;</span><br><span class="line">return  abi.encodeCall(functionToCall,(owner,1111));</span><br></pre></td></tr></table></figure>
-
-<p>只要有jumpi，就一定有for或者if或者别的条件判断的语句，一般是用jumpi来跳到结束程序的位置（如无payable传入value）</p>
-<p>每一个数字相加减一定都有溢出检查</p>
-<p>关于delegateCall的调用：如果fun A调用fun B，调用A时传入了value，那这个value会传递到B去</p>
-<p>这里setStart是delegateCall的目标函数<br><img src="/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly2/image-4.png" alt="Alt text"><br>delegateCall之后的第一个jumpi之前，没有callvalue，因为函数是nonpayable的<br><img src="/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly2/image-1.png" alt="Alt text"></p>
-<p><img src="/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly2/image-3.png" alt="Alt text"><br>delegateCall之后的第一个jumpi之前，有callvalue，因为函数是<br>payable<br><img src="/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly2/image-2.png" alt="Alt text"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/03/13/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/ethernaut/assembly2/" data-id="clufjd19e0014ekudhqey7z45" data-title="assembly2" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/其他/BoxGame" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/03/02/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/BoxGame/" class="article-date">
-  <time class="dt-published" datetime="2024-03-02T05:46:08.291Z" itemprop="datePublished">2024-03-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>var 8 0xa0+code.length+0x24<br>var 9 0xa0+code.length+0x20<br>var10 0xc5d2460100000…00<br>var11 0xc5d2460100000…00     0xc5d2460100000…0e0<br>var12 0xa0+code.length+0x24    0xa0+code.length+0x44<br>var13 0xa0+code.length+0x20    0xa0+code.length+0x40</p>
-<p>temp11 0xa0+code.length+0x20<br>temp12 0xa0+code.length+0x24</p>
-<p><img src="/2024/03/02/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/BoxGame/image.png" alt="Alt text"><br>这个判断是什么？明明var11是强塞（暂时不看）</p>
-<p><img src="/2024/03/02/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/BoxGame/image-1.png" alt="Alt text"></p>
-<p>初始状态（var5 &gt;&#x3D; memory[var4:var4 + 0x20]之前的）<br>memory<br>0x20</p>
-<p>0x40  0x000…80  0xa0+code.length</p>
-<p>0x60</p>
-<p>0x80  code.length</p>
-<p>0xa0 </p>
-<pre><code>code
-</code></pre>
-<p>0x100 </p>
-<p>var 1 0x006c<br>var 2 0x04    address<br>var 3 msg.data.length-0x04 code.length<br>var 4 0x00..80<br>var 5 0x00</p>
-<p>temp 0 0x00..80<br>temp 1 address<br>temp 2 code.length</p>
-<hr>
-<p>执行完for循环以后<br>memory<br>0x20</p>
-<p>0x40  0x000…80  0xa0+code.length</p>
-<p>0x60</p>
-<p>0x80  code.length</p>
-<p>0xa0 </p>
-<pre><code>code
-</code></pre>
-<p>0x100 </p>
-<p>var 1 0x006c<br>var 2 0x04    address<br>var 3 msg.data.length-0x04 code.length<br>var 4 0x00..80<br>var 5 0x00  0x01~code.length<br>var 6 0x00..80<br>var 7 0x00</p>
-<p>temp 0 0x00..80<br>temp 1 address<br>temp 2 code.length</p>
-<p>要求code<br>!&#x3D;<br>11110000..(0xfc个)..000</p>
-<p>11111111<br>&amp;<br>m8<br>!&#x3D;<br>1111 0000 0000..          00 (不能是这种)  f0</p>
-<p>1111 0001 0000..          00 (不能是这种)  f1</p>
-<p>1111 0010 0000..          00 (不能是这种)  f2</p>
-<p>1111 0100 0000..          00 (不能是这种)  f4</p>
-<p>1111 1010 0000..          00 (不能是这种)  fa</p>
-<p>1111 1111 0000..          xx (不能是这种)  ff</p>
-<p>memory[var6 + var7 + 0x20:var6 + var7 + 0x20 + 0x20] &amp; ~((0x01 &lt;&lt; 0xf8) - 0x01) &#x3D;&#x3D; 0x0f &lt;&lt; 0xfc</p>
-<p>为什么</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">for(uint256 i = 0; i &lt; code.length; i++) &#123;//这里有个细节，如果var7=code.length的话，</span><br><span class="line">//按理说范围应该波及到memory[a0+code.length,a0+code.length+0x20],可是for循环只到了code.length,</span><br><span class="line">//是因为每一次的20bytes都只需要看第一byte的值</span><br><span class="line">           require(code[i] != 0xf0); // CREATE</span><br><span class="line">           require(code[i] != 0xf1); // CALL</span><br><span class="line">           require(code[i] != 0xf2); // CALLCODE</span><br><span class="line">           require(code[i] != 0xf4); // DELEGATECALL</span><br><span class="line">           require(code[i] != 0xfa); // STATICCALL</span><br><span class="line">           require(code[i] != 0xff); // SELFDESTRUCT</span><br><span class="line">       &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<p>label_01F2完成后：<br>memory<br>0x20</p>
-<p>0x40  0x000…80  0xa0+code.length  0xa0+code.length+0x24  </p>
-<p>0x60</p>
-<p>0x80  code.length</p>
-<p>0xa0 </p>
-<pre><code>code
-</code></pre>
-<p>0x100 0x04</p>
-<p>0x120 0xc5d24601000…00</p>
-<p>var 1 0x006c<br>var 2 0x04    address<br>var 3 msg.data.length-0x04 code.length<br>var 4 0x00..80<br>var 5 0x00  0x01~code.length  address<br>var 6 0x00..80  0xa0+code.length<br>var 7 0x00  0xa0+code.length+0x24<br>var 8 0xa0+code.length+0x24<br>var 9 0xa0+code.length+0x20<br>var10 0x04<br>var11 0x04<br>var12 0xa0+code.length+0x24<br>var 13 0xa0+code.length+0x20</p>
-<p>temp 0 0x00..80<br>temp 1 address<br>temp 2 code.length<br>temp 3 0xa0+code.length<br>temp 4 0xa0+code.length+0x20</p>
-<hr>
-<p>memory<br>0x20</p>
-<p>0x40  0x000…80  0xa0+code.length  0xa0+code.length+0x24 0xa0+code.length+0x44+returndata.length </p>
-<p>0x60</p>
-<p>0x80  code.length</p>
-<p>0xa0 </p>
-<pre><code>code
-</code></pre>
-<p>0x100 0x04</p>
-<p>0x120 0xc5d24601000…00  0xc5d24601c5d2460100…00 0xc5d24601000000100..0<br>0xc5d24601000…00<br>0x140 returndata.length(前4bytes内)returndata</p>
-<p>0x160 returndata(前4bytes内)</p>
-<p>var 1 0x006c<br>var 2 0x04    address<br>var 3 msg.data.length-0x04 code.length<br>var 4 0x00..80<br>var 5 0x00  0x01~code.length  address<br>var 6 0x00..80  0xa0+code.length   returndata.length  0xa0+code.length+0x24<br>var 7 0x00  0xa0+code.length+0x24  returndata.length<br>var 8 0xa0+code.length+0x24<br>var 9 0xa0+code.length+0x20<br>var10 0x04<br>var11 0x04<br>var12 0xa0+code.length+0x24<br>var13 0xa0+code.length+0x20</p>
-<p>temp 0 0x00..80<br>temp 1 address<br>temp 2 code.length<br>temp 3 0xa0+code.length<br>temp 4 0xa0+code.length+0x20<br>temp 5 ffff…fff<br>temp 6 0xa0+code.length+0x24<br>temp 7 0xa0+code.length+0x24<br>temp 8 returndata(这里假设有返回值，且temp得到的是returndata)<br>temp 9 0xa0+code.length+0x24<br>temp10 returndata.length</p>
-<p>要求攻击合约：<br>A：只有一个fallback函数，且函数内容需要用create2创建一个合约c，返回合约地址<br>B：调用BoxGame的payForFlag，参数传合约A的地址，之后再调用sendFlag<br>C: 在A中用create2创建的合约，里面只需要有个selfdestrct到B合约就行了</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/03/02/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/BoxGame/" data-id="clufjd197000jekud32z50vf6" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/其他/计算机组成原理相关" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/02/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%9B%B8%E5%85%B3/" class="article-date">
-  <time class="dt-published" datetime="2024-02-22T08:13:07.867Z" itemprop="datePublished">2024-02-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/02/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E7%9B%B8%E5%85%B3/" data-id="clufjd19d0010ekud658i4qmi" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/03/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/Wombo%20Combo/" data-id="clus3dvld0010joud5cj5apc2" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -486,7 +421,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -505,7 +440,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
     </div>
   </div>
 
@@ -518,23 +453,23 @@
       <ul>
         
           <li>
-            <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E9%9F%B3%E4%B9%90%E5%B9%B3%E5%8F%B0/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA/">(no title)</a>
+            <a href="/2024/04/08/TypeScript/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/ctf%E6%AF%94%E8%B5%9B/">ctf工具箱</a>
+            <a href="/2024/04/07/TypeScript/%E5%8C%BA%E5%88%86/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/%E6%81%90%E9%BE%99nft%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA/">dragon-nft</a>
+            <a href="/2024/04/07/TypeScript/%E6%B3%9B%E5%9E%8B/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E9%9F%B3%E4%B9%90%E5%B9%B3%E5%8F%B0/%E5%90%88%E7%BA%A6/">music solidity</a>
+            <a href="/2024/04/06/%E5%95%86%E7%A7%91/%E7%82%92%E5%B8%81/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/%E6%81%90%E9%BE%99nft%E9%A1%B9%E7%9B%AE/%E5%90%88%E7%BA%A6%E4%BB%A3%E7%A0%81/">dragon solidity</a>
+            <a href="/2024/04/01/TypeScript/first/">(no title)</a>
           </li>
         
       </ul>
