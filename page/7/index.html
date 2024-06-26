@@ -73,10 +73,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-区块链安全/defi靶场/uniswap" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-区块链开发/ERC721/恐龙nft项目/合约代码" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/" class="article-date">
-  <time class="dt-published" datetime="2023-11-20T03:11:27.340Z" itemprop="datePublished">2023-11-20</time>
+    <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/%E6%81%90%E9%BE%99nft%E9%A1%B9%E7%9B%AE/%E5%90%88%E7%BA%A6%E4%BB%A3%E7%A0%81/" class="article-date">
+  <time class="dt-published" datetime="2024-03-31T08:58:00.000Z" itemprop="datePublished">2024-03-31</time>
 </a>
     
   </div>
@@ -87,7 +87,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/">uniswap1和uniswap2的区别</a>
+      <a class="p-name article-title" href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/%E6%81%90%E9%BE%99nft%E9%A1%B9%E7%9B%AE/%E5%90%88%E7%BA%A6%E4%BB%A3%E7%A0%81/">dragon solidity</a>
     </h1>
   
 
@@ -95,28 +95,17 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="uniswap"><a href="#uniswap" class="headerlink" title="uniswap"></a>uniswap</h1><p>Uniswap 白皮书（中文版） (hearrain.com)</p>
-<p>是一个协议，该协议用来进行代币与代币之间的代换</p>
-<p>为每一个token创建交易所</p>
-<p>理论上交易所和ERC20一一对应，但不会检查是否是一一对应关系，所以gas消耗低，但是用户有个在他们信得过的交易所进行交易</p>
-<h1 id="汇率计算"><a href="#汇率计算" class="headerlink" title="汇率计算"></a>汇率计算</h1><p>interval&#x3D;token_pool*eth_pool<br>每一次存入一定量的ETH（ERC20 token），合约会为了维持interval不变，返还相应的ERC20 token（ETH）给msg.sender<br>token的价格公式<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image.png" alt="Alt text"></p>
-<p>推导：▲x&#x2F;▲y代表：在这次交易中，每一个y交换了多少个x，也就是y的价格<br>因此py&#x3D;▲x&#x2F;▲y<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-1.png" alt="Alt text"><br>当▲x很小时，右边&#x3D;x&#x2F;y，也就是y的价格</p>
-<h1 id="流动性提供"><a href="#流动性提供" class="headerlink" title="流动性提供"></a>流动性提供</h1><p>流动性提供：某个token刚创建时，需要存入一定的token和ETH（存入的比例需要和原来的ETH与token的比例相同）<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-2.png" alt="Alt text"><br>这里的s是流动性池中的独有代币</p>
-<p>每一次interval都会因为gasfee而轻微增加，涨幅并不大，所以可以尝试用反比例函数来理解</p>
-<p>为什么会有人提供流动性呢？因为可以随时抽出流动性<br>增长的手续费会增加到池子中，这个时候抽出s的话就会赚到部分的手续费（按你投入的流动性比例来看）</p>
-<p>提供流动性的损失：在提供流动性的过程中，两代币的汇率会发生变化，可能自己的流动性比例会变小，因此有可能自己拿回的某种代币或ETH代币反而不如之前多<br>同时也会面临敞口风险：在存入代币的过程中，流动性提供者需要购买另一种代币，可能会有风险</p>
-<p>也可以进行token1与token2的代换，先将token1换算成ETH，再将ETH换算成token2.</p>
-<h1 id="uniswap2新特性"><a href="#uniswap2新特性" class="headerlink" title="uniswap2新特性"></a>uniswap2新特性</h1><p>可以直接为token1和token2创建对合约，需要的手续费更少（A-&gt;ETH,ETH-&gt;B，这里要交两倍的手续费），在有损失时流动性提供者损失会更少，<br>如果ETH在uniswap1两种绑定美元的稳定币交易时发生了价格变化，那无疑对交易者是有损失的，容易滑铁卢<br>交易对数量的激增会让寻找两种token的交易路径变困难，但是可以用链下或者链上的路由器处理（不是很明白这里的技术）<br>无偿损失的概率会变小（不是很理解）</p>
-<h1 id="价格语言机："><a href="#价格语言机：" class="headerlink" title="价格语言机："></a>价格语言机：</h1><p>公式：<br>时间加权公式：每秒价格的和<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-3.png" alt="Alt text"><br>t1到t2间的平均价格，用这个表示下个区块每秒的价格（以太坊15秒产生一个区块，这期间价格不变）<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-4.png" alt="Alt text"><br>例子：<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-5.png" alt="Alt text"><br>要注意：一个exchange中两种币的价格不一定是倒数</p>
-<p>由于需要存储价格，而solidity又没有小数类型，所以要用这种方式来存储，最下面就是计算加权累计值的代码<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-6.png" alt="Alt text"></p>
-<h1 id="闪电贷"><a href="#闪电贷" class="headerlink" title="闪电贷"></a>闪电贷</h1><p>闪电贷的交易手续费和交易前后的交易池需要满足：<br><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-7.png" alt="Alt text"></p>
-<h1 id="元交易"><a href="#元交易" class="headerlink" title="元交易"></a>元交易</h1><p>交易者可以离线签名然后让转发者代替自己进行链上交易，一个转发者可以一次性发起多个这样的交易，<br>然后可以节约交易费用（不理解），对LP Token的使用更加灵活？</p>
-<h1 id="合约重构"><a href="#合约重构" class="headerlink" title="合约重构"></a>合约重构</h1><p><img src="/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/image-8.png" alt="Alt text"><br>Uniswap2把所有和钱有关的部分放在了core中，1中使用的Vpyer合约语言，2使用的是solidity语言</p>
+        <p>一共有一篇合约一篇library</p>
+<p>BreedingBarn.sol</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.16;</span><br><span class="line"></span><br><span class="line">import &quot;hardhat/console.sol&quot;;</span><br><span class="line">import &quot;./ku.sol&quot;;</span><br><span class="line"></span><br><span class="line">contract BreedingBarn &#123;</span><br><span class="line">    address public admin;</span><br><span class="line">address public  Market;</span><br><span class="line">using ku for uint256;</span><br><span class="line">using  ku for  address;</span><br><span class="line">//恐龙对象</span><br><span class="line">    struct Dinosaur &#123;</span><br><span class="line">        uint256 id;</span><br><span class="line">        bool isMale;</span><br><span class="line">        bool isPaired;</span><br><span class="line">        string species;</span><br><span class="line">        string color;</span><br><span class="line">        uint256 rarity;</span><br><span class="line">        address owner;</span><br><span class="line">        string pictrueUri;//图片uri</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">//龙蛋对象</span><br><span class="line">    struct Egg &#123;</span><br><span class="line">        uint256 id;</span><br><span class="line">        uint256 parentId1;</span><br><span class="line">        uint256 parentId2;</span><br><span class="line">        string species;</span><br><span class="line">        address owner;</span><br><span class="line">        bool isHatched;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">     </span><br><span class="line"></span><br><span class="line">    Dinosaur[] public dinosaurs;</span><br><span class="line">    Egg[] public eggs;</span><br><span class="line">    function dinLength()public view   returns (uint256)&#123;</span><br><span class="line">return dinosaurs.length;</span><br><span class="line">    &#125;</span><br><span class="line">    function eggLength()public view   returns (uint256)&#123;</span><br><span class="line">return dinosaurs.length;</span><br><span class="line">    &#125;</span><br><span class="line">    //孵化开始的时间戳</span><br><span class="line">    mapping (uint256=&gt;uint256) public  hatchTimer;</span><br><span class="line">    //记录价格</span><br><span class="line">    mapping (uint256=&gt;uint256) public  dinPrice;</span><br><span class="line">    mapping (uint256=&gt;uint256) public  eggPrice;</span><br><span class="line">    //记录上传者</span><br><span class="line">    mapping  (uint256=&gt;address)  public  dinSeller ;</span><br><span class="line">    mapping (uint256=&gt;address) public  eggSeller;</span><br><span class="line"></span><br><span class="line">    mapping (address=&gt;uint256) public hatchBarn;</span><br><span class="line">    mapping (uint256=&gt;uint256) public femalePregnancy;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    constructor(address _Market) &#123;</span><br><span class="line">        admin = msg.sender;</span><br><span class="line">        Market=_Market;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">    function getDinosaurValue(uint256 id, uint  choose)  public view  returns(string memory)&#123;</span><br><span class="line">        Dinosaur storage d=dinosaurs[id];</span><br><span class="line">        if (choose==0)return d.id.toString();</span><br><span class="line">        if (choose==1)&#123;</span><br><span class="line">            bool m=d.isMale;</span><br><span class="line">            if (m==true)return &quot;male&quot;;</span><br><span class="line">            else return &quot;female&quot;;</span><br><span class="line">        &#125; </span><br><span class="line">        if (choose==2)&#123;</span><br><span class="line">            bool m=d.isPaired;</span><br><span class="line">            if (m==true)return &quot;pregnant&quot;;</span><br><span class="line">            else return &quot;no&quot;;</span><br><span class="line">        &#125;  </span><br><span class="line">        if (choose==3)   return d.species;      </span><br><span class="line">        if (choose==4)  return d.color;</span><br><span class="line">        if (choose==5)  return d.rarity.toString();</span><br><span class="line">        // if (choose==6)  return d.owner.addressToString();</span><br><span class="line">        if (choose==7) return d.pictrueUri;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">function getEggValue(uint256 id, uint  choose)  public view  returns(string memory)&#123;</span><br><span class="line">        Egg storage d=eggs[id];</span><br><span class="line">        if (choose==0)return d.id.toString();</span><br><span class="line">        if (choose==1) return d.parentId1.toString();</span><br><span class="line">        if (choose==2)return d.parentId2.toString();</span><br><span class="line">        if (choose==3)   return d.species;      </span><br><span class="line">         if (choose==5)&#123;</span><br><span class="line">            bool m=d.isHatched;</span><br><span class="line">            if (m==true)return &quot;hatching&quot;;</span><br><span class="line">            else return &quot;no&quot;;</span><br><span class="line">        &#125; </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        function getOwner(bool isDin,uint256 id)public view returns (address)&#123;</span><br><span class="line">            if (isDin==true)&#123;</span><br><span class="line">return dinosaurs[id].owner;</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">return eggs[id].owner;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">//只有管理员可以手动增加恐龙</span><br><span class="line">    function addDinosaur(bool _isMale, string memory _species, string memory _color, uint256 _rarity, address _owner)  public  &#123;</span><br><span class="line">       </span><br><span class="line"></span><br><span class="line">//get image uri</span><br><span class="line">string memory uri=getImage(false,_species,_color,_rarity);</span><br><span class="line">//add dinosaurs</span><br><span class="line">        dinosaurs.push(Dinosaur(dinosaurs.length, _isMale, false, _species, _color, _rarity, _owner,uri));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//恐龙交配需要持有者拥有相同种类的雌雄两只恐龙</span><br><span class="line">    function pairDinosaurs(uint256 dinosaurId1, uint256 dinosaurId2) public returns (uint256) &#123;</span><br><span class="line">        require(dinosaurId1 &lt; dinosaurs.length &amp;&amp; dinosaurId2 &lt; dinosaurs.length, &quot;Dinosaur ID out of range.&quot;);</span><br><span class="line">        require(dinosaurs[dinosaurId1].isMale != dinosaurs[dinosaurId2].isMale, &quot;Dinosaurs must be of opposite genders.&quot;);</span><br><span class="line">        if (dinosaurs[dinosaurId1].isMale==false)&#123;</span><br><span class="line">            require(femalePregnancy[dinosaurId1]+100&lt;block.timestamp,&quot;The female is still pregnant&quot;);</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            require(femalePregnancy[dinosaurId2]+100&lt;block.timestamp,&quot;The female is still pregnant&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        require(dinosaurs[dinosaurId1].owner==dinosaurs[dinosaurId2].owner&amp;&amp;dinosaurs[dinosaurId1].owner==msg.sender,&quot;you don`t have these two dinosaurs&quot;);</span><br><span class="line">        string memory s1=dinosaurs[dinosaurId1].species;</span><br><span class="line">        string memory s2=dinosaurs[dinosaurId2].species;</span><br><span class="line">        require(keccak256(abi.encodePacked(s1))==keccak256(abi.encodePacked(s2)),&quot;Two dinosaurs must be one specie.&quot;);</span><br><span class="line">        </span><br><span class="line">        if (dinosaurs[dinosaurId1].isMale==false)&#123;</span><br><span class="line">        dinosaurs[dinosaurId1].isPaired = true;</span><br><span class="line">        femalePregnancy[dinosaurId1]=block.timestamp;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">        dinosaurs[dinosaurId2].isPaired = true;</span><br><span class="line">        femalePregnancy[dinosaurId2]=block.timestamp;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        eggs.push(Egg(eggs.length, dinosaurId1, dinosaurId2,s1,msg.sender, false));</span><br><span class="line">        return eggs.length - 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//恐龙孵化</span><br><span class="line">    function hatchEgg(uint256 eggId) public &#123;</span><br><span class="line">        require(eggId &lt; eggs.length, &quot;Egg ID out of range.&quot;);</span><br><span class="line">        require(eggs[eggId].isHatched == false, &quot;The egg has already hatched.&quot;);</span><br><span class="line">        require(eggs[eggId].owner==msg.sender,&quot;you don`t have this egg&quot;);</span><br><span class="line">                hatchBarn[msg.sender]+=1;</span><br><span class="line">        require(hatchBarn[msg.sender]&lt;=6,&quot;you only have six breedingbarn&quot;);</span><br><span class="line">        eggs[eggId].isHatched = true;</span><br><span class="line">        hatchTimer[eggId] = block.timestamp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//取走恐龙</span><br><span class="line">    function getOffEgg(uint256 eggId) public   &#123;</span><br><span class="line">        require(msg.sender==eggs[eggId].owner);</span><br><span class="line">        uint256 hatchTime=100;</span><br><span class="line">require(hatchTimer[eggId]+hatchTime&lt;block.timestamp,&quot;hatching...&quot;);</span><br><span class="line">console.log(unicode&quot;time permits&quot;);</span><br><span class="line">  bool _isMale=false;</span><br><span class="line">  if (block.timestamp%2==1)_isMale=true;</span><br><span class="line">    string memory _color=&quot;red&quot;;</span><br><span class="line">if (block.number%2==1)&#123;</span><br><span class="line">_color=&quot;blue&quot;;</span><br><span class="line">&#125;</span><br><span class="line">//get the rarity</span><br><span class="line">uint256 first=block.timestamp%6;</span><br><span class="line">if (first==1||first==0)first+=2;</span><br><span class="line">uint256 _rarity=first/2;</span><br><span class="line">//get uri</span><br><span class="line">string memory uri= getImage(false, eggs[eggId].species, _color, _rarity);</span><br><span class="line">    dinosaurs.push(Dinosaur(dinosaurs.length, _isMale, false, eggs[eggId].species, _color, _rarity, eggs[eggId].owner,uri));</span><br><span class="line">console.log(&quot;dinosaur birth the id&quot;,dinosaurs.length);</span><br><span class="line">console.log(&quot;color is &quot;,_color);</span><br><span class="line">console.log(&quot;rarity is &quot;,_rarity);</span><br><span class="line"></span><br><span class="line">if (eggId!=eggs.length-1)&#123;</span><br><span class="line">  </span><br><span class="line">    for (uint256 i =eggId;i&lt;eggs.length-1;i++)&#123;</span><br><span class="line">eggs[i]=eggs[i+1];</span><br><span class="line">console.log(unicode&quot;eggs array move:&quot;,i );</span><br><span class="line">    &#125; </span><br><span class="line">    delete eggs[eggs.length-1];</span><br><span class="line">&#125;else &#123;</span><br><span class="line">        delete eggs[eggId];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">function getWhoseDinosaur(address _owner,uint which)public view  returns (uint256,uint256)&#123;</span><br><span class="line"></span><br><span class="line">uint length=0;</span><br><span class="line">for (uint256 i=0; i&lt;dinosaurs.length;i++) </span><br><span class="line">&#123;</span><br><span class="line">    if (dinosaurs[i].owner==_owner) length++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">require(length!=0,&quot;you do not have a dinosaur&quot;);</span><br><span class="line"></span><br><span class="line">uint256[] memory whose=new uint256[](length);</span><br><span class="line">uint count=0;</span><br><span class="line">for (uint256 i=0; i&lt;dinosaurs.length;i++) </span><br><span class="line">&#123;if (dinosaurs[i].owner==_owner)&#123;</span><br><span class="line">    whose[count]=dinosaurs[i].id;</span><br><span class="line">    count++;</span><br><span class="line">&#125; </span><br><span class="line">&#125;</span><br><span class="line">return  (whose[which],length);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getWhoseEgg(address _owner,uint which)public view  returns (uint256,uint256)&#123;</span><br><span class="line"></span><br><span class="line">uint length=0;</span><br><span class="line">for (uint256 i=0; i&lt;eggs.length;i++) </span><br><span class="line">&#123;</span><br><span class="line">    if (eggs[i].owner==_owner) length++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">require(length!=0,&quot;you do not have a egg&quot;);</span><br><span class="line"></span><br><span class="line">uint256[] memory whose=new uint256[](length);</span><br><span class="line">uint count=0;</span><br><span class="line">for (uint256 i=0; i&lt;eggs.length;i++) </span><br><span class="line">&#123;if (eggs[i].owner==_owner)&#123;</span><br><span class="line">    whose[count]=eggs[i].id;</span><br><span class="line">    count++;</span><br><span class="line">&#125; </span><br><span class="line">&#125;</span><br><span class="line">return  (whose[which],length);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//上传商品</span><br><span class="line">function upload(bool isdin,uint256 id,uint256 price) public  returns(bool)&#123;</span><br><span class="line">    if (isdin==true)&#123;</span><br><span class="line">require(dinosaurs[id].owner==msg.sender,&quot;please upload your own dinosaur&quot;);</span><br><span class="line">dinosaurs[id].owner=Market;</span><br><span class="line">dinPrice[id]=price;</span><br><span class="line">dinSeller[id]=msg.sender;</span><br><span class="line">return  true;</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">require(eggs[id].owner==msg.sender,&quot;please upload your own egg&quot;);</span><br><span class="line">eggs[id].owner=Market;</span><br><span class="line">eggPrice[id]=price;</span><br><span class="line">eggSeller[id]=msg.sender;</span><br><span class="line">return  true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function buy(bool isDin,uint256 id)public payable returns (bool)&#123;</span><br><span class="line">    console.log(unicode&quot;成功进入buy方法,isDin是:&quot;,isDin);</span><br><span class="line">    console.log(unicode&quot;id是:&quot;,id);</span><br><span class="line">    if (isDin==true)&#123;</span><br><span class="line">    require(msg.value&gt;=dinPrice[id],&quot;money not enough&quot;);</span><br><span class="line">    console.log(unicode&quot;转账之前：&quot;,dinSeller[id]);</span><br><span class="line">    console.log(unicode&quot;转账之前：&quot;,dinPrice[id]);</span><br><span class="line">    payable (dinSeller[id]).transfer(dinPrice[id]);</span><br><span class="line">    delete dinSeller[id];</span><br><span class="line">    dinosaurs[id].owner=msg.sender;</span><br><span class="line">    payable (msg.sender).transfer(msg.value-dinPrice[id]);</span><br><span class="line">    delete dinPrice[id];</span><br><span class="line">return true;</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    require(msg.value&gt;=eggPrice[id],&quot;money not enough&quot;);</span><br><span class="line">    payable (eggSeller[id]).transfer(eggPrice[id]);</span><br><span class="line">    delete eggSeller[id];</span><br><span class="line">    eggs[id].owner=msg.sender;</span><br><span class="line">    payable (msg.sender).transfer(msg.value-eggPrice[id]);</span><br><span class="line">    delete eggPrice[id];</span><br><span class="line">return true;</span><br><span class="line">&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"></span><br><span class="line">function getImage(bool isEgg,string memory _species,string memory color,uint256 rarity)private pure returns (string memory)&#123;</span><br><span class="line"></span><br><span class="line">if (isEgg==true)&#123;return &quot;http://127.0.0.1:8080/ipfs/QmbBVnwSx3H1dnmNGBCVkSwigwCvX9JowDT4ukrwTuPGwk&quot;;&#125;</span><br><span class="line"></span><br><span class="line">bytes32  b=keccak256(abi.encodePacked(&quot;blue&quot;));</span><br><span class="line">bytes32  r=keccak256(abi.encodePacked(&quot;red&quot;));</span><br><span class="line">bytes32  pt=keccak256(abi.encodePacked(&quot;pterosaur&quot;));</span><br><span class="line">bytes32  ta=keccak256(abi.encodePacked(&quot;tanystropheus&quot;));</span><br><span class="line">bytes32  ty=keccak256(abi.encodePacked(&quot;Tyrannosaurus&quot;));</span><br><span class="line"></span><br><span class="line">if (keccak256(abi.encodePacked(color))==b&amp;&amp;keccak256(abi.encodePacked(_species))==pt)&#123;//翼龙 蓝色</span><br><span class="line"></span><br><span class="line">if (rarity==1)&#123;return &quot;https://picst.sunbangyan.cn/2023/12/29/be6db32ab3c9b423288d588fb54c9237.jpeg&quot;;&#125;</span><br><span class="line">else if (rarity==2)&#123;return &quot;http://127.0.0.1:8080/ipfs/QmarMZpvkYpnRUqEfg5BVoHrWNh521LTDwUD7TJYYJazYN&quot;;&#125;</span><br><span class="line">else&#123; return &quot;http://127.0.0.1:8080/ipfs/QmS1yivA7WnfAtMDif968cvitKmkqzJMC2jZwkkjCm19wy&quot;;&#125;</span><br><span class="line"></span><br><span class="line">&#125;else if (keccak256(abi.encodePacked(color))==r&amp;&amp;keccak256(abi.encodePacked(_species))==pt)&#123;//翼龙 红</span><br><span class="line"></span><br><span class="line">if (rarity==1)&#123;return &quot;http://127.0.0.1:8080/ipfs/QmVs2utEiwyCxBUBhDmzkQYzBvvnimLAU8D1arZqfYynoy&quot;;&#125;</span><br><span class="line">else if (rarity==2)&#123;return &quot;http://127.0.0.1:8080/ipfs/QmUxgh2HkuctL1pJvEm3VdmQLVeTqNd8wgNMQ3oxeuFcoi&quot;;&#125;</span><br><span class="line">else&#123; return &quot;http://127.0.0.1:8080/ipfs/QmeT1spX2UzJqVKQUxFkoNt1m214HRthW6J1A61wxRWkxh&quot;;&#125;</span><br><span class="line"></span><br><span class="line">&#125;else if (keccak256(abi.encodePacked(color))==b&amp;&amp;keccak256(abi.encodePacked(_species))==ty)&#123;//三角龙 蓝 </span><br><span class="line"></span><br><span class="line">if (rarity==1)&#123;   return &quot;https://picst.sunbangyan.cn/2023/12/29/7272a76c3528f995011c7f5e46df35da.jpeg&quot;;&#125;</span><br><span class="line">else if (rarity==2)&#123;return &quot;https://picdm.sunbangyan.cn/2023/12/29/45d8294babec34f27e386f4082570813.jpeg&quot;;&#125;</span><br><span class="line">else&#123; return &quot;https://picdm.sunbangyan.cn/2023/12/29/1b7893f8ed04593724006f81cc34d328.jpeg&quot;;&#125;</span><br><span class="line"></span><br><span class="line">&#125;else if (keccak256(abi.encodePacked(color))==r&amp;&amp;keccak256(abi.encodePacked(_species))==pt)&#123;//三角龙 红</span><br><span class="line"></span><br><span class="line">    if (rarity==1)&#123;   return &quot;http://127.0.0.1:8080/ipfs/QmSPiyWzXcyrREubamCPmwgA9csM5Fc86WtmhR8Kt6ty3e&quot;;&#125;</span><br><span class="line">else if (rarity==2)&#123;return &quot;http://127.0.0.1:8080/ipfs/QmdWvGFUJa3WKnN3B9AkpuYr34xSTWrCvWqVDzoHCGt74r&quot;;&#125;</span><br><span class="line">else&#123; return &quot;http://127.0.0.1:8080/ipfs/Qme2wq1BAVNsBMkdYvQ4sbQCygaSTo6Rd39xGHexhK1gnC&quot;;&#125;</span><br><span class="line"></span><br><span class="line">&#125;else if (keccak256(abi.encodePacked(color))==r&amp;&amp;keccak256(abi.encodePacked(_species))==ta)&#123;//暴龙 蓝</span><br><span class="line"></span><br><span class="line">    if (rarity==1)&#123;   return &quot;https://picst.sunbangyan.cn/2023/12/29/506b76b27c266ecad0a61a0714009480.jpeg&quot;;&#125;</span><br><span class="line">else if (rarity==2)&#123;return &quot;https://picss.sunbangyan.cn/2023/12/29/cd83956bab3c3d5a6548f94dbb0cec76.jpeg&quot;;&#125;</span><br><span class="line">else&#123; return &quot;https://picdl.sunbangyan.cn/2023/12/29/7bccc3f72a9f418c67592b9ca9f5b0a6.jpeg&quot;;&#125;</span><br><span class="line"></span><br><span class="line">&#125;else if (keccak256(abi.encodePacked(color))==r&amp;&amp;keccak256(abi.encodePacked(_species))==ty)&#123;//暴龙 红 x</span><br><span class="line"></span><br><span class="line">     if (rarity==1)&#123;   return &quot;https://picst.sunbangyan.cn/2023/12/29/d8e4a0dd805d69f61bca3106493ead1c.jpeg&quot;;&#125;</span><br><span class="line">else if (rarity==2)&#123;return &quot;https://picst.sunbangyan.cn/2023/12/29/b62a2993c6a4003328bbe161d91f790c.jpeg&quot;;&#125;</span><br><span class="line">else&#123; return &quot;https://picdl.sunbangyan.cn/2023/12/29/4135215e0ab8c215228de15dbb69d6fa.jpeg&quot;;&#125;</span><br><span class="line"></span><br><span class="line">&#125;else &#123;return  &quot;&quot;;&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: MIT</span><br><span class="line">pragma solidity ^0.8.16;</span><br><span class="line"></span><br><span class="line">library ku&#123;</span><br><span class="line">function toString(uint _num) internal pure  returns (string memory) &#123;</span><br><span class="line">        if (_num == 0) &#123;</span><br><span class="line">            return &quot;0&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        uint num = _num;</span><br><span class="line">        uint length;</span><br><span class="line">        while (num != 0) &#123;</span><br><span class="line">            length++;</span><br><span class="line">            num /= 10;</span><br><span class="line">        &#125;</span><br><span class="line">        bytes memory str = new bytes(length);</span><br><span class="line">        uint i = length - 1;</span><br><span class="line">        while (_num != 0) &#123;</span><br><span class="line">            str[i] = bytes1(uint8(48 + _num % 10));</span><br><span class="line">            unchecked&#123;</span><br><span class="line">            i--;</span><br><span class="line">            &#125;</span><br><span class="line">            _num /= 10;</span><br><span class="line">        &#125;</span><br><span class="line">        return string(str);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function addressToString(address _address) public pure  returns (string memory) &#123;</span><br><span class="line">        bytes20 value = bytes20(uint160(_address));</span><br><span class="line">        bytes memory alphabet = &quot;0123456789abcdef&quot;;</span><br><span class="line"></span><br><span class="line">        bytes memory str = new bytes(42);</span><br><span class="line">        str[0] = &#x27;0&#x27;;</span><br><span class="line">        str[1] = &#x27;x&#x27;;</span><br><span class="line">        for (uint i = 0; i &lt; 20; i++) &#123;</span><br><span class="line">            str[2+i*2] = alphabet[uint(uint8(value[i + 12] &gt;&gt; 4))];</span><br><span class="line">            str[3+i*2] = alphabet[uint(uint8(value[i + 12] &amp; 0x0f))];</span><br><span class="line">        &#125;</span><br><span class="line">        return string(str);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap/" data-id="clus3dvl2000kjoud4zi79nxi" data-title="uniswap1和uniswap2的区别" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/%E6%81%90%E9%BE%99nft%E9%A1%B9%E7%9B%AE/%E5%90%88%E7%BA%A6%E4%BB%A3%E7%A0%81/" data-id="clxvwvx760038rkud1u5ge5t4" data-title="dragon solidity" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -128,46 +117,26 @@
 
 
   
-    <article id="post-区块链安全/defi靶场/hardhat/hardhat初始" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-python/anaconda" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/11/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/hardhat/hardhat%E5%88%9D%E5%A7%8B/" class="article-date">
-  <time class="dt-published" datetime="2023-11-16T13:10:46.305Z" itemprop="datePublished">2023-11-16</time>
+    <a href="/2024/03/25/python/anaconda/" class="article-date">
+  <time class="dt-published" datetime="2024-03-25T14:33:29.112Z" itemprop="datePublished">2024-03-25</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/hardhat/hardhat%E5%88%9D%E5%A7%8B/">hardhat必看.md</a>
-    </h1>
-  
-
-      </header>
-    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="hardhat"><a href="#hardhat" class="headerlink" title="hardhat:"></a>hardhat:</h1><p>chai 的断言库<br>ether.js看hardhat中chai那一部分<br><a target="_blank" rel="noopener" href="https://ethereum-waffle.readthedocs.io/en/latest/matchers.html">chai</a></p>
-<p>solidity看白皮书<br>EVM看登链社区</p>
-<hr>
-<p><img src="/2023/11/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/hardhat/hardhat%E5%88%9D%E5%A7%8B/image.png" alt="Alt text"><br>父亲合约能不能像这样被部署，让我以后能够用ether调用被重写的方法？</p>
-<p>可以调用未被重写的方法</p>
-<p>但即使部署了，也不能调用被重写的方法，参考remix中就知道了，在子合约中肯定只能调用未被重写的方法喽</p>
-<p>想要调用被重写的方法肯定只能部署父亲合约了</p>
-<p>所以只有私有库需要这样子做</p>
-<hr>
-<p>创建hardhat的项目：<br>1.在hardhat官网上面找到初始化步骤(<br>    记得跟着下载<br>      npm install –save-dev “hardhat@^2.19.1” “@nomicfoundation&#x2F;hardhat-toolbox@^4.0.0”<br>)<br>2.npm install @openzeppelin&#x2F;contracts 下载openzepplin的包</p>
-<hr>
-<p>npx hardhat compile：编译合约（全部）<br>npx hardhat run script&#x2F;xxx.js：运行JavaScript代码</p>
-<h3 id="如何在成型的项目中添加hardhat"><a href="#如何在成型的项目中添加hardhat" class="headerlink" title="如何在成型的项目中添加hardhat"></a>如何在成型的项目中添加hardhat</h3><p>下载： npm install –save-dev hardhat<br>初始化：npx hardhat init</p>
+        <p>pip 下载的东西都在<br>D:\software\pycharm\python\Lib\site-packages</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//ubuntu中打开anaconda命令行的命令：</span><br><span class="line"></span><br><span class="line">source ~/anaconda3/bin/activate</span><br><span class="line"></span><br><span class="line">//想进入python3.10.11的环境，使用命令：</span><br><span class="line">conda activate forMythirl    </span><br><span class="line">//也就是                                          </span><br><span class="line"></span><br><span class="line">conda activate </span><br><span class="line">//这里的名字就叫env-name</span><br><span class="line"></span><br><span class="line">conda env list</span><br><span class="line">//查看已经创建的环境</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">To deactivate an active environment, use</span>                                      </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"> </span>                                                                             </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">    $ conda deactivate</span>     </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/beauthy/article/details/126050382">acaconda常见操作指令</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/16/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/hardhat/hardhat%E5%88%9D%E5%A7%8B/" data-id="clus3dvm9001qjoud6n11hcrs" data-title="hardhat必看.md" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/03/25/python/anaconda/" data-id="clxvwvx550006rkudhxvxbk4y" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -179,10 +148,10 @@
 
 
   
-    <article id="post-readme/newpapername" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-区块链安全/报错/slither install" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/11/05/readme/newpapername/" class="article-date">
-  <time class="dt-published" datetime="2023-11-05T14:00:56.000Z" itemprop="datePublished">2023-11-05</time>
+    <a href="/2024/03/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/slither%20install/" class="article-date">
+  <time class="dt-published" datetime="2024-03-24T14:57:56.000Z" itemprop="datePublished">2024-03-24</time>
 </a>
     
   </div>
@@ -193,7 +162,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/05/readme/newpapername/">grammer</a>
+      <a class="p-name article-title" href="/2024/03/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/slither%20install/">slither install</a>
     </h1>
   
 
@@ -201,60 +170,17 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>#grammer<br>this blog is some simple grammer about markdown</p>
-<p>###1.标题<br>####标题<br>#####标题<br>######标题<br>######最多的就是6个#的标题</p>
-<p>###2.字体（用的不多，会粗体即可）</p>
-<p><em>斜体</em><br><strong>粗体</strong><br><em><strong>粗斜体</strong></em><br>&emsp;&emsp;<br>&emsp;&emsp;<br>[空行处每一行都需要添加这个]<br>&emsp;&emsp;<br>&emsp;&emsp;<br>###3.插入图片（直接粘贴图片就好）<br><img src="/2023/11/05/readme/newpapername/image.png" alt="Alt text"><br>&emsp;&emsp;</p>
-<p>###4.插入链接（可以直接插入，但建议用文字来代替链接）<br>用文字：<br><a href="https://oo90909.github.io/">my blog website</a>’<br>直接放链接：<br><a href="https://oo90909.github.io/">https://oo90909.github.io/</a></p>
-<p>###5.灰色框2<br>段落前添加`&#96;&#96;,段落后添加&#96;&#96;&#96;,即可在中间位置识别为代码块<br>&emsp;&emsp;</p>
-<p>前面的`&#96;&#96;后面添加语言可以识别这种语言</p>
-<p>比如`&#96;&#96;java</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system.out.println(<span class="string">&quot;hello&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>`&#96;&#96;solidity</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function transfer()external returns(string)&#123;</span><br><span class="line">return &quot;this is solidity&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>&emsp;&emsp;<br>###6.分割线（***）</p>
-<hr>
-<p>&emsp;&emsp;<br>###7.插入表格<br>|   日期  |  任务  | 完成度 |<br>|:—-|—-:|:—-:|<br>|10.6|配置|10%|</p>
-<table>
-<thead>
-<tr>
-<th align="left">日期</th>
-<th align="right">任务</th>
-<th align="center">完成度</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">10.6</td>
-<td align="right">配置</td>
-<td align="center">10%</td>
-</tr>
-<tr>
-<td align="left">&emsp;&emsp;</td>
-<td align="right"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="left">&emsp;&emsp;</td>
-<td align="right"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="left">###8.插入数学公式</td>
-<td align="right"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="left"><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/366596107https://www.jianshu.com/p/25f013963">链接</a></td>
-<td align="right"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<p>###9.右键预测栏点击html即可生成前端html代码</p>
+        <p>install docker<br>didn’t solve<br>when i want to mklink to share memory in c,i can’t open the docker desktop</p>
+<p>when i want to use command </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">py -m pip install slither-analyzer</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//i met</span><br><span class="line">ValueError: check_hostname requires server_hostname</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//or</span><br><span class="line">git clone https://github.com/crytic/slither.git &amp;&amp; cd slither</span><br><span class="line">python3 -m pip install .</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//i met</span><br><span class="line"></span><br><span class="line">WARNING: Discarding file:///D:/software/tools/slither. Command errored out with exit status 2: &#x27;D:\software\pycharm\python\python.exe&#x27; &#x27;C:\Users\Administrator\AppData\Local\Temp\pip-standalone-pip-umdp2gta\__env_pip__.zip\pip&#x27; install --ignore-installed --no-user --prefix &#x27;C:\Users\Administrator\AppData\Local\Temp\pip-build-env-hme37_a2\overlay&#x27; --no-warn-script-location --no-binary :none: --only-binary :none: -i https://pypi.org/simple -- &#x27;setuptools&gt;=40.8.0&#x27; wheel Check the logs for full command output.</span><br><span class="line">ERROR: Command errored out with exit status 2: &#x27;D:\software\pycharm\python\python.exe&#x27; &#x27;C:\Users\Administrator\AppData\Local\Temp\pip-standalone-pip-umdp2gta\__env_pip__.zip\pip&#x27; install --ignore-installed --no-user --prefix &#x27;C:\Users\Administrator\AppData\Local\Temp\pip-build-env-hme37_a2\overlay&#x27; --no-warn-script-location --no-binary :none: --only-binary :none: -i https://pypi.org/simple -- &#x27;setuptools&gt;=40.8.0&#x27; wheel Check the logs for full command output.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>I want a Docker to help me~!</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/crytic/slither/discussions">this is the discussion website in github</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/05/readme/newpapername/" data-id="clus3dvko0006joud5vqffhhc" data-title="grammer" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/03/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%8A%A5%E9%94%99/slither%20install/" data-id="clxvwvx6o002orkude74d0uhe" data-title="slither install" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -266,10 +192,10 @@
 
 
   
-    <article id="post-readme/操作流程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-next.js/first" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/11/05/readme/%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/" class="article-date">
-  <time class="dt-published" datetime="2023-11-05T14:00:56.000Z" itemprop="datePublished">2023-11-05</time>
+    <a href="/2024/03/23/next.js/first/" class="article-date">
+  <time class="dt-published" datetime="2024-03-23T14:00:56.000Z" itemprop="datePublished">2024-03-23</time>
 </a>
     
   </div>
@@ -280,7 +206,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/05/readme/%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/">Operational processes</a>
+      <a class="p-name article-title" href="/2024/03/23/next.js/first/">how to build a project of next.js</a>
     </h1>
   
 
@@ -288,16 +214,11 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>打开source ，在此打开vscode，编译markdown文件（在markdown插入图片：需要在生成的目录里面复制一遍图片，目录名必须和.md一样）</p>
-<p>像这样，在vscode里面没法看到有图片的效果，需要本地预览才行</p>
-<p><img src="/2023/11/05/readme/%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/image.png" alt="Alt text"><br>，点击右上角的书可以预览blog页面，用hexo s命令可以本地预览（和放在网上效果一样）</p>
-<p>加title：在.md文档头部加这样的东西,三个都要加</p>
-<p><img src="/2023/11/05/readme/%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/image-1.png" alt="Alt text"><br>然后 再在source那个页面运行hexo clean， hexo g，hexo d的命令就可以在 oo90909.github.io里面看到了</p>
-
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/05/readme/%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B/" data-id="clus3dvku000ajoud2657eg1d" data-title="Operational processes" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/03/23/next.js/first/" data-id="clxvwvx570009rkud3o0w3wfr" data-title="how to build a project of next.js" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -309,10 +230,10 @@
 
 
   
-    <article id="post-商科/工程经济学/区块链金融/usdt、usdc" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-商科/学习商科的目的" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/11/05/%E5%95%86%E7%A7%91/%E5%B7%A5%E7%A8%8B%E7%BB%8F%E6%B5%8E%E5%AD%A6/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%87%91%E8%9E%8D/usdt%E3%80%81usdc/" class="article-date">
-  <time class="dt-published" datetime="2023-11-05T14:00:56.000Z" itemprop="datePublished">2023-11-05</time>
+    <a href="/2024/03/23/%E5%95%86%E7%A7%91/%E5%AD%A6%E4%B9%A0%E5%95%86%E7%A7%91%E7%9A%84%E7%9B%AE%E7%9A%84/" class="article-date">
+  <time class="dt-published" datetime="2024-03-23T14:00:56.000Z" itemprop="datePublished">2024-03-23</time>
 </a>
     
   </div>
@@ -323,7 +244,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/11/05/%E5%95%86%E7%A7%91/%E5%B7%A5%E7%A8%8B%E7%BB%8F%E6%B5%8E%E5%AD%A6/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%87%91%E8%9E%8D/usdt%E3%80%81usdc/">Operational processes</a>
+      <a class="p-name article-title" href="/2024/03/23/%E5%95%86%E7%A7%91/%E5%AD%A6%E4%B9%A0%E5%95%86%E7%A7%91%E7%9A%84%E7%9B%AE%E7%9A%84/">purpose to learn financy</a>
     </h1>
   
 
@@ -331,11 +252,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <p>when you audit a project,you will see many equations ,which infuluence the finace structure<br>maybe you understand the equations more will make you know more about whether this project will be arbitrage </p>
+<p>so ,the core of learning this business studies is to learn its equations ,understand it ,study with contract be attacked,but there is no need to learn too much about this , it’s not your duty,it’s finanacial analyst’s duty.</p>
+<p>you need:<br>predict the short-time bazaar change(core point is what many properties change),you’d better predict every property you can</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/11/05/%E5%95%86%E7%A7%91/%E5%B7%A5%E7%A8%8B%E7%BB%8F%E6%B5%8E%E5%AD%A6/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%87%91%E8%9E%8D/usdt%E3%80%81usdc/" data-id="clus3dvm9001rjouda6gmdold" data-title="Operational processes" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/03/23/%E5%95%86%E7%A7%91/%E5%AD%A6%E4%B9%A0%E5%95%86%E7%A7%91%E7%9A%84%E7%9B%AE%E7%9A%84/" data-id="clxvwvx5g000nrkud5q3shfch" data-title="purpose to learn financy" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -347,10 +271,42 @@
 
 
   
-    <article id="post-readme/hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-区块链安全/其他/软连接" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2023/09/27/readme/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2023-09-27T10:02:08.902Z" itemprop="datePublished">2023-09-27</time>
+    <a href="/2024/03/23/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E8%BD%AF%E8%BF%9E%E6%8E%A5/" class="article-date">
+  <time class="dt-published" datetime="2024-03-23T07:18:19.739Z" itemprop="datePublished">2024-03-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>解决c盘空间不足的问题：<br>mklink，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mklink /j &quot;C:\Program Files\Docker&quot; &quot;D:\Program Files\Docker&quot;</span><br></pre></td></tr></table></figure>
+<p>进入第一个目录其实就是进入第二个目录。下载的东西也会进入第二个目录中，然后在第一个目录中有快捷方式，不过程序貌似并不知道这件事</p>
+<p>需要注意的是：当c盘中文件已经存在的时候，无法执行此命令，所以需要提取预判需要转移的文件夹民主（网上搜或者根据自己之前的经验）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/03/23/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E8%BD%AF%E8%BF%9E%E6%8E%A5/" data-id="clxvwvx6d0025rkudghwl8zz7" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-区块链安全/solidity文档相关bug/0.8.0重大改变" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/solidity%E6%96%87%E6%A1%A3%E7%9B%B8%E5%85%B3bug/0.8.0%E9%87%8D%E5%A4%A7%E6%94%B9%E5%8F%98/" class="article-date">
+  <time class="dt-published" datetime="2024-03-20T09:39:51.908Z" itemprop="datePublished">2024-03-20</time>
 </a>
     
   </div>
@@ -361,7 +317,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/09/27/readme/hello-world/">Hello World</a>
+      <a class="p-name article-title" href="/2024/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/solidity%E6%96%87%E6%A1%A3%E7%9B%B8%E5%85%B3bug/0.8.0%E9%87%8D%E5%A4%A7%E6%94%B9%E5%8F%98/">0.8.0重大改变</a>
     </h1>
   
 
@@ -369,24 +325,101 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <p>you must read these articles about grammer details before coding!<br>cancle the overflow and underflow,use unchecked{} to recover</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2023/09/27/readme/hello-world/" data-id="clus3dvkl0004jouda10z1tzr" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/solidity%E6%96%87%E6%A1%A3%E7%9B%B8%E5%85%B3bug/0.8.0%E9%87%8D%E5%A4%A7%E6%94%B9%E5%8F%98/" data-id="clxvwvx5v0019rkud2v2iccyv" data-title="0.8.0重大改变" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-区块链安全/其他/audit report" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/audit%20report/" class="article-date">
+  <time class="dt-published" datetime="2024-03-19T13:32:25.498Z" itemprop="datePublished">2024-03-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/03/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/audit%20report/" data-id="clxvwvx5z001hrkudfblphidl" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-区块链安全/合约攻击流程分析/英语短语学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%90%88%E7%BA%A6%E6%94%BB%E5%87%BB%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/%E8%8B%B1%E8%AF%AD%E7%9F%AD%E8%AF%AD%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2024-03-19T05:23:12.541Z" itemprop="datePublished">2024-03-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>let’s start our common English learning, my purpuse to start this is that i know that in order to read English articles and understand English videos fluently,i need to imitate the speaking habits form foreigners and write more English documents</p>
+<p>go into the guts yourself dive in there<br>你自己深入内核，潜入其中</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/03/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%90%88%E7%BA%A6%E6%94%BB%E5%87%BB%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90/%E8%8B%B1%E8%AF%AD%E7%9F%AD%E8%AF%AD%E5%AD%A6%E4%B9%A0/" data-id="clxvwvx6h002crkudfx1c53co" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-区块链安全/其他/网站" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E7%BD%91%E7%AB%99/" class="article-date">
+  <time class="dt-published" datetime="2024-03-19T03:48:47.454Z" itemprop="datePublished">2024-03-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>useful tool:<br><a target="_blank" rel="noopener" href="https://gnidan.github.io/abi-to-sol/">abi to interface</a>:<br>when writing POC,you need the abi interface from other contract,this tool can help you crate interface from abi quickly</p>
+<p><a target="_blank" rel="noopener" href="https://calldata.swiss-knife.xyz/decoder">ETH calldata compiler</a>:both get calldata from arguements and decode calldata to arguements is ok,but now, some  function can not be used</p>
+<p><a target="_blank" rel="noopener" href="https://abi.w1nt3r.xyz/mainnet/0xaE9C73fd0Fd237c1c6f66FE009d24ce969e98704">Get ABI for unverified contracts</a>:<br>guess the function name for source not open yet in Etherscan</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/03/19/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E7%BD%91%E7%AB%99/" data-id="clxvwvx6c0023rkudeew6evsq" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -402,7 +435,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
+    <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -421,7 +454,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
     </div>
   </div>
 
@@ -434,23 +467,23 @@
       <ul>
         
           <li>
-            <a href="/2024/04/08/TypeScript/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/">(no title)</a>
+            <a href="/2024/06/26/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E9%87%8D%E5%85%A5%E6%94%BB%E5%87%BB/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/04/07/TypeScript/%E5%8C%BA%E5%88%86/">(no title)</a>
+            <a href="/2024/06/25/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/ecrecover/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/04/07/TypeScript/%E6%B3%9B%E5%9E%8B/">(no title)</a>
+            <a href="/2024/06/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/stackTooDeep/">stack too deep</a>
           </li>
         
           <li>
-            <a href="/2024/04/06/%E5%95%86%E7%A7%91/%E7%82%92%E5%B8%81/">(no title)</a>
+            <a href="/2024/06/18/%E5%95%86%E7%A7%91/%E5%B7%A5%E7%A8%8B%E7%BB%8F%E6%B5%8E%E5%AD%A6/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%87%91%E8%9E%8D/%E8%AE%BA%E6%96%87/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/04/01/TypeScript/first/">(no title)</a>
+            <a href="/2024/06/17/%E5%95%86%E7%A7%91/ERC4626/">ERC4626</a>
           </li>
         
       </ul>

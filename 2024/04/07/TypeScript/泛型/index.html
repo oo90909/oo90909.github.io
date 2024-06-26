@@ -4,15 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo</title>
+  <title>泛型 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
+  <meta name="description" content="对于泛型的理解：把参数类型作为一种参数使用带有泛型的类型声明参数的时候，需要指出泛型的类型 123456789&#x2F;&#x2F; 基本语法interface Pair&lt;T, U&gt; &amp;#123;    first: T;    second: U;&amp;#125;&#x2F;&#x2F; 使用泛型接口let pair: Pair&lt;string, number&gt; &#x3D; &amp;#123; first: &quot;hell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="泛型">
 <meta property="og:url" content="https://oo90909.github.io/2024/04/07/TypeScript/%E6%B3%9B%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="对于泛型的理解：把参数类型作为一种参数使用带有泛型的类型声明参数的时候，需要指出泛型的类型 123456789&#x2F;&#x2F; 基本语法interface Pair&lt;T, U&gt; &amp;#123;    first: T;    second: U;&amp;#125;&#x2F;&#x2F; 使用泛型接口let pair: Pair&lt;string, number&gt; &#x3D; &amp;#123; first: &quot;hell">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-04-07T06:33:52.612Z">
-<meta property="article:modified_time" content="2024-04-07T06:33:52.612Z">
+<meta property="article:published_time" content="2024-04-07T14:00:56.000Z">
+<meta property="article:modified_time" content="2024-04-13T16:05:55.067Z">
 <meta property="article:author" content="fathergun">
 <meta name="twitter:card" content="summary">
   
@@ -76,20 +78,35 @@
         <section id="main"><article id="post-TypeScript/泛型" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/04/07/TypeScript/%E6%B3%9B%E5%9E%8B/" class="article-date">
-  <time class="dt-published" datetime="2024-04-07T06:33:52.612Z" itemprop="datePublished">2024-04-07</time>
+  <time class="dt-published" datetime="2024-04-07T14:00:56.000Z" itemprop="datePublished">2024-04-07</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      泛型
+    </h1>
+  
+
+      </header>
+    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <p>对于泛型的理解：把参数类型作为一种参数<br>使用带有泛型的类型声明参数的时候，需要指出泛型的类型</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 基本语法</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Pair</span>&lt;T, U&gt; &#123;</span><br><span class="line">    <span class="attr">first</span>: T;</span><br><span class="line">    <span class="attr">second</span>: U;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用泛型接口</span></span><br><span class="line"><span class="keyword">let</span> <span class="attr">pair</span>: <span class="title class_">Pair</span>&lt;<span class="built_in">string</span>, <span class="built_in">number</span>&gt; = &#123; <span class="attr">first</span>: <span class="string">&quot;hello&quot;</span>, <span class="attr">second</span>: <span class="number">42</span> &#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(pair); <span class="comment">// 输出: &#123; first: &#x27;hello&#x27;, second: 42 &#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/04/07/TypeScript/%E6%B3%9B%E5%9E%8B/" data-id="clus3dvkp0007joud4pda5bhi" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/04/07/TypeScript/%E6%B3%9B%E5%9E%8B/" data-id="clxvwvx540005rkudek49b21x" data-title="泛型" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -99,11 +116,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2024/04/07/TypeScript/%E5%8C%BA%E5%88%86/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2024/04/07/TypeScript/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          (no title)
+          项目结构
         
       </div>
     </a>
@@ -136,7 +153,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
     </div>
   </div>
 
@@ -149,23 +166,23 @@
       <ul>
         
           <li>
-            <a href="/2024/04/08/TypeScript/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/">(no title)</a>
+            <a href="/2024/06/26/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E9%87%8D%E5%85%A5%E6%94%BB%E5%87%BB/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/04/07/TypeScript/%E5%8C%BA%E5%88%86/">(no title)</a>
+            <a href="/2024/06/25/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/ecrecover/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/04/07/TypeScript/%E6%B3%9B%E5%9E%8B/">(no title)</a>
+            <a href="/2024/06/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/stackTooDeep/">stack too deep</a>
           </li>
         
           <li>
-            <a href="/2024/04/06/%E5%95%86%E7%A7%91/%E7%82%92%E5%B8%81/">(no title)</a>
+            <a href="/2024/06/18/%E5%95%86%E7%A7%91/%E5%B7%A5%E7%A8%8B%E7%BB%8F%E6%B5%8E%E5%AD%A6/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%87%91%E8%9E%8D/%E8%AE%BA%E6%96%87/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/04/01/TypeScript/first/">(no title)</a>
+            <a href="/2024/06/17/%E5%95%86%E7%A7%91/ERC4626/">ERC4626</a>
           </li>
         
       </ul>

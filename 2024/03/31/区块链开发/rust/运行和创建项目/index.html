@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>run and build project | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="可以使用 cargo new 创建项目。可以使用 cargo build 构建项目。可以使用 cargo run 一步构建并运行项目。可以使用 cargo check 在不生成二进制文件的情况下构建项目来检查错误。有别于将构建结果放在与源码相同的目录，Cargo 会将其放到 target&#x2F;debug 目录。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="run and build project">
+<meta property="og:url" content="https://oo90909.github.io/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/rust/%E8%BF%90%E8%A1%8C%E5%92%8C%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="可以使用 cargo new 创建项目。可以使用 cargo build 构建项目。可以使用 cargo run 一步构建并运行项目。可以使用 cargo check 在不生成二进制文件的情况下构建项目来检查错误。有别于将构建结果放在与源码相同的目录，Cargo 会将其放到 target&#x2F;debug 目录。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-03-31T08:58:00.000Z">
+<meta property="article:modified_time" content="2024-04-26T09:59:49.903Z">
+<meta property="article:author" content="fathergun">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oo90909.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-区块链开发/rust/运行和创建项目" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/rust/%E8%BF%90%E8%A1%8C%E5%92%8C%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE/" class="article-date">
+  <time class="dt-published" datetime="2024-03-31T08:58:00.000Z" itemprop="datePublished">2024-03-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      run and build project
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>可以使用 cargo new 创建项目。<br>可以使用 cargo build 构建项目。<br>可以使用 cargo run 一步构建并运行项目。<br>可以使用 cargo check 在不生成二进制文件的情况下构建项目来检查错误。<br>有别于将构建结果放在与源码相同的目录，Cargo 会将其放到 target&#x2F;debug 目录。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/rust/%E8%BF%90%E8%A1%8C%E5%92%8C%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE/" data-id="clxvwvx6l002irkud5vb53ehy" data-title="run and build project" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/ERC721/%E6%81%90%E9%BE%99nft%E9%A1%B9%E7%9B%AE/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          dragon-nft
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/03/31/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E9%9F%B3%E4%B9%90%E5%B9%B3%E5%8F%B0/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">music platform</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/26/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E9%87%8D%E5%85%A5%E6%94%BB%E5%87%BB/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/25/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/ecrecover/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/stackTooDeep/">stack too deep</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/18/%E5%95%86%E7%A7%91/%E5%B7%A5%E7%A8%8B%E7%BB%8F%E6%B5%8E%E5%AD%A6/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%87%91%E8%9E%8D/%E8%AE%BA%E6%96%87/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/17/%E5%95%86%E7%A7%91/ERC4626/">ERC4626</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 fathergun<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

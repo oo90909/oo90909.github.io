@@ -1,0 +1,32 @@
+<details>
+ <summary>packageCall</summary>
+ arg0=data.length
+ arg1=0x04
+ //一个返回参数的函数，返回
+ <details>
+ <summary>func_0CD7(var arg0, var arg1) returns (var r0, var arg0, var arg1, var r3, var r4)</summary>
+
+
+<p>至少三个变量<br>var2&#x3D;data[arge1+0x40,arge1+0x60]<br>temp2&#x3D;data[arg1+60,arg1+80]+arg1<br>var7&#x3D;data[temp2,temp2+0x20]<br>难道是数组？根据数组的某个</p>
+<p>if  （temp2）+（var7）+20&lt;arg0<br>r0&#x3D;[arg1,arg1+20]<br>arg0&#x3D;data[arg1+0x20,arg1+0x40]<br>arg1&#x3D;var2<br>r3&#x3D;4+20+temp2<br>r4&#x3D;data[temp2,temp2+0x20]</p>
+</details>
+
+<details>
+<summary>func_007E</summary>
+
+<p>storage[0x05]是个address，必须是合约地址</p>
+<p>var6 &#x3D;memory[0x40,0x60]</p>
+<p>call memory[var6,var6+0x04]，也就是一个选择器的长度<br>data返回到<br>memory[var6,var6+0x00]</p>
+<p>如果call成功：<br>var4&#x3D;storage[07] * 0x03eb<br>var3&#x3D;var4 * 0x03e8<br>memory[var6,var6+0x20]&#x3D;0xa9059cbb000..00<br>var5&#x3D;var6+0x04<br>memory[var5,var5+0x20]&#x3D;storage[0x04]<br>memory[var5+0x20,var5+0x40]&#x3D;var3<br>var2 &#x3D; var5+0x40<br>var8&#x3D;55d398326f99059ff775485246999027b3197955<br>必须是合约地址</p>
+<p> (var8).call memory[var6,var6+0x44]</p>
+<p> if成功<br> memory[0x40,0x60]&#x3D;var6+returndata.length<br> var1&#x3D;memory[0x40,0x60]<br> var0&#x3D;memory[var6,var6+0x20]<br>return</p>
+<!-- 
+func_0F0E(storage[0x04],var3,var5)
+
+
+func_0F0E
+memory[var5,var5+0x20]=storage[0x04]
+memory[var5+0x20,var5+0x40]=var3
+return arg2+0x40 -->
+</details>
+

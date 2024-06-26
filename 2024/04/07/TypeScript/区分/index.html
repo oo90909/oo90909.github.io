@@ -4,15 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo</title>
+  <title>区分 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
+  <meta name="description" content="123456789type ComponentWithAs&lt;Component extends As, Props extends object &#x3D; &amp;#123;&amp;#125;&gt; &#x3D; &amp;#123;    &lt;AsComponent extends As &#x3D; Component&gt;(props: MergeWithAs&lt;React.ComponentProps&lt;Comp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区分">
 <meta property="og:url" content="https://oo90909.github.io/2024/04/07/TypeScript/%E5%8C%BA%E5%88%86/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="123456789type ComponentWithAs&lt;Component extends As, Props extends object &#x3D; &amp;#123;&amp;#125;&gt; &#x3D; &amp;#123;    &lt;AsComponent extends As &#x3D; Component&gt;(props: MergeWithAs&lt;React.ComponentProps&lt;Comp">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-04-07T07:39:44.602Z">
-<meta property="article:modified_time" content="2024-04-07T07:39:44.602Z">
+<meta property="article:published_time" content="2024-04-07T14:00:56.000Z">
+<meta property="article:modified_time" content="2024-04-13T16:05:55.067Z">
 <meta property="article:author" content="fathergun">
 <meta name="twitter:card" content="summary">
   
@@ -76,20 +78,32 @@
         <section id="main"><article id="post-TypeScript/区分" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/04/07/TypeScript/%E5%8C%BA%E5%88%86/" class="article-date">
-  <time class="dt-published" datetime="2024-04-07T07:39:44.602Z" itemprop="datePublished">2024-04-07</time>
+  <time class="dt-published" datetime="2024-04-07T14:00:56.000Z" itemprop="datePublished">2024-04-07</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      区分
+    </h1>
+  
+
+      </header>
+    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="title class_">ComponentWithAs</span>&lt;<span class="title class_">Component</span> <span class="keyword">extends</span> <span class="title class_">As</span>, <span class="title class_">Props</span> <span class="keyword">extends</span> <span class="built_in">object</span> = &#123;&#125;&gt; = &#123;</span><br><span class="line">    &lt;<span class="title class_">AsComponent</span> <span class="keyword">extends</span> <span class="title class_">As</span> = <span class="title class_">Component</span>&gt;(<span class="attr">props</span>: <span class="title class_">MergeWithAs</span>&lt;<span class="title class_">React</span>.<span class="property">ComponentProps</span>&lt;<span class="title class_">Component</span>&gt;, <span class="title class_">React</span>.<span class="property">ComponentProps</span>&lt;<span class="title class_">AsComponent</span>&gt;, <span class="title class_">Props</span>, <span class="title class_">AsComponent</span>&gt;): <span class="variable constant_">JSX</span>.<span class="property">Element</span>;</span><br><span class="line">    <span class="comment">//这是什么？</span></span><br><span class="line">    displayName?: <span class="built_in">string</span>;</span><br><span class="line">    propTypes?: <span class="title class_">React</span>.<span class="property">WeakValidationMap</span>&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">    contextTypes?: <span class="title class_">React</span>.<span class="property">ValidationMap</span>&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">    defaultProps?: <span class="title class_">Partial</span>&lt;<span class="built_in">any</span>&gt;;</span><br><span class="line">    id?: <span class="built_in">string</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>因为这里有括号，所以是一个函数属性，返回JSX.Element</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/04/07/TypeScript/%E5%8C%BA%E5%88%86/" data-id="clus3dvkh0002joud5qps3wlq" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/04/07/TypeScript/%E5%8C%BA%E5%88%86/" data-id="clxvwvx520003rkud615b5xna" data-title="区分" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -99,7 +113,7 @@
     
 <nav id="article-nav">
   
-    <a href="/2024/04/08/TypeScript/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2024/04/11/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
@@ -109,9 +123,9 @@
     </a>
   
   
-    <a href="/2024/04/07/TypeScript/%E6%B3%9B%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2024/04/07/TypeScript/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title"></div>
+      <div class="article-nav-title">项目结构</div>
     </a>
   
 </nav>
@@ -136,7 +150,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
     </div>
   </div>
 
@@ -149,23 +163,23 @@
       <ul>
         
           <li>
-            <a href="/2024/04/08/TypeScript/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/">(no title)</a>
+            <a href="/2024/06/26/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E9%87%8D%E5%85%A5%E6%94%BB%E5%87%BB/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/04/07/TypeScript/%E5%8C%BA%E5%88%86/">(no title)</a>
+            <a href="/2024/06/25/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/ecrecover/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/04/07/TypeScript/%E6%B3%9B%E5%9E%8B/">(no title)</a>
+            <a href="/2024/06/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/stackTooDeep/">stack too deep</a>
           </li>
         
           <li>
-            <a href="/2024/04/06/%E5%95%86%E7%A7%91/%E7%82%92%E5%B8%81/">(no title)</a>
+            <a href="/2024/06/18/%E5%95%86%E7%A7%91/%E5%B7%A5%E7%A8%8B%E7%BB%8F%E6%B5%8E%E5%AD%A6/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%87%91%E8%9E%8D/%E8%AE%BA%E6%96%87/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/04/01/TypeScript/first/">(no title)</a>
+            <a href="/2024/06/17/%E5%95%86%E7%A7%91/ERC4626/">ERC4626</a>
           </li>
         
       </ul>

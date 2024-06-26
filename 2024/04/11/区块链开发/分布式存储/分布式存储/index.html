@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="路由层：考试核心（讲解如何存储数据文件） ipfs协议栈：身份层：每个节点： 1234567891011type NodeId Multihash&#x2F;&#x2F;底层类型是Multihash，也就是bytetype Multihash []byte&#x2F;&#x2F;底层类型是byte[]type PublicKey []byte&#x2F;&#x2F;底层类型是byte[]type PrivateKey []byte&#x2F;&#x2F;底层类型是byte[]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://oo90909.github.io/2024/04/11/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="路由层：考试核心（讲解如何存储数据文件） ipfs协议栈：身份层：每个节点： 1234567891011type NodeId Multihash&#x2F;&#x2F;底层类型是Multihash，也就是bytetype Multihash []byte&#x2F;&#x2F;底层类型是byte[]type PublicKey []byte&#x2F;&#x2F;底层类型是byte[]type PrivateKey []byte&#x2F;&#x2F;底层类型是byte[]">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://oo90909.github.io/2024/04/11/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/image.png">
+<meta property="article:published_time" content="2024-04-11T05:21:48.551Z">
+<meta property="article:modified_time" content="2024-05-19T16:32:59.256Z">
+<meta property="article:author" content="fathergun">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://oo90909.github.io/2024/04/11/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/image.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oo90909.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-区块链开发/分布式存储/分布式存储" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/04/11/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/" class="article-date">
+  <time class="dt-published" datetime="2024-04-11T05:21:48.551Z" itemprop="datePublished">2024-04-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>路由层：考试核心（讲解如何存储数据文件）</p>
+<p>ipfs协议栈：<br>身份层：<br>每个节点：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">type</span> NodeId Multihash<span class="comment">//底层类型是Multihash，也就是byte</span></span><br><span class="line"><span class="keyword">type</span> Multihash []<span class="type">byte</span><span class="comment">//底层类型是byte[]</span></span><br><span class="line"><span class="keyword">type</span> PublicKey []<span class="type">byte</span><span class="comment">//底层类型是byte[]</span></span><br><span class="line"><span class="keyword">type</span> PrivateKey []<span class="type">byte</span><span class="comment">//底层类型是byte[]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Node Struct&#123;</span><br><span class="line">    NodeId NodeID;<span class="comment">//公钥的hash</span></span><br><span class="line">    PubKey PublicKey;</span><br><span class="line">    PriKey PrivateKey;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>MultiHash的格式：<br><function code><digest length><digest bytes><br>hash(PublicKey)&#x3D;NodeId</digest></digest></function></p>
+<p>网络层：</p>
+<p>路由层：<br>三个功能：<br>内容路由<br>节点路由<br>数据的存储（小值直接存在DHT上面，大值存索引在DHT上面）<br>DHT：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_26720653/article/details/106496916">分布式hash表</a><br>kademila是DHT的一种</p>
+<p>kademila中每个node包含的属性：<br>Node ID(key)<br>iP Adress,port:用于与之联络<br>value:存储的值<br>K-bucket:存储部分的其他节点联络方式（ID，IP，port）</p>
+<p>为什么一个K-bucket不能存储所有节点的联络方式？<br>1.数据量庞大，每一次增加或者退出都会广播全网，通讯量极大<br>2.某个节点被攻击了，会泄露全网节点的ip和port</p>
+<p>存储方式:value得到的hash就是节点ip<br>寻找方式:有可能存储这个value的节点没k有上线，所以往往这个value不仅仅存储在一个节点上面，还会存储在相邻的几个节点，那么在寻找节点的时候，就需要找到相邻的几个节点</p>
+<p>k-bucket:一个节点有160个k桶，因为有160位，每个k桶都有k个节点的信息（k可变，低位k桶肯定没有这么多），倒数第几位开始不一样就是第几个K桶</p>
+<p>交换层：<br>BitSwap<br>两节点之间相互交换数据<br><img src="/2024/04/11/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/image.png" alt="Alt text"><br>由公式可以看出，发送的数据越多，r越大</p>
+<p>对象层：与文件层相辅相成<br>ipfs</p>
+<p>文件层：<br>数据大小没有达到256KB就用blob来表示：blob</p>
+<p>命名层：</p>
+<p>协议：用于通信的规则集合，包括通信细节</p>
+<p>为什么要算两次hash来算  </p>
+<p>版本控制：<br>本地版本控制（不用通过网络来访问保存，不会出现服务器宕机而产生的尴尬情况）<br>中心化版本控制（很多人连同一个服务器，要谨防出现服务器，节点宕机，数据丢失等情况）<br>分布式版本控制（用户clone项目会把过去所有版本记录给clone下来，以便哪怕中心节点丢失版本信息也能从其他节点那恢复）</p>
+<p>为什么要讲版本控制，版本控制属于哪一层的内容？</p>
+<p>BitTorrent:每个用户既可以下载但也需要上传，<br>术语:<br>torrent:种子文件，记录了所需文件的信息，但不包括具体文件内容的，打开即开始正式连接并下载。<br>tracker:连接器，连接peer节点（下载该资源的节点），通过这个可以知道终端有哪些节点也在下载该资源</p>
+<p>下载过程:<br>seed节点生成.torrent文件，并连接tracker节点，tracker保存.torrent文件和seed的连接信息，peer节点打开.torrent，与tracker连接，tracker将peer节点与其他节点建立连接，并开始下载</p>
+<p>片段选择算法：<br>优先完成单一片段：请求子片段时优先完成该片段<br>优先请求稀少片段：<br>随机选择第一片段：因为需要上传片段才能获得下载速度，所以第一个片段不是稀少片段而是随机片段，这样可以尽快上传</p>
+<p>p23节点不能<br>几种攻击方式</p>
+<p>multihash：<br><function code><digest length><digest bytes></digest></digest></function></p>
+<p>p28交换层<br>数据结构</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/04/11/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/" data-id="clxvwvx6p002qrkudhv2chwzh" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/04/22/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/%E5%AF%B9%E6%AF%94%E4%B8%A4%E5%AD%97%E8%8A%82%E7%A0%81/%E6%93%8D%E4%BD%9C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          byteCode compare
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/04/07/TypeScript/%E5%8C%BA%E5%88%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">区分</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/26/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E9%87%8D%E5%85%A5%E6%94%BB%E5%87%BB/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/25/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/ecrecover/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/stackTooDeep/">stack too deep</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/18/%E5%95%86%E7%A7%91/%E5%B7%A5%E7%A8%8B%E7%BB%8F%E6%B5%8E%E5%AD%A6/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%87%91%E8%9E%8D/%E8%AE%BA%E6%96%87/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/17/%E5%95%86%E7%A7%91/ERC4626/">ERC4626</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 fathergun<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
