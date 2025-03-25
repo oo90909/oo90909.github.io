@@ -73,50 +73,336 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-区块链安全/uniswap/uniswap2/uniswap/uniswap" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-链安/公式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/uniswap/uniswap2/uniswap/uniswap/" class="article-date">
-  <time class="dt-published" datetime="2024-05-29T09:34:57.449Z" itemprop="datePublished">2024-05-29</time>
+    <a href="/2024/11/22/%E9%93%BE%E5%AE%89/%E5%85%AC%E5%BC%8F/" class="article-date">
+  <time class="dt-published" datetime="2024-11-22T02:01:08.990Z" itemprop="datePublished">2024-11-22</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>&#x3D;IF(COUNTIF(B2,”<em>nft</em>“)+COUNTIF(B2,”<em>gamefi</em>“)+COUNTIF(B2,”<em>bridge</em>“)+COUNTIF(B2,”<em>web3</em>“)+COUNTIF(B2,”<em>defi</em>“)&gt;0,”包含”,”不包含”)</p>
+<p>&#x3D;IF(COUNTIF(C2,”<em>nft</em>“)+COUNTIF(C2,”<em>gamefi</em>“)+COUNTIF(C2,”<em>bridge</em>“)+COUNTIF(C2,”<em>web3</em>“)+COUNTIF(C2,”<em>defi</em>“)&gt;0,”包含”,”不包含”)</p>
+<p>&#x3D;IF(COUNTIF(D2,”<em>nft</em>“)+COUNTIF(D2,”<em>gamefi</em>“)+COUNTIF(D2,”<em>bridge</em>“)+COUNTIF(D2,”<em>web3</em>“)+COUNTIF(D2,”<em>defi</em>“)&gt;0,”包含”,”不包含”)</p>
+<p>&#x3D;IF(COUNTIF(e2,”<em>nft</em>“)+COUNTIF(e2,”<em>gamefi</em>“)+COUNTIF(e2,”<em>bridge</em>“)+COUNTIF(e2,”<em>web3</em>“)+COUNTIF(e2,”<em>defi</em>“)&gt;0,”包含”,”不包含”)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/11/22/%E9%93%BE%E5%AE%89/%E5%85%AC%E5%BC%8F/" data-id="cm8ofd1aw0015d0ud5y231yu5" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-solana/token/token" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/11/21/solana/token/token/" class="article-date">
+  <time class="dt-published" datetime="2024-11-21T08:43:18.834Z" itemprop="datePublished">2024-11-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>token</p>
+<p>Token Program</p>
+<p>Token Extensions Program</p>
+<p>Mint Account：总token</p>
+<p>Token Account：谁有多少token</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Account</span> &#123;</span><br><span class="line">    <span class="comment">/// 与此账户相关的铸币地址</span></span><br><span class="line">    <span class="keyword">pub</span> mint: Pubkey,</span><br><span class="line">    <span class="comment">/// 此账户的所有者，这里注意，和每个账户所拥有的那个owner不一样，那个owner是账户的原生token控制者，这个是谁拥有这个struct中的钱</span></span><br><span class="line">    <span class="keyword">pub</span> owner: Pubkey,</span><br><span class="line">    <span class="comment">/// 此账户持有的代币数量。</span></span><br><span class="line">    <span class="keyword">pub</span> amount: <span class="type">u64</span>,</span><br><span class="line">    <span class="comment">///如果 delegate 为 Some，则 delegated_amount 表示由委托者授权的数量</span></span><br><span class="line">    <span class="keyword">pub</span> delegate: COption&lt;Pubkey&gt;,</span><br><span class="line">    <span class="comment">/// 账户的状态</span></span><br><span class="line">    <span class="keyword">pub</span> state: AccountState,</span><br><span class="line">    <span class="comment">/// 判断是否为原生token（sol）如果是原生token，会根据账户的已有token判断是否需要支付租金</span></span><br><span class="line">    <span class="keyword">pub</span> is_native: COption&lt;<span class="type">u64</span>&gt;,</span><br><span class="line">    <span class="comment">/// The amount delegated</span></span><br><span class="line">    <span class="keyword">pub</span> delegated_amount: <span class="type">u64</span>,</span><br><span class="line">    <span class="comment">/// Optional authority to close the account.</span></span><br><span class="line">    <span class="keyword">pub</span> close_authority: COption&lt;Pubkey&gt;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Associated Token Account：根据所有者和铸币账户地址派生的地址创建的代币账户。可以理解为mint地址对所有者的默认token地址<br><img src="/2024/11/21/solana/token/token/image.png" alt="Alt text"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/11/21/solana/token/token/" data-id="cm8ofd1ay001cd0udb7ba3cs8" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-solana/程序/程序 PDA CPI" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/11/18/solana/%E7%A8%8B%E5%BA%8F/%E7%A8%8B%E5%BA%8F%20PDA%20CPI/" class="article-date">
+  <time class="dt-published" datetime="2024-11-18T09:36:45.563Z" itemprop="datePublished">2024-11-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>程序</strong><br>程序是无状态的<br>但程序可以创建账户当作程序状态<br>程序可升级（默认，可手动设置为不可升级）</p>
+<p><strong>PDA：</strong><br>拿来干嘛？</p>
+<p>&#x3D;&#x3D;使用程序id（程序的地址,不是存储代码的地址），增量种子（随机数），可选种子（string） 生成的地址，没有私钥&#x3D;&#x3D;</p>
+<p>但是可以使用上面的程序id为其签名</p>
+<p>生成过程：<br><img src="/2024/11/18/solana/%E7%A8%8B%E5%BA%8F/%E7%A8%8B%E5%BA%8F%20PDA%20CPI/image.png" alt="Alt text"></p>
+<p>在solana playGround 调用含有PDA的函数：此时必须写测试</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Client code...</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> anchor <span class="keyword">from</span> <span class="string">&quot;@coral-xyz/anchor&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">PublicKey</span>, <span class="title class_">Keypair</span>, <span class="title class_">SystemProgram</span> &#125; <span class="keyword">from</span> <span class="string">&quot;@solana/web3.js&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ 配置 Solana Provider</span></span><br><span class="line"><span class="keyword">const</span> provider = anchor.<span class="property">AnchorProvider</span>.<span class="title function_">env</span>();</span><br><span class="line">anchor.<span class="title function_">setProvider</span>(provider);</span><br><span class="line"><span class="keyword">const</span> program = anchor.<span class="property">workspace</span>.<span class="property">TokenExample</span> <span class="keyword">as</span> anchor.<span class="property">Program</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ 定义 signer (用户的钱包)</span></span><br><span class="line"><span class="keyword">const</span> signer = provider.<span class="property">wallet</span> <span class="keyword">as</span> anchor.<span class="property">Wallet</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ 计算 mint PDA</span></span><br><span class="line"><span class="keyword">const</span> [mintPDA, mintBump] = anchor.<span class="property">web3</span>.<span class="property">PublicKey</span>.<span class="title function_">findProgramAddressSync</span>(</span><br><span class="line">  [<span class="title class_">Buffer</span>.<span class="title function_">from</span>(<span class="string">&quot;mint&quot;</span>)],</span><br><span class="line">  program.<span class="property">programId</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ 计算 token account PDA</span></span><br><span class="line"><span class="keyword">const</span> [tokenAccountPDA, tokenBump] =</span><br><span class="line">  anchor.<span class="property">web3</span>.<span class="property">PublicKey</span>.<span class="title function_">findProgramAddressSync</span>(</span><br><span class="line">    [<span class="title class_">Buffer</span>.<span class="title function_">from</span>(<span class="string">&quot;token&quot;</span>)],</span><br><span class="line">    program.<span class="property">programId</span></span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ 发送 `create_and_mint_tokens` 交易</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">createAndMintTokens</span>(<span class="params">amount: <span class="built_in">number</span></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Mint PDA:&quot;</span>, mintPDA.<span class="title function_">toBase58</span>());</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Token Account PDA:&quot;</span>, tokenAccountPDA.<span class="title function_">toBase58</span>());</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> tx = <span class="keyword">await</span> program.<span class="property">methods</span></span><br><span class="line">    .<span class="title function_">createAndMintTokens</span>(<span class="keyword">new</span> anchor.<span class="title function_">BN</span>(amount))</span><br><span class="line">    .<span class="title function_">accounts</span>(&#123;</span><br><span class="line">      <span class="attr">signer</span>: signer.<span class="property">publicKey</span>,</span><br><span class="line">      <span class="attr">mint</span>: mintPDA,</span><br><span class="line">      <span class="attr">tokenAccount</span>: tokenAccountPDA,</span><br><span class="line">      <span class="attr">tokenProgram</span>: anchor.<span class="property">utils</span>.<span class="property">token</span>.<span class="property">TOKEN_PROGRAM_ID</span>,</span><br><span class="line">      <span class="attr">systemProgram</span>: <span class="title class_">SystemProgram</span>.<span class="property">programId</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">signers</span>([]) <span class="comment">// 由于使用 PDA 作为 mint，signer 为空</span></span><br><span class="line">    .<span class="title function_">rpc</span>();</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;✅ Transaction Signature:&quot;</span>, tx);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ 运行函数</span></span><br><span class="line"><span class="title function_">createAndMintTokens</span>(<span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ 计算 PDA (mint)</span></span><br><span class="line"><span class="keyword">const</span> [mintPDA1, mintBump1] = anchor.<span class="property">web3</span>.<span class="property">PublicKey</span>.<span class="title function_">findProgramAddressSync</span>(</span><br><span class="line">  [<span class="title class_">Buffer</span>.<span class="title function_">from</span>(<span class="string">&quot;mint&quot;</span>)],</span><br><span class="line">  program.<span class="property">programId</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ 计算 PDA (sender_token_account)</span></span><br><span class="line"><span class="keyword">const</span> [senderTokenAccountPDA, senderBump] =</span><br><span class="line">  anchor.<span class="property">web3</span>.<span class="property">PublicKey</span>.<span class="title function_">findProgramAddressSync</span>(</span><br><span class="line">    [<span class="title class_">Buffer</span>.<span class="title function_">from</span>(<span class="string">&quot;token&quot;</span>)],</span><br><span class="line">    program.<span class="property">programId</span></span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ 计算 recipient 的 ATA (Associated Token Account)</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">getAssociatedTokenAccount</span>(<span class="params">owner: PublicKey, mint: PublicKey</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">await</span> anchor.<span class="property">utils</span>.<span class="property">token</span>.<span class="title function_">associatedAddress</span>(&#123;</span><br><span class="line">    mint,</span><br><span class="line">    owner,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">transferTokens</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> recipientTokenAccount = <span class="keyword">await</span> <span class="title function_">getAssociatedTokenAccount</span>(</span><br><span class="line">    signer.<span class="property">publicKey</span>,</span><br><span class="line">    mintPDA1</span><br><span class="line">  );</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Mint PDA:&quot;</span>, mintPDA1.<span class="title function_">toBase58</span>());</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Sender Token Account PDA:&quot;</span>, senderTokenAccountPDA.<span class="title function_">toBase58</span>());</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Recipient Token Account:&quot;</span>, recipientTokenAccount.<span class="title function_">toBase58</span>());</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> tx = <span class="keyword">await</span> program.<span class="property">methods</span></span><br><span class="line">    .<span class="title function_">transferTokens</span>()</span><br><span class="line">    .<span class="title function_">accounts</span>(&#123;</span><br><span class="line">      <span class="attr">signer</span>: signer.<span class="property">publicKey</span>,</span><br><span class="line">      <span class="attr">mint</span>: mintPDA1,</span><br><span class="line">      <span class="attr">senderTokenAccount</span>: senderTokenAccountPDA,</span><br><span class="line">      recipientTokenAccount,</span><br><span class="line">      <span class="attr">tokenProgram</span>: anchor.<span class="property">utils</span>.<span class="property">token</span>.<span class="property">TOKEN_PROGRAM_ID</span>,</span><br><span class="line">      <span class="attr">associatedTokenProgram</span>: anchor.<span class="property">utils</span>.<span class="property">token</span>.<span class="property">ASSOCIATED_PROGRAM_ID</span>,</span><br><span class="line">      <span class="attr">systemProgram</span>: <span class="title class_">SystemProgram</span>.<span class="property">programId</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">signers</span>([])</span><br><span class="line">    .<span class="title function_">rpc</span>();</span><br><span class="line"></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;✅ Transaction Signature:&quot;</span>, tx);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ 执行转账</span></span><br><span class="line"><span class="title function_">transferTokens</span>();</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>对应的rust代码</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">use</span> anchor_lang::prelude::*;</span><br><span class="line"><span class="keyword">use</span> anchor_spl::&#123;</span><br><span class="line">    associated_token::AssociatedToken,</span><br><span class="line">    token_interface::&#123;<span class="keyword">self</span>, Mint, MintTo, TokenAccount, TokenInterface, TransferChecked&#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">declare_id!(<span class="string">&quot;3jN3YkbbJXFy1KBebxgKYraPU3XY9KZ6W9PrcGEj5oxN&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">#[program]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">mod</span> token_example &#123;</span><br><span class="line">    <span class="keyword">use</span> super::*;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">create_and_mint_tokens</span>(ctx: Context&lt;CreateAndMintTokens&gt;, amount: <span class="type">u64</span>) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        msg!(<span class="string">&quot;Mint PDA bump: &#123;&#125;&quot;</span>, ctx.bumps.mint);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">signer_seeds</span>: &amp;[&amp;[&amp;[<span class="type">u8</span>]]] = &amp;[&amp;[<span class="string">b&quot;mint&quot;</span>, &amp;[ctx.bumps.mint]]];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">cpi_accounts</span> = MintTo &#123;</span><br><span class="line">            mint: ctx.accounts.mint.<span class="title function_ invoke__">to_account_info</span>(),</span><br><span class="line">            to: ctx.accounts.token_account.<span class="title function_ invoke__">to_account_info</span>(),</span><br><span class="line">            authority: ctx.accounts.mint.<span class="title function_ invoke__">to_account_info</span>(),</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">cpi_program</span> = ctx.accounts.token_program.<span class="title function_ invoke__">to_account_info</span>();</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">cpi_context</span> = CpiContext::<span class="title function_ invoke__">new</span>(cpi_program, cpi_accounts).<span class="title function_ invoke__">with_signer</span>(signer_seeds);</span><br><span class="line">        token_interface::<span class="title function_ invoke__">mint_to</span>(cpi_context, amount)?;</span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">transfer_tokens</span>(ctx: Context&lt;TransferTokens&gt;) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">signer_seeds</span>: &amp;[&amp;[&amp;[<span class="type">u8</span>]]] = &amp;[&amp;[<span class="string">b&quot;token&quot;</span>, &amp;[ctx.bumps.sender_token_account]]];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">amount</span> = ctx.accounts.sender_token_account.amount;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">decimals</span> = ctx.accounts.mint.decimals;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">cpi_accounts</span> = TransferChecked &#123;</span><br><span class="line">            mint: ctx.accounts.mint.<span class="title function_ invoke__">to_account_info</span>(),</span><br><span class="line">            from: ctx.accounts.sender_token_account.<span class="title function_ invoke__">to_account_info</span>(),</span><br><span class="line">            to: ctx.accounts.recipient_token_account.<span class="title function_ invoke__">to_account_info</span>(),</span><br><span class="line">            authority: ctx.accounts.sender_token_account.<span class="title function_ invoke__">to_account_info</span>(),</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">cpi_program</span> = ctx.accounts.token_program.<span class="title function_ invoke__">to_account_info</span>();</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">cpi_context</span> = CpiContext::<span class="title function_ invoke__">new</span>(cpi_program, cpi_accounts).<span class="title function_ invoke__">with_signer</span>(signer_seeds);</span><br><span class="line">        token_interface::<span class="title function_ invoke__">transfer_checked</span>(cpi_context, amount, decimals)?;</span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">CreateAndMintTokens</span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(mut)]</span></span><br><span class="line">    <span class="keyword">pub</span> signer: Signer&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">    <span class="meta">#[account(</span></span><br><span class="line"><span class="meta">        init,</span></span><br><span class="line"><span class="meta">        payer = signer,</span></span><br><span class="line"><span class="meta">        mint::decimals = 6,</span></span><br><span class="line"><span class="meta">        mint::authority = mint,</span></span><br><span class="line"><span class="meta">        mint::freeze_authority = mint,</span></span><br><span class="line"><span class="meta">        seeds = [b<span class="string">&quot;mint&quot;</span>]</span>,</span><br><span class="line">        bump</span><br><span class="line">    )]</span><br><span class="line">    <span class="keyword">pub</span> mint: InterfaceAccount&lt;<span class="symbol">&#x27;info</span>, Mint&gt;,</span><br><span class="line">    <span class="meta">#[account(</span></span><br><span class="line"><span class="meta">        init,</span></span><br><span class="line"><span class="meta">        payer = signer,</span></span><br><span class="line"><span class="meta">        token::mint = mint,</span></span><br><span class="line"><span class="meta">        token::authority = token_account,</span></span><br><span class="line"><span class="meta">        seeds = [b<span class="string">&quot;token&quot;</span>]</span>,</span><br><span class="line">        bump</span><br><span class="line">    )]</span><br><span class="line">    <span class="keyword">pub</span> token_account: InterfaceAccount&lt;<span class="symbol">&#x27;info</span>, TokenAccount&gt;,</span><br><span class="line">    <span class="keyword">pub</span> token_program: Interface&lt;<span class="symbol">&#x27;info</span>, TokenInterface&gt;,</span><br><span class="line">    <span class="keyword">pub</span> system_program: Program&lt;<span class="symbol">&#x27;info</span>, System&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">TransferTokens</span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(mut)]</span></span><br><span class="line">    <span class="keyword">pub</span> signer: Signer&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">    <span class="meta">#[account(</span></span><br><span class="line"><span class="meta">        mut,</span></span><br><span class="line"><span class="meta">        seeds = [b<span class="string">&quot;mint&quot;</span>]</span>,</span><br><span class="line">        bump</span><br><span class="line">    )]</span><br><span class="line">    <span class="keyword">pub</span> mint: InterfaceAccount&lt;<span class="symbol">&#x27;info</span>, Mint&gt;,</span><br><span class="line">    <span class="meta">#[account(</span></span><br><span class="line"><span class="meta">        mut,</span></span><br><span class="line"><span class="meta">        token::mint = mint,</span></span><br><span class="line"><span class="meta">        token::authority = sender_token_account,</span></span><br><span class="line"><span class="meta">        seeds = [b<span class="string">&quot;token&quot;</span>]</span>,</span><br><span class="line">        bump</span><br><span class="line">    )]</span><br><span class="line">    <span class="keyword">pub</span> sender_token_account: InterfaceAccount&lt;<span class="symbol">&#x27;info</span>, TokenAccount&gt;,</span><br><span class="line">    <span class="meta">#[account(</span></span><br><span class="line"><span class="meta">        init_if_needed,</span></span><br><span class="line"><span class="meta">        payer = signer,</span></span><br><span class="line"><span class="meta">        associated_token::mint = mint,</span></span><br><span class="line"><span class="meta">        associated_token::authority = signer,</span></span><br><span class="line"><span class="meta">        associated_token::token_program = token_program,</span></span><br><span class="line"><span class="meta">    )]</span></span><br><span class="line">    <span class="keyword">pub</span> recipient_token_account: InterfaceAccount&lt;<span class="symbol">&#x27;info</span>, TokenAccount&gt;,</span><br><span class="line">    <span class="keyword">pub</span> token_program: Interface&lt;<span class="symbol">&#x27;info</span>, TokenInterface&gt;,</span><br><span class="line">    <span class="keyword">pub</span> associated_token_program: Program&lt;<span class="symbol">&#x27;info</span>, AssociatedToken&gt;,</span><br><span class="line">    <span class="keyword">pub</span> system_program: Program&lt;<span class="symbol">&#x27;info</span>, System&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>运行以上程序涉及的公钥和地址：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Instruction <span class="number">0</span></span><br><span class="line">   Program:   <span class="number">3</span>MQtMR35i7AqJ2bsvF46FxuPYaN7a1an1wy21aiisrjV (<span class="number">3</span>)程序的公钥</span><br><span class="line">   Account <span class="number">0</span>: <span class="title function_ invoke__">GKLMW9vLjNBHBdjgvWnozd82LHQMps5QoPUK6dT1spnD</span> (<span class="number">1</span>)这是什么地址</span><br><span class="line">   Account <span class="number">1</span>: <span class="number">748</span>YuxhvX7M9Gt7JP6T6swQHGFB295haksmJhagrBaB9 (<span class="number">0</span>)fee payer</span><br><span class="line">   Account <span class="number">2</span>: <span class="number">11111111111111111111111111111111</span> (<span class="number">2</span>)系统所有钱包的owner</span><br><span class="line">   Data: [<span class="number">175</span>, <span class="number">175</span>, <span class="number">109</span>, <span class="number">31</span>, <span class="number">13</span>, <span class="number">152</span>, <span class="number">155</span>, <span class="number">237</span>, <span class="number">42</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line"> Status: <span class="literal">Ok</span></span><br><span class="line">   Fee: ◎<span class="number">0.00001</span></span><br><span class="line">   Account <span class="number">0</span> balance: ◎<span class="number">2.29078316</span> <span class="punctuation">-&gt;</span> ◎<span class="number">2.28977092</span></span><br><span class="line">   Account <span class="number">1</span> balance: ◎<span class="number">0</span> <span class="punctuation">-&gt;</span> ◎<span class="number">0.00100224</span></span><br><span class="line">   Account <span class="number">2</span> balance: ◎<span class="number">0.000000001</span></span><br><span class="line">   Account <span class="number">3</span> balance: ◎<span class="number">0.00139896</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p><strong>CPI</strong></p>
+<p>在A调用B时，A的签名会沿用到B</p>
+<p><strong>程序结构</strong></p>
+<p>anchor keys sync：<br>在使用克隆库时可以考虑，将declare_id!(“11111111111111111111111111111111”);<br>的公钥更新为&#x2F;target&#x2F;deploy&#x2F;your_program_name.json的值</p>
+<p>#[program] macro </p>
+<p>指令 指令处理程序(struct Context<T> )</T></p>
+<p>Context 结构如下</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Context</span>&lt;<span class="symbol">&#x27;a</span>, <span class="symbol">&#x27;b</span>, <span class="symbol">&#x27;c</span>, <span class="symbol">&#x27;info</span>, T&gt; &#123;  </span><br><span class="line">    <span class="comment">/// 当前执行的程序ID。  </span></span><br><span class="line">    <span class="keyword">pub</span> program_id: &amp;<span class="symbol">&#x27;a</span> Pubkey,  </span><br><span class="line">    <span class="comment">/// 程序执行涉及到的账户</span></span><br><span class="line">    <span class="keyword">pub</span> accounts: &amp;<span class="symbol">&#x27;b</span> <span class="keyword">mut</span> T,  </span><br><span class="line">    <span class="comment">///  未涉及到的账户</span></span><br><span class="line">    <span class="comment">/// 使用此项时要非常小心。  </span></span><br><span class="line">    <span class="keyword">pub</span> remaining_accounts: &amp;<span class="symbol">&#x27;c</span> [AccountInfo&lt;<span class="symbol">&#x27;info</span>&gt;],  </span><br><span class="line">    <span class="comment">///PDA的增量种子</span></span><br><span class="line">    <span class="keyword">pub</span> bumps: BTreeMap&lt;<span class="type">String</span>, <span class="type">u8</span>&gt;,  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">#[account(init, payer = signer, space = 8 + 8)]</span></span><br><span class="line">用于验证下面的账户地址是否满足括号中的条件</span><br><span class="line"> <span class="meta">#[account(mut)]</span></span><br><span class="line"> 用于验证下面的账户是否是括号中的类型</span><br><span class="line"></span><br><span class="line"> 当账户被验证以后，就可以通过ctx.accounts访问（Context结构体）</span><br><span class="line"></span><br><span class="line">  <span class="meta">#[account(</span></span><br><span class="line"><span class="meta">        mut,</span></span><br><span class="line"><span class="meta">        seeds = [b<span class="string">&quot;message&quot;</span>, user.key().as_ref()]</span>,</span><br><span class="line">        bump = message_account.bump,</span><br><span class="line">        realloc = <span class="number">8</span> + <span class="number">32</span> + <span class="number">4</span> + message.<span class="title function_ invoke__">len</span>() + <span class="number">1</span>,</span><br><span class="line">        realloc::payer = user,<span class="comment">//明确谁为内存扩展付费</span></span><br><span class="line">        realloc::zero = <span class="literal">true</span>,<span class="comment">//清理原有内存</span></span><br><span class="line">    )]</span><br><span class="line">        <span class="keyword">pub</span> message_account: Account&lt;<span class="symbol">&#x27;info</span>, MessageAccount&gt;,</span><br><span class="line"> </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>account宏</strong><br>分配程序所有者：将之前的declare_id的账户地址规定为账户所有者<br>账户区分符，用于之后序列化和反序列化时判断<br>序列化和反序列化：账户数据和账户类型的变化</p>
+<p><strong>excuteable类型统计</strong></p>
+<p>minttoken：false-store state<br>wallet：false<br>Token Extensions program：true<br>11111111..111111：true<br>Program Executable Data Account：false</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/11/18/solana/%E7%A8%8B%E5%BA%8F/%E7%A8%8B%E5%BA%8F%20PDA%20CPI/" data-id="cm8ofd1bc002ed0udajgx3wbd" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-solana/交易费，gas/交易费" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/11/18/solana/%E4%BA%A4%E6%98%93%E8%B4%B9%EF%BC%8Cgas/%E4%BA%A4%E6%98%93%E8%B4%B9/" class="article-date">
+  <time class="dt-published" datetime="2024-11-18T08:55:03.039Z" itemprop="datePublished">2024-11-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>基础费用&#x3D;验证者数量*5000lamports（计算量大，给验证者负担大）</p>
+<p>priority fee &#x3D; compute units * compute unit price<br>优先费用 &#x3D; 计算单位 * 计算单位价格</p>
+<p>以上两种费用都会给validators一半，销毁一半</p>
+<p>租金</p>
+<p>交易限制：</p>
+<p>&#x3D;&#x3D;每个被引用的账户在每个区块中最多可以使用12,000,000计算单位。&#x3D;&#x3D; 这个上限防止人们在单个区块中对同一个账户进行过多的写锁定，进一步防止了一个账户对本地费用市场的冲击。<br>调用的指令深度限制为4，防止重入漏洞</p>
+<p><img src="/2024/11/18/solana/%E4%BA%A4%E6%98%93%E8%B4%B9%EF%BC%8Cgas/%E4%BA%A4%E6%98%93%E8%B4%B9/image.png" alt="Alt text"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/11/18/solana/%E4%BA%A4%E6%98%93%E8%B4%B9%EF%BC%8Cgas/%E4%BA%A4%E6%98%93%E8%B4%B9/" data-id="cm8ofd1b0001gd0udcksm4o1i" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-solana/交易和指令/交易和指令的介绍" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/11/17/solana/%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4/%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4%E7%9A%84%E4%BB%8B%E7%BB%8D/" class="article-date">
+  <time class="dt-published" datetime="2024-11-17T13:34:05.808Z" itemprop="datePublished">2024-11-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="结构图总览"><a href="#结构图总览" class="headerlink" title="结构图总览:"></a>结构图总览:</h3><h4 id="1-结构图"><a href="#1-结构图" class="headerlink" title="1.结构图"></a>1.结构图</h4><p><img src="/2024/11/17/solana/%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4/%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4%E7%9A%84%E4%BB%8B%E7%BB%8D/image-2.png" alt="Alt text"><br>所有钱包的owner都是系统账户？<br>注：solana用recent Blockhash代替了以太坊的noce</p>
+<h4 id="2-交易过程总览"><a href="#2-交易过程总览" class="headerlink" title="2.交易过程总览"></a>2.交易过程总览</h4><p><img src="/2024/11/17/solana/%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4/%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4%E7%9A%84%E4%BB%8B%E7%BB%8D/image-3.png" alt="Alt text"></p>
+<p>你没有拥有此钱包，所以你必须要调用系统账户对应的系统程序来转移sol？</p>
+<p>任何状态的改变都是通过交易改变的</p>
+<h3 id="关于签名"><a href="#关于签名" class="headerlink" title="关于签名"></a>关于签名</h3><p>每个交易可以有多个签名者，发送交易的人不一定是签署交易的人，因为您可以让其他人支付您的交易费用。</p>
+<hr>
+<h3 id="交易结构"><a href="#交易结构" class="headerlink" title="交易结构"></a>交易结构</h3><p>交易由</p>
+<p>签名</p>
+<p>消息<br>（包含了指令数组）<br>组成</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;transaction&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;header&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;numReadonlySignedAccounts&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;numReadonlyUnsignedAccounts&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;numRequiredSignatures&quot;</span><span class="punctuation">:</span> <span class="number">1</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;accountKeys&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;3z9vL1zjN6qyAFHhHQdWYRTFAcy69pJydkZmSFBKHg1R&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;5snoUseZG8s8CDFHrXY2ZHaCrJYsW457piktDmhyb5Jd&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;11111111111111111111111111111111&quot;</span></span><br><span class="line">      <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;recentBlockhash&quot;</span><span class="punctuation">:</span> <span class="string">&quot;DzfXchZJoLMG3cNftcf2sw7qatkkuwQf4xH15N5wkKAb&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;instructions&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;accounts&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">            <span class="number">0</span><span class="punctuation">,</span></span><br><span class="line">            <span class="number">1</span></span><br><span class="line">          <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="string">&quot;3Bxs4NN8M2Yn4TLb&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;programIdIndex&quot;</span><span class="punctuation">:</span> <span class="number">2</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;stackHeight&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">null</span></span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;indexToProgramIds&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;signatures&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="string">&quot;5LrcE2f6uvydKRquEJ8xp19heGxSvqsVbcqUeFoiWbXe8JNip7ftPQNTAVPyTK7ijVdpkzmKKaAQR7MWMmujAhXD&quot;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>消息由</p>
+<p>header：需要签名的account</p>
+<p>accountKeys：涉及的所有account（有读取，写入操作的所有account）</p>
+<p>recentBlockhash：用于防止重复和过时的交易，在最近的区块哈希过期之前，会不断尝试转发交易</p>
+<p>instructions：包括交易中所有指令的数组。指令中的每个账户和programIdIndex通过索引引用accountKeys数组。</p>
+<p>signatures：包括交易中指令所需的所有账户的签名数组。签名是通过使用相应账户的私钥对交易消息进行签名生成的。</p>
+<p>组成</p>
+<p>instruction由</p>
+<p>Program address：指定被调用的程序<br>Account：交涉的账户（读取或写入），包括其他程序，使用AccountMeta结构。<br>Instruction Data：一个字节数组，指定要调用程序上的哪个指令处理程序，以及指令处理程序所需的任何附加数据（函数参数）</p>
+<p>Account由</p>
+<p>pubkey：账户的链上地址<br>is_signer：该账户是否需要作为交易的签名者<br>is_writable：账户数据是否会被修改<br>这些信息被称为AccountMeta。</p>
+<p><img src="/2024/11/17/solana/%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4/%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4%E7%9A%84%E4%BB%8B%E7%BB%8D/image.png" alt="Alt text"><br>一个instruction的具体数据</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;keys&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;pubkey&quot;</span><span class="punctuation">:</span> <span class="string">&quot;3z9vL1zjN6qyAFHhHQdWYRTFAcy69pJydkZmSFBKHg1R&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;isSigner&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;isWritable&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;pubkey&quot;</span><span class="punctuation">:</span> <span class="string">&quot;BpvxsLYKQZTH42jjtWHZpsVSa7s6JVwLKwBptPSHXuZc&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;isSigner&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;isWritable&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;programId&quot;</span><span class="punctuation">:</span> <span class="string">&quot;11111111111111111111111111111111&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="number">2</span><span class="punctuation">,</span><span class="number">0</span><span class="punctuation">,</span><span class="number">0</span><span class="punctuation">,</span><span class="number">0</span><span class="punctuation">,</span><span class="number">128</span><span class="punctuation">,</span><span class="number">150</span><span class="punctuation">,</span><span class="number">152</span><span class="punctuation">,</span><span class="number">0</span><span class="punctuation">,</span><span class="number">0</span><span class="punctuation">,</span><span class="number">0</span><span class="punctuation">,</span><span class="number">0</span><span class="punctuation">,</span><span class="number">0</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/2024/11/17/solana/%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4/%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4%E7%9A%84%E4%BB%8B%E7%BB%8D/image-4.png" alt="Alt text"></p>
+<p>发起交易的过程：<br>1.用户钱包连接dapp，允许dapp读取其公钥<br>2.dapp构建交易，通过用户传入的数据<br>3.传回交易给用户，用户用私钥签名<br>4.签名以后发给dapp<br>5.dapp</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/11/17/solana/%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4/%E4%BA%A4%E6%98%93%E5%92%8C%E6%8C%87%E4%BB%A4%E7%9A%84%E4%BB%8B%E7%BB%8D/" data-id="cm8ofd1ay001bd0udd7s3fruy" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-solana/大纲" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/11/17/solana/%E5%A4%A7%E7%BA%B2/" class="article-date">
+  <time class="dt-published" datetime="2024-11-17T02:34:39.294Z" itemprop="datePublished">2024-11-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>视频课讲的都不是很好，都是跳跃性讲解，要把solana学好，还是先看官方文档吧</p>
+<p><a target="_blank" rel="noopener" href="https://docs.solanalabs.com/faq">官方常见问题讲解</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/11/17/solana/%E5%A4%A7%E7%BA%B2/" data-id="cm8ofd1ar000ld0ud78m0h82l" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-solana/序列化与反序列化/序列化" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/11/14/solana/%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/%E5%BA%8F%E5%88%97%E5%8C%96/" class="article-date">
+  <time class="dt-published" datetime="2024-11-14T07:08:14.175Z" itemprop="datePublished">2024-11-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>序列化</p>
+<p>反序列化</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/11/14/solana/%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/%E5%BA%8F%E5%88%97%E5%8C%96/" data-id="cm8ofd1b2001md0ud9i8zdril" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-solana/账户，地址，密钥/几者关系" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/11/14/solana/%E8%B4%A6%E6%88%B7%EF%BC%8C%E5%9C%B0%E5%9D%80%EF%BC%8C%E5%AF%86%E9%92%A5/%E5%87%A0%E8%80%85%E5%85%B3%E7%B3%BB/" class="article-date">
+  <time class="dt-published" datetime="2024-11-14T06:37:27.018Z" itemprop="datePublished">2024-11-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>账户与地址的关系：<br>一一对应</p>
+<p>只有账户的owner才可以减少账户余额，其余人可以增加，读取账户余额</p>
+<p>每个账户存储四个值(accountInfo)</p>
+<p>data（程序）：程序账户：存放代码的地址;普通钱包账户：存放状态<br>executable<br>lamports（余额）<br>owner</p>
+<p>程序<br>账户<br>数据账户：由程序在允许过程种生成的，用于存储和管理程序状态<br>原生程序<br>Sysvar ：存储网络集群状态，账户地址已经固定<br>BPF 加载程序 ：BPF 加载程序是被指定为网络上所有其他程序的“所有者”的程序，排除原生程序。它负责部署、升级和执行自定义程序。</p>
+<p>三个账户被创立：</p>
+<p>程序账户(Program Account)：存储程序数据账户的地址<br>程序数据账户(Program Executable Data Account)：存储字节码<br>缓冲账户(Buffer Account)<br><img src="/2024/11/14/solana/%E8%B4%A6%E6%88%B7%EF%BC%8C%E5%9C%B0%E5%9D%80%EF%BC%8C%E5%AF%86%E9%92%A5/%E5%87%A0%E8%80%85%E5%85%B3%E7%B3%BB/image.png" alt="Alt text"><br>可以看到，程序账户的executable是true，但程序数据账户的executable是false</p>
+<p>系统账户（系统程序system program）可以创建账户也可以更改账户所有权（owner）</p>
+<p>系统账户<br>11111111111111111111111111111111的accountInfo：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">  &#123;</span><br><span class="line">  <span class="string">&quot;data&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;type&quot;</span>: <span class="string">&quot;Buffer&quot;</span>,</span><br><span class="line">    <span class="string">&quot;data&quot;</span>: [</span><br><span class="line">      <span class="number">115</span>,</span><br><span class="line">      <span class="number">121</span>,</span><br><span class="line">      <span class="number">115</span>,</span><br><span class="line">      <span class="number">116</span>,</span><br><span class="line">      <span class="number">101</span>,</span><br><span class="line">      <span class="number">109</span>,</span><br><span class="line">      <span class="number">95</span>,</span><br><span class="line">      <span class="number">112</span>,</span><br><span class="line">      <span class="number">114</span>,</span><br><span class="line">      <span class="number">111</span>,</span><br><span class="line">      <span class="number">103</span>,</span><br><span class="line">      <span class="number">114</span>,</span><br><span class="line">      <span class="number">97</span>,</span><br><span class="line">      <span class="number">109</span></span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;executable&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="string">&quot;lamports&quot;</span>: <span class="number">1</span>,</span><br><span class="line">  <span class="string">&quot;owner&quot;</span>: <span class="string">&quot;NativeLoader1111111111111111111111111111111&quot;</span>,</span><br><span class="line">  <span class="string">&quot;rentEpoch&quot;</span>: <span class="number">18446744073709552000</span>,</span><br><span class="line">  <span class="string">&quot;space&quot;</span>: <span class="number">14</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/11/14/solana/%E8%B4%A6%E6%88%B7%EF%BC%8C%E5%9C%B0%E5%9D%80%EF%BC%8C%E5%AF%86%E9%92%A5/%E5%87%A0%E8%80%85%E5%85%B3%E7%B3%BB/" data-id="cm8ofd1b1001kd0ude3q585ju" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-区块链开发/rust/宏/宏语法/宏语法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/11/07/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/rust/%E5%AE%8F/%E5%AE%8F%E8%AF%AD%E6%B3%95/%E5%AE%8F%E8%AF%AD%E6%B3%95/" class="article-date">
+  <time class="dt-published" datetime="2024-11-07T06:07:57.229Z" itemprop="datePublished">2024-11-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/uniswap/uniswap2/uniswap/uniswap/">uniswap1和uniswap2的区别</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="uniswap"><a href="#uniswap" class="headerlink" title="uniswap"></a>uniswap</h1><p>Uniswap 白皮书（中文版） (hearrain.com)</p>
-<p>是一个协议，该协议用来进行代币与代币之间的代换</p>
-<p>为每一个token创建交易所</p>
-<p>理论上交易所和ERC20一一对应，但不会检查是否是一一对应关系，所以gas消耗低，但是用户有个在他们信得过的交易所进行交易</p>
-<h1 id="汇率计算"><a href="#汇率计算" class="headerlink" title="汇率计算"></a>汇率计算</h1><p>interval&#x3D;token_pool*eth_pool<br>每一次存入一定量的ETH（ERC20 token），合约会为了维持interval不变，返还相应的ERC20 token（ETH）给msg.sender<br>token的价格公式<br><img src="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/uniswap/uniswap2/uniswap/uniswap/image.png" alt="Alt text"></p>
-<p>推导：▲x&#x2F;▲y代表：在这次交易中，每一个y交换了多少个x，也就是y的价格<br>因此py&#x3D;▲x&#x2F;▲y<br><img src="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/uniswap/uniswap2/uniswap/uniswap/image-1.png" alt="Alt text"><br>当▲x很小时，右边&#x3D;x&#x2F;y，也就是y的价格</p>
-<h1 id="流动性提供"><a href="#流动性提供" class="headerlink" title="流动性提供"></a>流动性提供</h1><p>流动性提供：某个token刚创建时，需要存入一定的token和ETH（存入的比例需要和原来的ETH与token的比例相同）<br><img src="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/uniswap/uniswap2/uniswap/uniswap/image-2.png" alt="Alt text"><br>这里的s是流动性池中的独有代币</p>
-<p>每一次interval都会因为gasfee而轻微增加，涨幅并不大，所以可以尝试用反比例函数来理解</p>
-<p>为什么会有人提供流动性呢？因为可以随时抽出流动性<br>增长的手续费会增加到池子中，这个时候抽出s的话就会赚到部分的手续费（按你投入的流动性比例来看）</p>
-<p>提供流动性的损失：在提供流动性的过程中，两代币的汇率会发生变化，可能自己的流动性比例会变小，因此有可能自己拿回的某种代币或ETH代币反而不如之前多<br>同时也会面临敞口风险：在存入代币的过程中，流动性提供者需要购买另一种代币，可能会有风险</p>
-<p>也可以进行token1与token2的代换，先将token1换算成ETH，再将ETH换算成token2.</p>
-<h1 id="uniswap2新特性"><a href="#uniswap2新特性" class="headerlink" title="uniswap2新特性"></a>uniswap2新特性</h1><p>可以直接为token1和token2创建对合约，需要的手续费更少（A-&gt;ETH,ETH-&gt;B，这里要交两倍的手续费），在有损失时流动性提供者损失会更少，<br>如果ETH在uniswap1两种绑定美元的稳定币交易时发生了价格变化，那无疑对交易者是有损失的，容易滑铁卢<br>交易对数量的激增会让寻找两种token的交易路径变困难，但是可以用链下或者链上的路由器处理（不是很明白这里的技术）<br>无偿损失的概率会变小（不是很理解）</p>
-<h1 id="价格语言机："><a href="#价格语言机：" class="headerlink" title="价格语言机："></a>价格语言机：</h1><p>公式：<br>时间加权公式：每秒价格的和<br><img src="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/uniswap/uniswap2/uniswap/uniswap/image-3.png" alt="Alt text"><br>t1到t2间的平均价格，用这个表示下个区块每秒的价格（以太坊15秒产生一个区块，这期间价格不变）<br><img src="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/uniswap/uniswap2/uniswap/uniswap/image-4.png" alt="Alt text"><br>例子：<br><img src="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/uniswap/uniswap2/uniswap/uniswap/image-5.png" alt="Alt text"><br>要注意：一个exchange中两种币的价格不一定是倒数</p>
-<p>由于需要存储价格，而solidity又没有小数类型，所以要用这种方式来存储，最下面就是计算加权累计值的代码<br><img src="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/uniswap/uniswap2/uniswap/uniswap/image-6.png" alt="Alt text"></p>
-<h1 id="闪电贷"><a href="#闪电贷" class="headerlink" title="闪电贷"></a>闪电贷</h1><p>闪电贷的交易手续费和交易前后的交易池需要满足：<br><img src="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/uniswap/uniswap2/uniswap/uniswap/image-7.png" alt="Alt text"></p>
-<h1 id="元交易"><a href="#元交易" class="headerlink" title="元交易"></a>元交易</h1><p>交易者可以离线签名然后让转发者代替自己进行链上交易，一个转发者可以一次性发起多个这样的交易，<br>然后可以节约交易费用（不理解），对LP Token的使用更加灵活？</p>
-<h1 id="合约重构"><a href="#合约重构" class="headerlink" title="合约重构"></a>合约重构</h1><p><img src="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/uniswap/uniswap2/uniswap/uniswap/image-8.png" alt="Alt text"><br>Uniswap2把所有和钱有关的部分放在了core中，1中使用的Vpyer合约语言，2使用的是solidity语言</p>
-
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/uniswap/uniswap2/uniswap/uniswap/" data-id="clxvwvx770039rkud0ovj7reu" data-title="uniswap1和uniswap2的区别" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/11/07/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/rust/%E5%AE%8F/%E5%AE%8F%E8%AF%AD%E6%B3%95/%E5%AE%8F%E8%AF%AD%E6%B3%95/" data-id="cm8ofd1cb005ld0ud35whflqs" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -128,49 +414,10 @@
 
 
   
-    <article id="post-区块链安全/协议与标准库/ERC20/SafeTransferLib" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-链安/热钱包地址判断/热钱包地址判断" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC20/SafeTransferLib/" class="article-date">
-  <time class="dt-published" datetime="2024-05-29T08:50:34.551Z" itemprop="datePublished">2024-05-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC20/SafeTransferLib/">ERC20</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>call转账和调用函数的区别<br>SafeTransferLib的用处</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//这个库就是为了防止像usdt那样没有返回值的transfer，调用方式为 using SafeTransferLib for token;  token.safeTransferFrom</span><br><span class="line">//会不会出现选择器碰撞攻击？</span><br><span class="line"></span><br><span class="line"> function safeTransferETH(address to, uint256 amount) internal &#123;</span><br><span class="line">        bool success;</span><br><span class="line"></span><br><span class="line">        /// @solidity memory-safe-assembly</span><br><span class="line">        assembly &#123;</span><br><span class="line">            // Transfer the ETH and store if it succeeded or not.</span><br><span class="line">            //call调用函数和转账的区别：有无calldata，有就是调用函数，无就是转账ETH</span><br><span class="line"></span><br><span class="line">            success := call(gas(), to, amount, 0, 0, 0, 0)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        require(success, &quot;ETH_TRANSFER_FAILED&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /*//////////////////////////////////////////////////////////////</span><br><span class="line">                            ERC20 OPERATIONS</span><br><span class="line">    //////////////////////////////////////////////////////////////*/</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    function safeTransferFrom(</span><br><span class="line">        ERC20 token,</span><br><span class="line">        address from,</span><br><span class="line">        address to,</span><br><span class="line">        uint256 amount</span><br><span class="line">    ) internal &#123;</span><br><span class="line">        bool success;</span><br><span class="line"></span><br><span class="line">        /// @solidity memory-safe-assembly</span><br><span class="line">        assembly &#123;</span><br><span class="line">            // Get a pointer to some free memory.</span><br><span class="line">            let freeMemoryPointer := mload(0x40)</span><br><span class="line"></span><br><span class="line">            // Write the abi-encoded calldata into memory, beginning with the function selector.</span><br><span class="line">            mstore(freeMemoryPointer, 0x23b872dd00000000000000000000000000000000000000000000000000000000)</span><br><span class="line">            mstore(add(freeMemoryPointer, 4), and(from, 0xffffffffffffffffffffffffffffffffffffffff)) // Append and mask the &quot;from&quot; argument.</span><br><span class="line">            mstore(add(freeMemoryPointer, 36), and(to, 0xffffffffffffffffffffffffffffffffffffffff)) // Append and mask the &quot;to&quot; argument.</span><br><span class="line">            mstore(add(freeMemoryPointer, 68), amount) // Append the &quot;amount&quot; argument. Masking not required as it&#x27;s a full 32 byte type.</span><br><span class="line"></span><br><span class="line">//call函数在调用的函数顺利完成时返回true，也就是说success为1的情况为：</span><br><span class="line">// 函数顺利调用，且没有返回值</span><br><span class="line">// 或</span><br><span class="line">// 函数顺利调用，且返回了1,这里gt中的returndatasize如果返回1的话是会返回0x000...01这样的值，刚好32byte</span><br><span class="line">//因此函数排除的情况为：成功call但返回了除1以外的值，或call失败</span><br><span class="line"></span><br><span class="line">            success := and(</span><br><span class="line">                // Set success to whether the call reverted, if not we check it either</span><br><span class="line">                // returned exactly 1 (can&#x27;t just be non-zero data), or had no return data.</span><br><span class="line">                or(and(eq(mload(0), 1), gt(returndatasize(), 31)), iszero(returndatasize())),</span><br><span class="line">                // We use 100 because the length of our calldata totals up like so: 4 + 32 * 3.</span><br><span class="line">                // We use 0 and 32 to copy up to 32 bytes of return data into the scratch space.</span><br><span class="line">                // Counterintuitively, this call must be positioned second to the or() call in the</span><br><span class="line">                // surrounding and() call or else returndatasize() will be zero during the computation.</span><br><span class="line">                call(gas(), token, 0, freeMemoryPointer, 100, 0, 32)</span><br><span class="line">            )</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        require(success, &quot;TRANSFER_FROM_FAILED&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC20/SafeTransferLib/" data-id="clxvwvx6u0030rkud71vv04qp" data-title="ERC20" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/协议与标准库/ERC721/ERC721" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC721/ERC721/" class="article-date">
-  <time class="dt-published" datetime="2024-05-27T11:03:01.692Z" itemprop="datePublished">2024-05-27</time>
+    <a href="/2024/11/05/%E9%93%BE%E5%AE%89/%E7%83%AD%E9%92%B1%E5%8C%85%E5%9C%B0%E5%9D%80%E5%88%A4%E6%96%AD/%E7%83%AD%E9%92%B1%E5%8C%85%E5%9C%B0%E5%9D%80%E5%88%A4%E6%96%AD/" class="article-date">
+  <time class="dt-published" datetime="2024-11-05T08:20:54.803Z" itemprop="datePublished">2024-11-05</time>
 </a>
     
   </div>
@@ -179,228 +426,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/05/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC721/ERC721/" data-id="clxvwvx740035rkud02u86y6g" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/协议与标准库/ERC1271/ERC1271" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC1271/ERC1271/" class="article-date">
-  <time class="dt-published" datetime="2024-05-27T08:35:27.233Z" itemprop="datePublished">2024-05-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>几种签名之间的关系图：</p>
-<p><img src="/2024/05/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC1271/ERC1271/image.png" alt="Alt text"></p>
+        <p><img src="/2024/11/05/%E9%93%BE%E5%AE%89/%E7%83%AD%E9%92%B1%E5%8C%85%E5%9C%B0%E5%9D%80%E5%88%A4%E6%96%AD/%E7%83%AD%E9%92%B1%E5%8C%85%E5%9C%B0%E5%9D%80%E5%88%A4%E6%96%AD/image.png" alt="Alt text"></p>
+<p>找到疑似用户地址，若发现有很多出交易对手，就不看ETH，看u或者其他币，看这些交易是否满足少数出且只指向热钱包</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/05/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC1271/ERC1271/" data-id="clxvwvx720033rkudfux806cm" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/协议与标准库/ERC4337/ERC4337" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC4337/ERC4337/" class="article-date">
-  <time class="dt-published" datetime="2024-05-27T08:35:14.535Z" itemprop="datePublished">2024-05-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/05/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC4337/ERC4337/" data-id="clxvwvx730034rkude3vv9rc1" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/defi靶场/uniswap3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/25/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap3/" class="article-date">
-  <time class="dt-published" datetime="2024-05-25T03:41:24.911Z" itemprop="datePublished">2024-05-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>集中流动性：为何集中流动性</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/05/25/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/defi%E9%9D%B6%E5%9C%BA/uniswap3/" data-id="clxvwvx5o000zrkud6xl0gav9" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/其他/POC" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/23/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/POC/" class="article-date">
-  <time class="dt-published" datetime="2024-05-23T07:34:06.264Z" itemprop="datePublished">2024-05-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><img src="/2024/05/23/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/POC/image.png" alt="Alt text"></p>
-<p>攻击合约</p>
-<p><img src="/2024/05/23/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/POC/image-1.png" alt="Alt text"></p>
-<p>harvest是被攻击合约的一个函数</p>
-<p><em><strong>这一步是因为之前的_safeTransfer或者pancakeCall会转账到该合约中</strong></em></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">uint amount0In = balance0 &gt; _reserve0 - amount0Out ? balance0 - (_reserve0 - amount0Out) : 0;</span><br><span class="line">uint amount1In = balance1 &gt; _reserve1 - amount1Out ? balance1 - (_reserve1 - amount1Out) : 0;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><em><strong>这一步为什么只减去25倍，而不是10000倍</strong></em></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uint balance0Adjusted = (balance0.mul(10000).sub(amount0In.mul(25)));</span><br><span class="line">uint balance1Adjusted = (balance1.mul(10000).sub(amount1In.mul(25)));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/05/23/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/POC/" data-id="clxvwvx5y001erkudctb12mju" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链安全/工具使用/debug工具" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/21/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/debug%E5%B7%A5%E5%85%B7/" class="article-date">
-  <time class="dt-published" datetime="2024-05-21T14:28:44.195Z" itemprop="datePublished">2024-05-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>为什么要使用debug工具？<br>为了更快速学习漏洞代码，而不是一点一点的去看代码</p>
-<p>如何帮助我们快速定位到攻击点？</p>
-<p><a target="_blank" rel="noopener" href="https://openchain.xyz/trace/ethereum/0xd4fafa1261f6e4f9c8543228a67caf9d02811e4ad3058a2714323964a8db61f6">sam</a><br>快速找到转账的位置，<br>这个工具方便就方便在可以查看storage的变化和读取<br>然后可以借助<br><a target="_blank" rel="noopener" href="https://app.blocksec.com/explorer/tx/eth/0xd4fafa1261f6e4f9c8543228a67caf9d02811e4ad3058a2714323964a8db61f6?line=10&debugLine=10">phalcon</a><br>来获取合约代码</p>
-<p>0x000000这样的插槽，一般是攻击合约的插槽，如果是已知合约插槽的话，一般是写具体的插槽名称</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/05/21/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/debug%E5%B7%A5%E5%85%B7/" data-id="clxvwvx6i002erkudcd1m0q8p" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链开发/分布式存储/文件层" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/%E6%96%87%E4%BB%B6%E5%B1%82/" class="article-date">
-  <time class="dt-published" datetime="2024-05-15T14:34:53.136Z" itemprop="datePublished">2024-05-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Git系统：<br>block<br>list<br>tree：<br>commit：树版本历史中的快照</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/05/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/%E6%96%87%E4%BB%B6%E5%B1%82/" data-id="clxvwvx6p002rrkudhfl12keu" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-区块链开发/分布式存储/对象层" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/05/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/%E5%AF%B9%E8%B1%A1%E5%B1%82/" class="article-date">
-  <time class="dt-published" datetime="2024-05-15T14:12:59.973Z" itemprop="datePublished">2024-05-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>对象层：与文件层相辅相成<br>定义了Merkel DAG如何组织</p>
-<p>路径名字：<br>&#x2F;ipfs&#x2F;hash&#x2F;name<br>例:<br>&#x2F;ipfs&#x2F;JLFIAEJLZJAJWAHLAFJLAHLGA…&#x2F;TII.TXT</p>
-<p>ping 机制：标记某个文件，防止该文件被自动删除</p>
-<p>对象级别的加密<br><img src="/2024/05/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/%E5%AF%B9%E8%B1%A1%E5%B1%82/image.png" alt="Alt text"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://oo90909.github.io/2024/05/15/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/%E5%AF%B9%E8%B1%A1%E5%B1%82/" data-id="clxvwvx6q002srkud8gqjb9q2" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://oo90909.github.io/2024/11/05/%E9%93%BE%E5%AE%89/%E7%83%AD%E9%92%B1%E5%8C%85%E5%9C%B0%E5%9D%80%E5%88%A4%E6%96%AD/%E7%83%AD%E9%92%B1%E5%8C%85%E5%9C%B0%E5%9D%80%E5%88%A4%E6%96%AD/" data-id="cm8ofd1c2004nd0udcv7w0l6m" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -416,7 +448,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -435,7 +467,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
     </div>
   </div>
 
@@ -448,23 +480,23 @@
       <ul>
         
           <li>
-            <a href="/2024/06/26/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/%E9%87%8D%E5%85%A5%E6%94%BB%E5%87%BB/">(no title)</a>
+            <a href="/2025/03/24/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/%E7%BF%BB%E8%AF%91%E8%A6%81%E7%82%B9/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/06/25/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/ecrecover/">(no title)</a>
+            <a href="/2025/03/23/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/solidity2/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/06/24/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%85%B6%E4%BB%96/stackTooDeep/">stack too deep</a>
+            <a href="/2025/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC1155/ERC1155/">EIP712</a>
           </li>
         
           <li>
-            <a href="/2024/06/18/%E5%95%86%E7%A7%91/%E5%B7%A5%E7%A8%8B%E7%BB%8F%E6%B5%8E%E5%AD%A6/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%87%91%E8%9E%8D/%E8%AE%BA%E6%96%87/">(no title)</a>
+            <a href="/2025/03/19/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E5%8E%9F%E7%94%9F%E7%A8%8B%E5%BA%8F/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2024/06/17/%E5%95%86%E7%A7%91/ERC4626/">ERC4626</a>
+            <a href="/2025/03/17/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/">(no title)</a>
           </li>
         
       </ul>
@@ -480,7 +512,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2024 fathergun<br>
+      &copy; 2025 fathergun<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>uniswap1和uniswap2的区别 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="uniswapUniswap 白皮书（中文版） (hearrain.com) 是一个协议，该协议用来进行代币与代币之间的代换 为每一个token创建交易所 理论上交易所和ERC20一一对应，但不会检查是否是一一对应关系，所以gas消耗低，但是用户有个在他们信得过的交易所进行交易 汇率计算interval&#x3D;token_pool*eth_pool每一次存入一定量的ETH（ERC20 toke">
+<meta property="og:type" content="article">
+<meta property="og:title" content="uniswap1和uniswap2的区别">
+<meta property="og:url" content="https://oo90909.github.io/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="uniswapUniswap 白皮书（中文版） (hearrain.com) 是一个协议，该协议用来进行代币与代币之间的代换 为每一个token创建交易所 理论上交易所和ERC20一一对应，但不会检查是否是一一对应关系，所以gas消耗低，但是用户有个在他们信得过的交易所进行交易 汇率计算interval&#x3D;token_pool*eth_pool每一次存入一定量的ETH（ERC20 toke">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://oo90909.github.io/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image.png">
+<meta property="og:image" content="https://oo90909.github.io/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image-1.png">
+<meta property="og:image" content="https://oo90909.github.io/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image-2.png">
+<meta property="og:image" content="https://oo90909.github.io/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image-3.png">
+<meta property="og:image" content="https://oo90909.github.io/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image-4.png">
+<meta property="og:image" content="https://oo90909.github.io/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image-5.png">
+<meta property="og:image" content="https://oo90909.github.io/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image-6.png">
+<meta property="og:image" content="https://oo90909.github.io/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image-7.png">
+<meta property="og:image" content="https://oo90909.github.io/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image-8.png">
+<meta property="article:published_time" content="2024-05-29T09:34:57.449Z">
+<meta property="article:modified_time" content="2024-01-16T10:01:53.940Z">
+<meta property="article:author" content="fathergun">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://oo90909.github.io/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oo90909.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-区块链安全/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/" class="article-date">
+  <time class="dt-published" datetime="2024-05-29T09:34:57.449Z" itemprop="datePublished">2024-05-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      uniswap1和uniswap2的区别
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="uniswap"><a href="#uniswap" class="headerlink" title="uniswap"></a>uniswap</h1><p>Uniswap 白皮书（中文版） (hearrain.com)</p>
+<p>是一个协议，该协议用来进行代币与代币之间的代换</p>
+<p>为每一个token创建交易所</p>
+<p>理论上交易所和ERC20一一对应，但不会检查是否是一一对应关系，所以gas消耗低，但是用户有个在他们信得过的交易所进行交易</p>
+<h1 id="汇率计算"><a href="#汇率计算" class="headerlink" title="汇率计算"></a>汇率计算</h1><p>interval&#x3D;token_pool*eth_pool<br>每一次存入一定量的ETH（ERC20 token），合约会为了维持interval不变，返还相应的ERC20 token（ETH）给msg.sender<br>token的价格公式<br><img src="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image.png" alt="Alt text"></p>
+<p>推导：▲x&#x2F;▲y代表：在这次交易中，每一个y交换了多少个x，也就是y的价格<br>因此py&#x3D;▲x&#x2F;▲y<br><img src="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image-1.png" alt="Alt text"><br>当▲x很小时，右边&#x3D;x&#x2F;y，也就是y的价格</p>
+<h1 id="流动性提供"><a href="#流动性提供" class="headerlink" title="流动性提供"></a>流动性提供</h1><p>流动性提供：某个token刚创建时，需要存入一定的token和ETH（存入的比例需要和原来的ETH与token的比例相同）<br><img src="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image-2.png" alt="Alt text"><br>这里的s是流动性池中的独有代币</p>
+<p>每一次interval都会因为gasfee而轻微增加，涨幅并不大，所以可以尝试用反比例函数来理解</p>
+<p>为什么会有人提供流动性呢？因为可以随时抽出流动性<br>增长的手续费会增加到池子中，这个时候抽出s的话就会赚到部分的手续费（按你投入的流动性比例来看）</p>
+<p>提供流动性的损失：在提供流动性的过程中，两代币的汇率会发生变化，可能自己的流动性比例会变小，因此有可能自己拿回的某种代币或ETH代币反而不如之前多<br>同时也会面临敞口风险：在存入代币的过程中，流动性提供者需要购买另一种代币，可能会有风险</p>
+<p>也可以进行token1与token2的代换，先将token1换算成ETH，再将ETH换算成token2.</p>
+<h1 id="uniswap2新特性"><a href="#uniswap2新特性" class="headerlink" title="uniswap2新特性"></a>uniswap2新特性</h1><p>可以直接为token1和token2创建对合约，需要的手续费更少（A-&gt;ETH,ETH-&gt;B，这里要交两倍的手续费），在有损失时流动性提供者损失会更少，<br>如果ETH在uniswap1两种绑定美元的稳定币交易时发生了价格变化，那无疑对交易者是有损失的，容易滑铁卢<br>交易对数量的激增会让寻找两种token的交易路径变困难，但是可以用链下或者链上的路由器处理（不是很明白这里的技术）<br>无偿损失的概率会变小（不是很理解）</p>
+<h1 id="价格语言机："><a href="#价格语言机：" class="headerlink" title="价格语言机："></a>价格语言机：</h1><p>公式：<br>时间加权公式：每秒价格的和<br><img src="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image-3.png" alt="Alt text"><br>t1到t2间的平均价格，用这个表示下个区块每秒的价格（以太坊15秒产生一个区块，这期间价格不变）<br><img src="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image-4.png" alt="Alt text"><br>例子：<br><img src="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image-5.png" alt="Alt text"><br>要注意：一个exchange中两种币的价格不一定是倒数</p>
+<p>由于需要存储价格，而solidity又没有小数类型，所以要用这种方式来存储，最下面就是计算加权累计值的代码<br><img src="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image-6.png" alt="Alt text"></p>
+<h1 id="闪电贷"><a href="#闪电贷" class="headerlink" title="闪电贷"></a>闪电贷</h1><p>闪电贷的交易手续费和交易前后的交易池需要满足：<br><img src="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image-7.png" alt="Alt text"></p>
+<h1 id="元交易"><a href="#元交易" class="headerlink" title="元交易"></a>元交易</h1><p>交易者可以离线签名然后让转发者代替自己进行链上交易，一个转发者可以一次性发起多个这样的交易，<br>然后可以节约交易费用（不理解），对LP Token的使用更加灵活？</p>
+<h1 id="合约重构"><a href="#合约重构" class="headerlink" title="合约重构"></a>合约重构</h1><p><img src="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/image-8.png" alt="Alt text"><br>Uniswap2把所有和钱有关的部分放在了core中，1中使用的Vpyer合约语言，2使用的是solidity语言</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap/uniswap/" data-id="cm8ofd1ch005nd0ud9c78cy1z" data-title="uniswap1和uniswap2的区别" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/uniswap/uniswap2/uniswap2/uniswap2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          uniswap2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/05/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC20/SafeTransferLib/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ERC20</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/03/24/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/%E7%BF%BB%E8%AF%91%E8%A6%81%E7%82%B9/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/23/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/solidity2/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC1155/ERC1155/">EIP712</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/19/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E5%8E%9F%E7%94%9F%E7%A8%8B%E5%BA%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/17/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 fathergun<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

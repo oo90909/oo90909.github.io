@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="init123456789101112  #[account(init,&#x2F;&#x2F;这里init会调用系统的创建账户程序，并默认指定&#x2F;&#x2F;账户owner为当前程序的公钥,需要和payer和space一起使用，以便指定谁为这个账户支付费用以及空间seeds&#x3D;[b&quot;message&quot;, user.key().as_ref()],bump,&#x2F;&#x2F;当出现seeds和bump的时候，也就是说会出现PD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://oo90909.github.io/2024/12/23/solana/%E5%AE%8F/#[account(...)]/#[account(...)]/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="init123456789101112  #[account(init,&#x2F;&#x2F;这里init会调用系统的创建账户程序，并默认指定&#x2F;&#x2F;账户owner为当前程序的公钥,需要和payer和space一起使用，以便指定谁为这个账户支付费用以及空间seeds&#x3D;[b&quot;message&quot;, user.key().as_ref()],bump,&#x2F;&#x2F;当出现seeds和bump的时候，也就是说会出现PD">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-12-23T09:30:33.969Z">
+<meta property="article:modified_time" content="2024-12-24T11:42:25.355Z">
+<meta property="article:author" content="fathergun">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oo90909.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-solana/宏/#[account(...)]/#[account(...)]" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/12/23/solana/%E5%AE%8F/#%5Baccount(...)%5D/#%5Baccount(...)%5D/" class="article-date">
+  <time class="dt-published" datetime="2024-12-23T09:30:33.969Z" itemprop="datePublished">2024-12-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  <span class="meta">#[account(init,//这里init会调用系统的创建账户程序，并默认指定</span></span><br><span class="line"><span class="meta">//账户owner为当前程序的公钥,需要和payer和space一起使用，以便指定谁为这个账户支付费用以及空间</span></span><br><span class="line"><span class="meta">seeds=[b<span class="string">&quot;message&quot;</span>, user.key().as_ref()]</span>,</span><br><span class="line">bump,</span><br><span class="line"><span class="comment">//当出现seeds和bump的时候，也就是说会出现PDA的时候，pda的owner就</span></span><br><span class="line"><span class="comment">//必须是本程序，因为PDA的来源之一是signature</span></span><br><span class="line">payer=user,</span><br><span class="line">space=<span class="number">8</span>+<span class="number">32</span>+<span class="number">4</span>+message.<span class="title function_ invoke__">len</span>()+<span class="number">1</span></span><br><span class="line">)]</span><br><span class="line">    <span class="keyword">pub</span> message_account: Account&lt;<span class="symbol">&#x27;info</span>, MessageAccount&gt;,</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="init-if-need"><a href="#init-if-need" class="headerlink" title="init_if_need"></a>init_if_need</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Initialize</span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(</span></span><br><span class="line"><span class="meta">        init_if_needed,//会进行检查，如果存在这个账户，就会</span></span><br><span class="line"><span class="meta">        //跳过，如果不存在，就会重新初始化这个账户（分配存储空间，在哪里分配空间呢？），要谨慎使用（防止重定义攻击？）</span></span><br><span class="line"><span class="meta">        payer = payer,</span></span><br><span class="line"><span class="meta">        associated_token::mint = mint,</span></span><br><span class="line"><span class="meta">        associated_token::authority = payer</span></span><br><span class="line"><span class="meta">    )]</span></span><br><span class="line">    <span class="keyword">pub</span> token_account: Account&lt;<span class="symbol">&#x27;info</span>, TokenAccount&gt;,</span><br><span class="line">    <span class="keyword">pub</span> mint: Account&lt;<span class="symbol">&#x27;info</span>, Mint&gt;,</span><br><span class="line">     <span class="meta">#[account(mut)]</span></span><br><span class="line">    <span class="keyword">pub</span> payer: Signer&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">    <span class="keyword">pub</span> system_program: Program&lt;<span class="symbol">&#x27;info</span>, System&gt;,</span><br><span class="line">    <span class="keyword">pub</span> token_program: Program&lt;<span class="symbol">&#x27;info</span>, Token&gt;,</span><br><span class="line">    <span class="keyword">pub</span> associated_token_program: Program&lt;<span class="symbol">&#x27;info</span>, AssociatedToken&gt;,</span><br><span class="line">    <span class="keyword">pub</span> rent: Sysvar&lt;<span class="symbol">&#x27;info</span>, Rent&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Realloc"><a href="#Realloc" class="headerlink" title="Realloc"></a>Realloc</h3><p>其实我并不知道为什么要重新定义账户的大小？</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="meta">#[instruction(instruction_data: String)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">ReallocExample</span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(</span></span><br><span class="line"><span class="meta">        mut,</span></span><br><span class="line"><span class="meta">        seeds = [b<span class="string">&quot;example_seed&quot;</span>, user.key().as_ref()]</span>,</span><br><span class="line">        bump,</span><br><span class="line">        realloc = DISCRIMINATOR + STRING_SIZE_SPACE + instruction_data.<span class="title function_ invoke__">len</span>(),</span><br><span class="line">        realloc::payer = user,<span class="comment">//重新分配可能会导致位置大小发生变化，租金就会改变，因此需要指定payer</span></span><br><span class="line">        realloc::zero = <span class="literal">false</span>,<span class="comment">//将之前的数据清零，防止脏位</span></span><br><span class="line">    )]</span><br><span class="line">    <span class="keyword">pub</span> pda_account: Account&lt;<span class="symbol">&#x27;info</span>, AccountType&gt;,</span><br><span class="line">    <span class="meta">#[account(mut)]</span></span><br><span class="line">    <span class="keyword">pub</span> user: Signer&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">    <span class="keyword">pub</span> system_program: Program&lt;<span class="symbol">&#x27;info</span>, System&gt;,</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="meta">#[derive(InitSpace)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">AccountType</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> data: <span class="type">String</span>,</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">const</span> DISCRIMINATOR: <span class="type">usize</span> = <span class="number">8</span>;</span><br><span class="line"><span class="keyword">const</span> STRING_SIZE_SPACE: <span class="type">usize</span> = <span class="number">4</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="close"><a href="#close" class="headerlink" title="close"></a>close</h3><p>防止data_account被重新打开<br>使其无法被重新初始化</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#[account(mut, close = receiver)]</span></span><br><span class="line">  <span class="keyword">pub</span> data_account: Account&lt;<span class="symbol">&#x27;info</span>, AccountType&gt;,</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/12/23/solana/%E5%AE%8F/#[account(...)]/#[account(...)]/" data-id="cm8ofd1c2004pd0udfqh21a4w" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/01/05/%E6%AF%95%E8%AE%BE/%E8%AE%BA%E6%96%87%E7%BF%BB%E8%AF%91/%E8%AE%BA%E6%96%87/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/12/23/solana/%E5%AE%8F/#%5Binstruction(...)%5D/#%5Binstruction(...)%5D/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/03/24/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/%E7%BF%BB%E8%AF%91%E8%A6%81%E7%82%B9/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/23/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/solidity2/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC1155/ERC1155/">EIP712</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/19/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E5%8E%9F%E7%94%9F%E7%A8%8B%E5%BA%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/17/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 fathergun<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

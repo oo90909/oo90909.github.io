@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Is the Oracle using deprecated Chainlink functions?Usage of deprecated Chainlink functions like latestAnswer() might return stale or incorrect data, affecting the integrity of smart contracts.Replace">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://oo90909.github.io/2024/08/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/oracle/oracle/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Is the Oracle using deprecated Chainlink functions?Usage of deprecated Chainlink functions like latestAnswer() might return stale or incorrect data, affecting the integrity of smart contracts.Replace">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-08-29T07:00:28.463Z">
+<meta property="article:modified_time" content="2024-09-01T15:05:00.562Z">
+<meta property="article:author" content="fathergun">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oo90909.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-区块链安全/CheckList/oracle/oracle" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/08/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/oracle/oracle/" class="article-date">
+  <time class="dt-published" datetime="2024-08-29T07:00:28.463Z" itemprop="datePublished">2024-08-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Is the Oracle using deprecated Chainlink functions?<br>Usage of deprecated Chainlink functions like latestAnswer() might return stale or incorrect data, affecting the integrity of smart contracts.<br>Replace deprecated functions with the current recommended methods to ensure accurate data retrieval from oracles.<br>Is the returned price validated to be non-zero?<br>Price feed might return zero and this must be handled as invalid.<br>Ensure the returned price is not zero.<br>Is the price update time validated?</p>
+<p>Price feeds might not be supported in the future. To ensure accurate price usage, it’s vital to regularly check the last update timestamp against a predefined delay.        Implement a mechanism to check the heartbeat of the price feed and compare it against a predefined maximum delay (MAX_DELAY). Adjust the MAX_DELAY variable based on the observed heartbeat.<br>Is there a validation to check if the rollup sequencer is running?<br>The rollup sequencer can become offline, which can lead to potential vulnerabilities due to stale prices.<br>Utilize the sequencer uptime feed to confirm the sequencers are up.<br>Is the Oracle’s TWAP period appropriately set?<br>An inadequately set TWAP (Time-Weighted Average Price) period could be exploited to manipulate prices.<br>Adjust the TWAP period to a duration that mitigates the risk of manipulation while providing timely price updates.<br>Is the desired price feed pair supported across all deployed chains?<br>In multi-chain deployments, it’s crucial to ensure the desired price feed pair is available and consistent across all chains.<br>Review the supported price feed pairs on all chains and ensure they are consistent.<br>Is the heartbeat of the price feed suitable for the use case?<br>A price feed heartbeat that’s too slow might not be suitable for some use cases.<br>Assess the requirements of the use case and ensure the price feed heartbeat aligns with them.<br>Are there any inconsistencies with decimal precision when using different price feeds?<br>Different price feeds might have varying decimal precisions, which can lead to inaccuracies.<br>Ensure that the contract handles potential variations in decimal precision across different price feeds.<br>Is the price feed address hard-coded?<br>Hard-coded price feed addresses can be problematic, especially if they become deprecated or if they’re not accurate in the first place.<br>Review and verify the hardcoded price feed addresses. Consider mechanisms to update the address if required in the future.<br>What happens if oracle price updates are front-run?<br>Oracle price updates can be front-run and cause various problems.<br>Ensure the protocol is not affected in the case where oracle price updates are front-run.<br>How does the system handle potential oracle reverts?<br>Unanticipated oracle reverts can lead to Denial-Of-Service.<br>Implement try&#x2F;catch blocks around oracle calls and have alternative strategies ready.<br>Are the price feeds appropriate for the underlying assets?<br>Using an ETH price feed for stETH or a BTC price feed for WBTC can introduce risks associated with the underlying assets deviating from their pegs.<br>Ensure that the price feeds accurately represent the underlying assets to address potential depeg risks.<br>Is the contract vulnerable to oracle manipulation, especially using spot prices from AMMs?<br>Reliance on AMM spot prices as oracles can be manipulated via flashloan.<br>Choose reliable and tamper-resistant oracle sources. Avoid using spot prices from AMMs directly without additional checks.<br>How does the system address potential inaccuracies during flash crashes?<br>During flash crashes, oracles might return inaccurate prices.<br>Implement checks to ensure that the price returned by the oracle lies within an expected range to guard against potential flash crash vulnerabilities.</p>
+<p>Oracle 是否在使用已弃用的 Chainlink 函数？<br>使用诸如 latestAnswer () 等已弃用的 Chainlink 函数可能会返回陈旧或不正确的数据，影响智能合约的完整性。<br>用当前推荐的方法替换已弃用的函数，以确保从预言机准确检索数据。</p>
+<p>返回的价格是否经过验证为非零值？<br>价格源可能返回零值，这必须被视为无效。<br>确保返回的价格不为零。</p>
+<p>价格更新时间是否经过验证？<br>价格源在未来可能不再受支持。为确保准确使用价格，至关重要的是定期根据预定义的延迟检查最后一次更新的时间戳。<br>实施一种机制来检查价格源的心跳，并将其与预定义的最大延迟（MAX_DELAY）进行比较。根据观察到的心跳调整 MAX_DELAY 变量。</p>
+<p>是否有验证来检查汇总排序器是否正在运行？<br>汇总排序器可能会离线，这可能由于价格陈旧而导致潜在的漏洞。<br>利用排序器正常运行时间源来确认排序器已启动。</p>
+<p>Oracle 的时间加权平均价格（TWAP）周期设置是否恰当？<br>设置不当的 TWAP 周期可能会被利用来操纵价格。<br>将 TWAP 周期调整为一个既能降低被操纵的风险又能及时提供价格更新的持续时间。</p>
+<p>所需的价格源对在所有已部署的链上都受支持吗？<br>在多链部署中，确保所需的价格源对在所有链上都可用且一致至关重要。<br>审查所有链上支持的价格源对，并确保它们是一致的。</p>
+<p>价格源的心跳是否适合用例？<br>价格源心跳过慢可能不适合某些用例。<br>评估用例的要求，并确保价格源心跳与之相符。</p>
+<p>在使用不同的价格源时，小数精度是否存在任何不一致？<br>不同的价格源可能具有不同的小数精度，这可能导致不准确。<br>确保合约处理不同价格源之间小数精度的潜在变化。</p>
+<p>价格源地址是硬编码的吗？<br>硬编码的价格源地址可能会有问题，特别是如果它们被弃用或者一开始就不准确。<br>审查并验证硬编码的价格源地址。考虑在未来需要时更新地址的机制。</p>
+<p>如果预言机价格更新被抢先交易会发生什么？<br>预言机价格更新可能会被抢先交易并导致各种问题。<br>确保协议在预言机价格更新被抢先交易的情况下不受影响。</p>
+<p>系统如何处理潜在的预言机回滚？<br>意外的预言机回滚可能导致拒绝服务。<br>在预言机调用周围实施 try&#x2F;catch 块，并准备好替代策略。</p>
+<p>价格源是否适合基础资产？<br>对 stETH 使用 ETH 价格源或对 WBTC 使用 BTC 价格源可能会引入与基础资产偏离其锚定相关的风险。<br>确保价格源准确代表基础资产，以应对潜在的脱锚风险。</p>
+<p>合约是否容易受到预言机操纵，尤其是使用来自 AMM 的现货价格？<br>依赖 AMM 现货价格作为预言机可能会通过闪电贷被操纵。<br>选择可靠且防篡改的预言机来源。避免在没有额外检查的情况下直接使用来自 AMM 的现货价格。</p>
+<p>系统如何应对闪崩期间的潜在不准确？<br>在闪崩期间，预言机可能会返回不准确的价格。<br>实施检查以确保预言机返回的价格在预期范围内，以防范潜在的闪崩漏洞。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/08/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/oracle/oracle/" data-id="cm8ofd1c5004wd0udea5saun3" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/09/03/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%BC%80%E5%8F%91/rust/%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/08/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/lending/lending/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/03/24/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/%E7%BF%BB%E8%AF%91%E8%A6%81%E7%82%B9/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/23/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/solidity2/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC1155/ERC1155/">EIP712</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/19/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E5%8E%9F%E7%94%9F%E7%A8%8B%E5%BA%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/17/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 fathergun<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

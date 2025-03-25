@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="ERC2012345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667&#x2F;&#x2F; SPDX-License-Identifier: AGPL-3.0-onlypragma solidity &gt;&#x3D;0.8.0;co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://oo90909.github.io/2025/03/16/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/%E4%B8%AD%E7%AD%89%E5%A4%8D%E6%9D%82/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ERC2012345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667&#x2F;&#x2F; SPDX-License-Identifier: AGPL-3.0-onlypragma solidity &gt;&#x3D;0.8.0;co">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-03-16T05:46:28.015Z">
+<meta property="article:modified_time" content="2025-03-16T06:59:55.611Z">
+<meta property="article:author" content="fathergun">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oo90909.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-毕设/语法mapping/中等复杂" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/03/16/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/%E4%B8%AD%E7%AD%89%E5%A4%8D%E6%9D%82/" class="article-date">
+  <time class="dt-published" datetime="2025-03-16T05:46:28.015Z" itemprop="datePublished">2025-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="ERC20"><a href="#ERC20" class="headerlink" title="ERC20"></a>ERC20</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">// SPDX-License-Identifier: AGPL-3.0-only</span><br><span class="line">pragma solidity &gt;=0.8.0;</span><br><span class="line"></span><br><span class="line">contract ERC20 &#123;</span><br><span class="line">    event Transfer(address indexed from, address indexed to, uint256 amount);</span><br><span class="line">    event Approval(address indexed owner, address indexed spender, uint256 amount);</span><br><span class="line"></span><br><span class="line">    string public name;</span><br><span class="line">    string public symbol;</span><br><span class="line">    uint8 public immutable decimals;</span><br><span class="line"></span><br><span class="line">    uint256 public totalSupply;</span><br><span class="line">    mapping(address =&gt; uint256) public balanceOf;</span><br><span class="line">    mapping(address =&gt; mapping(address =&gt; uint256)) public allowance;</span><br><span class="line"></span><br><span class="line">    uint256 internal immutable INITIAL_CHAIN_ID;</span><br><span class="line">    bytes32 internal immutable INITIAL_DOMAIN_SEPARATOR;</span><br><span class="line">    mapping(address =&gt; uint256) public nonces;</span><br><span class="line"></span><br><span class="line">    constructor(string memory _name, string memory _symbol, uint8 _decimals) &#123;</span><br><span class="line">        name = _name;</span><br><span class="line">        symbol = _symbol;</span><br><span class="line">        decimals = _decimals;</span><br><span class="line"></span><br><span class="line">        INITIAL_CHAIN_ID = block.chainid;</span><br><span class="line">        INITIAL_DOMAIN_SEPARATOR = computeDomainSeparator();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function approve(address spender, uint256 amount) public virtual returns (bool) &#123;</span><br><span class="line">        allowance[msg.sender][spender] = amount;</span><br><span class="line">        emit Approval(msg.sender, spender, amount);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function transfer(address to, uint256 amount) public virtual returns (bool) &#123;</span><br><span class="line">        balanceOf[msg.sender] -= amount;</span><br><span class="line">        unchecked &#123;</span><br><span class="line">            balanceOf[to] += amount;</span><br><span class="line">        &#125;</span><br><span class="line">        emit Transfer(msg.sender, to, amount);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function transferFrom(address from, address to, uint256 amount) public virtual returns (bool) &#123;</span><br><span class="line">        emit Transfer(from, to, amount);</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    function _mint(address to, uint256 amount) internal virtual &#123;</span><br><span class="line">        totalSupply += amount;</span><br><span class="line">        unchecked &#123;</span><br><span class="line">            balanceOf[to] += amount;</span><br><span class="line">        &#125;</span><br><span class="line">        emit Transfer(address(0), to, amount);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function _burn(address from, uint256 amount) internal virtual &#123;</span><br><span class="line">        balanceOf[from] -= amount;</span><br><span class="line">        unchecked &#123;</span><br><span class="line">            totalSupply -= amount;</span><br><span class="line">        &#125;</span><br><span class="line">        emit Transfer(from, address(0), amount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">use</span> anchor_lang::prelude::*;</span><br><span class="line"></span><br><span class="line">declare_id!(<span class="string">&quot;3jN3YkbbJXFy1KBebxgKYraPU3XY9KZ6W9PrcGEj5oxN&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">#[program]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">mod</span> solana_erc20 &#123;</span><br><span class="line">    <span class="keyword">use</span> super::*;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">initialize</span>(</span><br><span class="line">        ctx: Context&lt;Initialize&gt;,</span><br><span class="line">        name: <span class="type">String</span>,</span><br><span class="line">        symbol: <span class="type">String</span>,</span><br><span class="line">        decimals: <span class="type">u8</span>,</span><br><span class="line">    ) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">token</span> = &amp;<span class="keyword">mut</span> ctx.accounts.token;</span><br><span class="line">        token.name = name;</span><br><span class="line">        token.symbol = symbol;</span><br><span class="line">        token.decimals = decimals;</span><br><span class="line">        token.total_supply = <span class="number">0</span>;</span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">approve</span>(ctx: Context&lt;Approve&gt;, spender: Pubkey, amount: <span class="type">u64</span>) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">owner</span> = &amp;<span class="keyword">mut</span> ctx.accounts.owner;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">token</span> = &amp;<span class="keyword">mut</span> ctx.accounts.token;</span><br><span class="line">        token.allowances.<span class="title function_ invoke__">insert</span>((owner.<span class="title function_ invoke__">key</span>(), spender), amount);</span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">transfer</span>(ctx: Context&lt;Transfer&gt;, to: Pubkey, amount: <span class="type">u64</span>) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">from</span> = &amp;<span class="keyword">mut</span> ctx.accounts.from;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">token</span> = &amp;<span class="keyword">mut</span> ctx.accounts.token;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">binding</span> = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">from_balance</span> = token.balances.<span class="title function_ invoke__">get_mut</span>(&amp;from.<span class="title function_ invoke__">key</span>()).<span class="title function_ invoke__">unwrap_or</span>(&amp;<span class="keyword">mut</span> binding);</span><br><span class="line">        require!(*from_balance &gt;= amount, ErrorCode::InsufficientBalance);</span><br><span class="line"></span><br><span class="line">        *from_balance -= amount;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">to_balance</span> = token.balances.<span class="title function_ invoke__">entry</span>(to).<span class="title function_ invoke__">or_insert</span>(<span class="number">0</span>);</span><br><span class="line">        *to_balance += amount;</span><br><span class="line"></span><br><span class="line">        emit!(TransferEvent &#123;</span><br><span class="line">            from: from.<span class="title function_ invoke__">key</span>(),</span><br><span class="line">            to,</span><br><span class="line">            amount,</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">transfer_from</span>(</span><br><span class="line">        ctx: Context&lt;TransferFrom&gt;,</span><br><span class="line">        from: Pubkey,</span><br><span class="line">        to: Pubkey,</span><br><span class="line">        amount: <span class="type">u64</span>,</span><br><span class="line">    ) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">spender</span> = &amp;<span class="keyword">mut</span> ctx.accounts.spender;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">token</span> = &amp;<span class="keyword">mut</span> ctx.accounts.token;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">binding</span> = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">allowance</span> = token</span><br><span class="line">            .allowances</span><br><span class="line">            .<span class="title function_ invoke__">get_mut</span>(&amp;(from, spender.<span class="title function_ invoke__">key</span>()))</span><br><span class="line">            .<span class="title function_ invoke__">unwrap_or</span>(&amp;<span class="keyword">mut</span> binding);</span><br><span class="line">        require!(*allowance &gt;= amount, ErrorCode::InsufficientAllowance);</span><br><span class="line"></span><br><span class="line">        *allowance -= amount;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">binding</span> = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">from_balance</span> = token.balances.<span class="title function_ invoke__">get_mut</span>(&amp;from).<span class="title function_ invoke__">unwrap_or</span>(&amp;<span class="keyword">mut</span> binding);</span><br><span class="line">        require!(*from_balance &gt;= amount, ErrorCode::InsufficientBalance);</span><br><span class="line"></span><br><span class="line">        *from_balance -= amount;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">to_balance</span> = token.balances.<span class="title function_ invoke__">entry</span>(to).<span class="title function_ invoke__">or_insert</span>(<span class="number">0</span>);</span><br><span class="line">        *to_balance += amount;</span><br><span class="line"></span><br><span class="line">        emit!(TransferEvent &#123; from, to, amount &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">mint</span>(ctx: Context&lt;Mint&gt;, to: Pubkey, amount: <span class="type">u64</span>) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">token</span> = &amp;<span class="keyword">mut</span> ctx.accounts.token;</span><br><span class="line">        token.total_supply += amount;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">balance</span> = token.balances.<span class="title function_ invoke__">entry</span>(to).<span class="title function_ invoke__">or_insert</span>(<span class="number">0</span>);</span><br><span class="line">        *balance += amount;</span><br><span class="line"></span><br><span class="line">        emit!(TransferEvent &#123;</span><br><span class="line">            from: Pubkey::<span class="title function_ invoke__">default</span>(),</span><br><span class="line">            to,</span><br><span class="line">            amount,</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pub</span> <span class="keyword">fn</span> <span class="title function_">burn</span>(ctx: Context&lt;Burn&gt;, from: Pubkey, amount: <span class="type">u64</span>) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;()&gt; &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">token</span> = &amp;<span class="keyword">mut</span> ctx.accounts.token;</span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">binding</span> = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">balance</span> = token.balances.<span class="title function_ invoke__">get_mut</span>(&amp;from).<span class="title function_ invoke__">unwrap_or</span>(&amp;<span class="keyword">mut</span> binding);</span><br><span class="line">        require!(*balance &gt;= amount, ErrorCode::InsufficientBalance);</span><br><span class="line"></span><br><span class="line">        *balance -= amount;</span><br><span class="line">        token.total_supply -= amount;</span><br><span class="line"></span><br><span class="line">        emit!(TransferEvent &#123;</span><br><span class="line">            from,</span><br><span class="line">            to: Pubkey::<span class="title function_ invoke__">default</span>(),</span><br><span class="line">            amount,</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Initialize</span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(init, payer = authority, space = 8 + 128)]</span></span><br><span class="line">    <span class="keyword">pub</span> token: Account&lt;<span class="symbol">&#x27;info</span>, TokenState&gt;,</span><br><span class="line">    <span class="meta">#[account(mut)]</span></span><br><span class="line">    <span class="keyword">pub</span> authority: Signer&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">    <span class="keyword">pub</span> system_program: Program&lt;<span class="symbol">&#x27;info</span>, System&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Approve</span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(mut)]</span></span><br><span class="line">    <span class="keyword">pub</span> owner: Signer&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">    <span class="meta">#[account(mut)]</span></span><br><span class="line">    <span class="keyword">pub</span> token: Account&lt;<span class="symbol">&#x27;info</span>, TokenState&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Transfer</span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(mut)]</span></span><br><span class="line">    <span class="keyword">pub</span> from: Signer&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">    <span class="meta">#[account(mut)]</span></span><br><span class="line">    <span class="keyword">pub</span> token: Account&lt;<span class="symbol">&#x27;info</span>, TokenState&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">TransferFrom</span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(mut)]</span></span><br><span class="line">    <span class="keyword">pub</span> spender: Signer&lt;<span class="symbol">&#x27;info</span>&gt;,</span><br><span class="line">    <span class="meta">#[account(mut)]</span></span><br><span class="line">    <span class="keyword">pub</span> token: Account&lt;<span class="symbol">&#x27;info</span>, TokenState&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Mint</span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(mut)]</span></span><br><span class="line">    <span class="keyword">pub</span> token: Account&lt;<span class="symbol">&#x27;info</span>, TokenState&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Accounts)]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">Burn</span>&lt;<span class="symbol">&#x27;info</span>&gt; &#123;</span><br><span class="line">    <span class="meta">#[account(mut)]</span></span><br><span class="line">    <span class="keyword">pub</span> token: Account&lt;<span class="symbol">&#x27;info</span>, TokenState&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[account]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">TokenState</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> name: <span class="type">String</span>,</span><br><span class="line">    <span class="keyword">pub</span> symbol: <span class="type">String</span>,</span><br><span class="line">    <span class="keyword">pub</span> decimals: <span class="type">u8</span>,</span><br><span class="line">    <span class="keyword">pub</span> total_supply: <span class="type">u64</span>,</span><br><span class="line">    <span class="keyword">pub</span> balances: std::collections::HashMap&lt;Pubkey, <span class="type">u64</span>&gt;,</span><br><span class="line">    <span class="keyword">pub</span> allowances: std::collections::HashMap&lt;(Pubkey, Pubkey), <span class="type">u64</span>&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[event]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">struct</span> <span class="title class_">TransferEvent</span> &#123;</span><br><span class="line">    <span class="keyword">pub</span> from: Pubkey,</span><br><span class="line">    <span class="keyword">pub</span> to: Pubkey,</span><br><span class="line">    <span class="keyword">pub</span> amount: <span class="type">u64</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[error_code]</span></span><br><span class="line"><span class="keyword">pub</span> <span class="keyword">enum</span> <span class="title class_">ErrorCode</span> &#123;</span><br><span class="line">    <span class="meta">#[msg(<span class="string">&quot;Insufficient Balance&quot;</span>)]</span></span><br><span class="line">    InsufficientBalance,</span><br><span class="line"></span><br><span class="line">    <span class="meta">#[msg(<span class="string">&quot;Insufficient Allowance&quot;</span>)]</span></span><br><span class="line">    InsufficientAllowance,</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2025/03/16/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/%E4%B8%AD%E7%AD%89%E5%A4%8D%E6%9D%82/" data-id="cm8ofd1c1004ld0udflwm226h" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2025/03/17/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2025/02/23/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/solidity/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/03/24/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/%E7%BF%BB%E8%AF%91%E8%A6%81%E7%82%B9/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/23/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/solidity2/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC1155/ERC1155/">EIP712</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/19/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E5%8E%9F%E7%94%9F%E7%A8%8B%E5%BA%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/17/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 fathergun<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

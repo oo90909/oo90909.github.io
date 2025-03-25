@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576use anchor_lang::prelude::*;declare_id!(&quot;Dt7bLyKrNLs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://oo90909.github.io/2024/12/20/solana/%E6%8A%95%E7%A5%A8%E7%A8%8B%E5%BA%8Fvote/vote/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576use anchor_lang::prelude::*;declare_id!(&quot;Dt7bLyKrNLs">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-12-20T05:15:48.335Z">
+<meta property="article:modified_time" content="2024-12-24T11:42:25.399Z">
+<meta property="article:author" content="fathergun">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oo90909.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-solana/投票程序vote/vote" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/12/20/solana/%E6%8A%95%E7%A5%A8%E7%A8%8B%E5%BA%8Fvote/vote/" class="article-date">
+  <time class="dt-published" datetime="2024-12-20T05:15:48.335Z" itemprop="datePublished">2024-12-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">use anchor_lang::prelude::*;</span><br><span class="line"></span><br><span class="line">declare_id!(&quot;Dt7bLyKrNLsC5F7KG76HRXNJNzNnP2SdMbeEALw2eddD&quot;);</span><br><span class="line"></span><br><span class="line">const OWNER: &amp;str = &quot;748YuxhvX7M9Gt7JP6T6swQHGFB295haksmJhagrBaB9&quot;;</span><br><span class="line">//程序的owner是748，因为是748部署的？反正payer是748</span><br><span class="line">#[program]</span><br><span class="line">pub mod voting &#123;</span><br><span class="line">    use super::*;</span><br><span class="line"></span><br><span class="line">    #[access_control(check(&amp;ctx))]</span><br><span class="line">    pub fn init_candidate(</span><br><span class="line">        ctx: Context&lt;InitializeCandidate&gt;,</span><br><span class="line">        _candidate_name: String,</span><br><span class="line">    ) -&gt; Result&lt;()&gt; &#123;</span><br><span class="line">        Ok(())</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pub fn vote_for_candidate(ctx: Context&lt;VoteCandidate&gt;, _candidate_name: String) -&gt; Result&lt;()&gt; &#123;</span><br><span class="line">        ctx.accounts.candidate.votes_received += 1;</span><br><span class="line"></span><br><span class="line">        Ok(())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#[derive(Accounts)]</span><br><span class="line">#[instruction(_candidate_name: String)] //干嘛用的:用于将函数中传入的同名参数传入过来使用</span><br><span class="line">pub struct InitializeCandidate&lt;&#x27;info&gt; &#123;</span><br><span class="line">    #[account(mut)] //表明这是个solana账户，调用函数传参的时候就需要在这里填数据</span><br><span class="line">    pub payer: Signer&lt;&#x27;info&gt;, //手动传入signer，需要本地存有私钥？</span><br><span class="line">    //但fee payer不是现在指定的，而是谁调用谁是payer</span><br><span class="line">    #[account(</span><br><span class="line">      init,</span><br><span class="line">      space = 8 + Candidate::INIT_SPACE,//这里的内存机制是什么样的？</span><br><span class="line">      payer = payer,</span><br><span class="line">      seeds = [_candidate_name.as_bytes().as_ref()],</span><br><span class="line">      bump,</span><br><span class="line">    )]</span><br><span class="line">    pub candidate: Account&lt;&#x27;info, Candidate&gt;,</span><br><span class="line">    pub system_program: Program&lt;&#x27;info, System&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#[derive(Accounts)]</span><br><span class="line">#[instruction(_candidate_name: String)]</span><br><span class="line">pub struct VoteCandidate&lt;&#x27;info&gt; &#123;</span><br><span class="line">    #[account(</span><br><span class="line">        mut,//这里一定记得加mut！！！</span><br><span class="line">      seeds = [_candidate_name.as_bytes().as_ref()],</span><br><span class="line">      bump,</span><br><span class="line">    )]</span><br><span class="line">    pub candidate: Account&lt;&#x27;info, Candidate&gt;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#[account]</span><br><span class="line">#[derive(InitSpace)]</span><br><span class="line">pub struct Candidate &#123;</span><br><span class="line">    pub votes_received: u8,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn check(ctx: &amp;Context&lt;InitializeCandidate&gt;) -&gt; Result&lt;()&gt; &#123;</span><br><span class="line">    // Check if signer === owner</span><br><span class="line">    require_keys_eq!(</span><br><span class="line">        ctx.accounts.payer.key(),</span><br><span class="line">        OWNER.parse::&lt;Pubkey&gt;().unwrap(),</span><br><span class="line">        OnlyOwnerError::NotOwner</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    Ok(())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#[error_code]</span><br><span class="line">pub enum OnlyOwnerError &#123;</span><br><span class="line">    #[msg(&quot;Only owner can call this function!&quot;)]</span><br><span class="line">    NotOwner,</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/12/20/solana/%E6%8A%95%E7%A5%A8%E7%A8%8B%E5%BA%8Fvote/vote/" data-id="cm8ofd1b1001jd0ud04my1zuf" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/12/20/solana/%E5%92%8CsolidityEVM%E7%9A%84%E4%B8%8D%E5%90%8C/%E4%B8%8D%E5%90%8C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/12/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/ReStacking/Restacking/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/03/24/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/%E7%BF%BB%E8%AF%91%E8%A6%81%E7%82%B9/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/23/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/solidity2/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC1155/ERC1155/">EIP712</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/19/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E5%8E%9F%E7%94%9F%E7%A8%8B%E5%BA%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/17/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 fathergun<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

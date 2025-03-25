@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="TypesItemsNotesGeneralCan the protocol handle ERC20 tokens with decimals other than 18?Not all ERC20 tokens use 18 decimals. Overlooking this can lead to computation errors.Always check and adjust for">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://oo90909.github.io/2024/08/28/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/gerneral/gerneral%E6%BC%8F%E6%B4%9E%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="TypesItemsNotesGeneralCan the protocol handle ERC20 tokens with decimals other than 18?Not all ERC20 tokens use 18 decimals. Overlooking this can lead to computation errors.Always check and adjust for">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-08-28T05:54:04.412Z">
+<meta property="article:modified_time" content="2024-08-28T10:10:52.269Z">
+<meta property="article:author" content="fathergun">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oo90909.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-区块链安全/CheckList/gerneral/gerneral漏洞类型" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/08/28/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/gerneral/gerneral%E6%BC%8F%E6%B4%9E%E7%B1%BB%E5%9E%8B/" class="article-date">
+  <time class="dt-published" datetime="2024-08-28T05:54:04.412Z" itemprop="datePublished">2024-08-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Types<br>Items<br>Notes<br>General<br>Can the protocol handle ERC20 tokens with decimals other than 18?<br>Not all ERC20 tokens use 18 decimals. Overlooking this can lead to computation errors.<br>Always check and adjust for the decimal count of the ERC20 tokens being handled.</p>
+<p>Are there unexpected rewards accruing for user deposited assets?</p>
+<p>Some protocols or platforms may provide additional rewards for staked or deposited assets. If these rewards are not properly accounted for or managed, it could lead to discrepancies in the user’s expected vs actual returns.<br>The protocol should have mechanisms in place to track all potential rewards for user deposited assets. Users should be provided with clear interfaces or methods to claim any unexpected rewards to ensure fairness and transparency.</p>
+<p>Could direct transfers of funds introduce vulnerabilities?</p>
+<p>Direct transfers of assets without using the protocol’s logic can lead to various problems in accounting especially if the accounting relies on balanceOf (or address.balance).<br>Implement the internal accounting so that it is not be affected by direct transfers.</p>
+<p>Could the initial deposit introduce any issues?<br>The first deposit can set certain parameters or conditions that subsequent deposits rely on.<br>Test and ensure that the first deposit initializes and sets all necessary parameters correctly.</p>
+<p>Are the protocol token pegged to any other asset?<br>The target tokens can be depegged.<br>Ensure the protocol behave as expected during the depeg.</p>
+<p>Incompatibility With Fee-on-Transfer Tokens<br>Not all ERC20 tokens are compliant to the ERC20 standard and there are several weird ERC20 tokens (e.g. Fee-On-Transfer tokens, rebasing tokens, tokens with blacklisting).<br>Clarify what kind of tokens are supported and whitelist the ERC20 tokens that the protocol would accept.</p>
+<p>What would happen if only 1 wei remains in the pool?<br>Leaving residual amounts can lead to discrepancies in accounting or locked funds.<br>Implement logic to handle minimal residual amounts in the pool.</p>
+<p>Is it possible to withdraw in the same transaction of deposit?<br>Protocols often provide various benefits to the depositors based on the deposit amount. This can lead to flashloan-deposit-harvest-withdraw attack cycle.<br>Ensure the withdrawal is protected for some blocks after deposit.</p>
+<p>Does the protocol revert on maximum approval to prevent over-allowance?<br>Setting high allowances can make funds vulnerable to abuse; protocols sometimes set max to prevent this risk.<br>Consider implementing a revert on approval functions when an unnecessarily high allowance is set.</p>
+<p> Reentrancy</p>
+<p>Check if follow the Checks-Effects-Interactions Pattern or use nonReentrant modifier.<br>transferFrom&#x2F;transfer&#x2F;safeTransfer functions can lead to re-entrancy if called on untrusted tokens or hook-on-transfer tokens such as ERC777 and ERC677. And even if the nonReentrant modifier is used, a cross-contract view re-entrancy attack is possible. </p>
+<p>Access Control<br>What are the risks if ownership is compromised, and how could it affect different components of the system? Can the owner manipulate tokens and ETH within the contract?</p>
+<p>协议能否处理小数位数不是 18 的 ERC20 代币？<br>并非所有的 ERC20 代币都使用 18 位小数。忽视这一点可能会导致计算错误。<br>始终检查并调整正在处理的 ERC20 代币的小数位数。</p>
+<p>用户存入的资产是否有意外收益？<br>一些协议或平台可能会为质押或存入的资产提供额外奖励。如果这些奖励没有得到妥善核算或管理，可能会导致用户预期收益与实际收益之间的差异。<br>协议应该有相应的机制来跟踪用户存入资产的所有潜在奖励。应该为用户提供清晰的界面或方法来领取任何意外奖励，以确保公平和透明。</p>
+<p>直接转账资金会引入漏洞吗？<br>不使用协议逻辑直接转移资产可能会在记账方面导致各种问题，特别是如果记账依赖于 balanceOf（或 address.balance）。<br>实施内部记账，使其不受直接转账的影响。</p>
+<p>初始存款会引入任何问题吗？<br>第一笔存款可以设置后续存款所依赖的某些参数或条件。<br>测试并确保第一笔存款正确地初始化并设置所有必要的参数。</p>
+<p>协议代币是否与其他资产挂钩？<br>目标代币可能会脱钩。<br>确保在脱钩期间协议的表现符合预期。<br>与转账收费代币不兼容<br>并非所有的 ERC20 代币都符合 ERC20 标准，并且有一些奇怪的 ERC20 代币（例如转账收费代币、再调整代币、有黑名单的代币）。<br>明确支持哪种类型的代币，并将协议接受的 ERC20 代币列入白名单。</p>
+<p>如果池中只剩下 1 wei 会发生什么？<br>留下剩余金额可能会导致记账差异或资金被锁定。<br>实施逻辑来处理池中最小的剩余金额。</p>
+<p>是否可以在存款的同一笔交易中取款？<br>协议通常会根据存款金额为存款人提供各种好处。这可能会导致闪电贷 - 存款 - 收获 - 取款的攻击循环。<br>确保取款在存款后的一些区块内受到保护。</p>
+<p>协议是否在设置最大批准额度时回退以防止过度授权？<br>设置高授权额度可能会使资金容易受到滥用；协议有时会设置最大值以防止这种风险。<br>考虑在设置不必要的高授权额度时实施批准函数的回退。</p>
+<p>重入攻击<br>检查是否遵循检查 - 效果 - 交互模式或使用 nonReentrant 修饰符。<br>如果在不可信的代币或带有转账钩子的代币（如 ERC777 和 ERC677）上调用 transferFrom&#x2F;transfer&#x2F;safeTransfer 函数，可能会导致重入攻击。即使使用了 nonReentrant 修饰符，跨合约视图的重入攻击也是可能的。</p>
+<p>访问控制<br>如果所有权被泄露会有什么风险，以及它会如何影响系统的不同组件？所有者能否操纵合约中的代币和 ETH？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/08/28/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/gerneral/gerneral%E6%BC%8F%E6%B4%9E%E7%B1%BB%E5%9E%8B/" data-id="cm8ofd1c5004yd0udcqbf3rxc" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/08/28/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/AMM/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/08/27/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E6%97%B6%E9%97%B4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/03/24/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/%E7%BF%BB%E8%AF%91%E8%A6%81%E7%82%B9/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/23/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/solidity2/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC1155/ERC1155/">EIP712</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/19/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E5%8E%9F%E7%94%9F%E7%A8%8B%E5%BA%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/17/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 fathergun<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

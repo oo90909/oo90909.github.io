@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="AMM&#x2F;DEX Is hardcoded slippage used? Using hardcoded slippage can lead to poor trades and freezing user funds during times of high volatility.Allow users to specify the slippage parameter in the a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://oo90909.github.io/2024/08/28/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/AMM/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="AMM&#x2F;DEX Is hardcoded slippage used? Using hardcoded slippage can lead to poor trades and freezing user funds during times of high volatility.Allow users to specify the slippage parameter in the a">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-08-28T05:59:18.227Z">
+<meta property="article:modified_time" content="2024-08-28T10:10:52.273Z">
+<meta property="article:author" content="fathergun">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oo90909.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-区块链安全/CheckList/AMM/AMM" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/08/28/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/AMM/" class="article-date">
+  <time class="dt-published" datetime="2024-08-28T05:59:18.227Z" itemprop="datePublished">2024-08-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>AMM&#x2F;DEX</p>
+<p>Is hardcoded slippage used?</p>
+<p>Using hardcoded slippage can lead to poor trades and freezing user funds during times of high volatility.<br>Allow users to specify the slippage parameter in the actual asset amount which was calculated off-chain.</p>
+<p>Is there a deadline protection?<br>Without deadline protection, user transactions are vulnerable to sandwich attacks.<br>Allow a user specify the deadline of the swap.</p>
+<p>Is there a validation check for protocol reserves?<br>Protocols may face risks if reserves are not validated and can be lent out, affecting the system’s solvency.<br>Ensure reserve validation logic is in place to safeguard the protocol’s liquidity and overall health.</p>
+<p>Does the AMM utilize forked code?<br>Using forked code, especially from known projects like Uniswap, can introduce known vulnerabilities if not updated or audited properly.<br>Review the differences. Utilize tools such as contract-diff.xyz to compare and identify the origin of code snippets.</p>
+<p>Are there rounding issues in product constant formulas?<br>Rounding issues in the formulas can lead to inaccuracies or imbalances in token swaps and liquidity provisions.<br>Review the mathematical operations in the AMM’s formulas, ensuring they handle rounding appropriately without introducing vulnerabilities.</p>
+<p>Can arbitrary calls be made from user input?<br>Allowing arbitrary calls based on user input can expose the contract to various vulnerabilities.<br>Validate and sanitize user inputs. Avoid executing arbitrary calls based solely on input data.</p>
+<p>Is there a mechanism in place to protect against excessive slippage?<br>Without slippage protection, traders might experience unexpected losses due to large price deviations during a trade.<br>Incorporate a slippage parameter that users can set to limit their maximum acceptable slippage.</p>
+<p>Does the AMM properly handle tokens of varying decimal configurations and token types?<br>If the AMM doesn’t support tokens with varying decimals or types, it might lead to incorrect calculations and potential losses.<br>Ensure compatibility with tokens of varying decimal places and validate token types before processing them.</p>
+<p>Does the AMM support fee-on-transfer tokens?<br>Fee-on-transfer tokens can cause problems because the sending amount and the received amount do not match.<br>Ensure the fee-on-transfer tokens are handled correctly if they are supposed to be supported.</p>
+<p>Does the AMM support the rebasing tokens?<br>Rebasing tokens can change the actual balance.<br>Ensure the rebasing tokens are handled correctly if they are supposed to be supported.</p>
+<p>Does the protocol calculate minAmountOut before a token swap?Are external oracles used? Is a sandwich attack possible?<br>Protocols integrating AMMs should determine the minAmountOut prior to swaps to avoid unfavorable rates. The source of the rates and potential for manipulation should also be considered.<br>Ensure that the protocol calculates minAmountOut before executing swaps. If external oracles are used, validate their trustworthiness and consider potential vulnerabilities like sandwich attacks.</p>
+<p>Does the integrating contract verify the caller address in its callback functions?</p>
+<p>Callback functions can be manipulated if they don’t validate the calling contract’s address. This is especially crucial for functions like swap() that involve tokens or assets.<br>Implement checks in the callback functions to validate the address of the calling contract. Additionally, review the logic for any potential bypasses to this check.</p>
+<p>Is the slippage calculated on-chain?</p>
+<p>ON-chain slippage calculation can be manipulated.<br>Allow users to specify the slippage parameter in the actual asset amount which was calculated off-chain.</p>
+<p>Is the slippage parameter enforced at the last step before transferring funds to users?</p>
+<p>Enforcing slippage parameters for intermediate swaps but not the final step can result in users receiving less tokens than their specified minimum.<br>Enforce slippage parameter as the last step before transferring funds to users</p>
+<p>Callback functions in the external contracts that are called by the swap() function are required to check the address of the calling contract. Does the contract that integrates an AMM callback have this check? Are there any ways to bypass the check?</p>
+<p>AMM&#x2F;DEX（自动做市商 &#x2F; 去中心化交易所）<br>是否使用了硬编码的滑点？<br>使用硬编码的滑点可能会导致交易不佳，<br>允许用户在链下计算的实际资产数量中指定滑点参数。</p>
+<p>是否有截止日期保护？<br>没有截止日期保护，用户交易容易受到三明治攻击。<br>允许用户指定交易的截止日期。</p>
+<p>是否对协议储备进行了验证检查？<br>如果储备未经过验证且可以被借出，协议可能面临风险，影响系统的偿付能力。<br>确保有储备验证逻辑来保障协议的流动性和整体健康。</p>
+<p>AMM 是否使用了分叉代码？<br>使用分叉代码，尤其是来自像 Uniswap 这样的知名项目的代码，如果没有正确更新或审计，可能会引入已知漏洞。<br>审查差异。使用像 contract-diff.xyz 这样的工具来比较并识别代码片段的来源。</p>
+<p>在产品常数公式中是否存在舍入问题？<br>公式中的舍入问题可能会导致代币交换和流动性提供中的不准确或不平衡。<br>审查 AMM 公式中的数学运算，确保它们适当地处理舍入而不引入漏洞。<br>比如我发现的那个10**decimal作为分母的值然后最后归零</p>
+<p>是否可以根据用户输入进行任意调用？<br>允许基于用户输入进行任意调用可能会使合约暴露于各种漏洞。<br>验证并清理用户输入。避免仅根据输入数据执行任意调用。</p>
+<p>是否有防止过度滑点的机制？<br>没有滑点保护，交易者可能会由于交易期间的价格大幅偏差而遭受意外损失。<br>引入一个滑点参数，用户可以设置该参数以限制其最大可接受滑点。</p>
+<p>AMM 是否正确处理具有不同小数配置和代币类型的代币？<br>如果 AMM 不支持具有不同小数位数或类型的代币，可能会导致错误计算和潜在损失。<br>确保与具有不同小数位数的代币兼容，并在处理代币之前验证代币类型。<br>比如我发现的那个10**decimal作为分母的值然后最后归零</p>
+<p>AMM 是否支持转账收费代币？<br>转账收费代币可能会引起问题，因为发送金额和接收金额不匹配。<br>如果应该支持转账收费代币，则确保正确处理它们。<br>就比如收手续费，是否会出问题，感觉这个问题要验证是否有问题需要看很多的逻辑</p>
+<p>AMM 是否支持再调整代币？<br>再调整代币可以改变实际余额。<br>如果应该支持再调整代币，则确保正确处理它们。<br>再调整代币是指算法根据市场来增加或者减少token的值（算法稳定币算不算？）</p>
+<p>协议在代币交换之前是否计算最小输出量？是否使用了外部预言机？是否可能发生三明治攻击？<br>集成 AMM 的协议应该在交换之前确定最小输出量，以避免不利的汇率。还应考虑汇率的来源和被操纵的可能性。<br>确保协议在执行交换之前计算最小输出量。如果使用外部预言机，验证其可信度并考虑像三明治攻击这样的潜在漏洞。</p>
+<p>集成合约在其回调函数中是否验证调用者地址？<br>如果回调函数不验证调用合约的地址，它们可能会被操纵。对于像 swap () 这样涉及代币或资产的函数来说，这一点尤其关键。<br>在回调函数中实施检查以验证调用合约的地址。此外，审查任何可能绕过此检查的逻辑。<br>我的理解是如果验证调用者地址，那么可以防止用户错误传入ETH进来</p>
+<p>滑点是在链上计算的吗？<br>链上滑点计算可能会被操纵。<br>允许用户在链下计算的实际资产数量中指定滑点参数。<br>这个指的就是不能让合约自己算出滑点值，要用户指定，或者能在合约中更改滑点值</p>
+<p>滑点参数是否在向用户转移资金的最后一步强制执行？<br>在中间交换时执行滑点参数但在最后一步不执行，可能会导致用户收到的代币少于他们指定的最小值。<br>在向用户转移资金的最后一步强制执行滑点参数。</p>
+<p>由 swap () 函数调用的外部合约中的回调函数需要检查调用合约的地址。集成 AMM 的合约的回调是否有此检查？是否有任何方法可以绕过此检查？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/08/28/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/AMM/AMM/" data-id="cm8ofd1c4004ud0udhf7g2sc1" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/08/28/javaScript/promise/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/08/28/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/gerneral/gerneral%E6%BC%8F%E6%B4%9E%E7%B1%BB%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/03/24/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/%E7%BF%BB%E8%AF%91%E8%A6%81%E7%82%B9/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/23/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/solidity2/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC1155/ERC1155/">EIP712</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/19/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E5%8E%9F%E7%94%9F%E7%A8%8B%E5%BA%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/17/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 fathergun<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

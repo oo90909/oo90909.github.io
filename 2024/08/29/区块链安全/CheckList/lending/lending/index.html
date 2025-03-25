@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Will the liquidation process function effectively during rapid market downturns?Failure to liquidate positions during sharp price drops can result in substantial platform losses.Ensure robustness duri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://oo90909.github.io/2024/08/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/lending/lending/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Will the liquidation process function effectively during rapid market downturns?Failure to liquidate positions during sharp price drops can result in substantial platform losses.Ensure robustness duri">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-08-29T02:40:41.818Z">
+<meta property="article:modified_time" content="2024-09-01T15:05:00.563Z">
+<meta property="article:author" content="fathergun">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://oo90909.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-区块链安全/CheckList/lending/lending" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/08/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/lending/lending/" class="article-date">
+  <time class="dt-published" datetime="2024-08-29T02:40:41.818Z" itemprop="datePublished">2024-08-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Will the liquidation process function effectively during rapid market downturns?<br>Failure to liquidate positions during sharp price drops can result in substantial platform losses.<br>Ensure robustness during extreme market conditions.<br>Can a position be liquidated if the loan remains unpaid or if the collateral falls below the required threshold?<br>If positions cannot be liquidated under these circumstances, it poses a risk to lenders who might not recover their funds.<br>Ensure a reliable mechanism for liquidating under-collateralized or defaulting loans to safeguard lenders.<br>Is it possible for a user to gain undue profit from self-liquidation?<br>Self-liquidation profit loopholes can lead to potential system abuse and unintended financial consequences.<br>Audit and test self-liquidation mechanisms to prevent any exploitative behaviors.<br>If token transfers or collateral additions are temporarily paused, can a user still be liquidated, even if they intend to deposit more funds?<br>Unexpected pauses can place users at risk of unwarranted liquidations, despite their willingness to increase collateral.<br>Implement safeguards that protect users from liquidation during operational pauses or interruptions.<br>If liquidations are temporarily suspended, what are the implications when they are resumed?<br>Pausing liquidations can increase the solvency risk and lead to unpredictable behaviors upon resumption.<br>Outline clear protocols for pausing and resuming liquidations, ensuring solvency is maintained.<br>Is it possible for users to manipulate the system by front-running and slightly increasing their collateral to prevent liquidation?<br>Lenders must be prevented from griefing via front-running the liquidation.<br>Ensure it is not possible to prevent liquidators by any means.<br>Are all positions, regardless of size, incentivized adequately for liquidation?<br>Without proper incentives, small positions might be overlooked, leading to inefficiencies.<br>Ensure a balanced incentive structure that motivates liquidators to address positions of all sizes.<br>Is interest considered during Loan-to-Value (LTV) calculation?<br>Omitting interest in LTV calculations can result in inaccurate credit assessments.<br>Include accrued interest in LTV calculations to maintain accurate and fair credit evaluations.<br>Can liquidation and repaying be enabled or disabled simultaneously?<br>Protocols might need to ensure that liquidation and repaying mechanisms are either both active or inactive to maintain consistency.<br>Review protocol logic to allow or disallow liquidation and repaying functions collectively to avoid operational discrepancies.<br>Is it possible to lend and borrow the same token within a single transaction?<br>Protocols that allow the same token to be lent and borrowed in a single transaction may be vulnerable to attacks that exploit rapid price inflation or flash loans to manipulate the system.<br>Protocols should implement constraints to prohibit the same token from being used in a lend and borrow action within the same block or transaction, reducing the risk of flash-loan attacks and other manipulative practices.<br>Is there a scenario where a liquidator might receive a lesser amount than anticipated?<br>Discrepancies in liquidation returns can discourage liquidators and impact system stability.<br>Ensure a clear and consistent calculation mechanism for liquidation rewards.<br>Is it possible for a user to be in a condition where they cannot repay their loan?</p>
+<p>Certain scenarios or conditions might prevent a user from repaying their loan, causing them to be perpetually in debt. This can be due to factors such as excessive collateralization, high fees, fluctuating token values, or other unforeseen events.        Review the lending protocol’s logic to ensure there are no conditions that could trap a user in perpetual debt. Implement safeguards to notify or protect users from taking actions that may lead to irrecoverable financial situations.<br>Can the user liquidate their own position with a profit? How can the health ratio change, apart from typical cases such as withdrawal of collateral, taking on additional debt, or a significant drop in the price of collateral?</p>
+<p>在市场快速下跌期间，清算流程能否有效运作？<br>在价格急剧下跌期间未能清算头寸可能会导致平台遭受重大损失。<br>确保在极端市场条件下的稳健性。</p>
+<p>如果贷款未偿还或者抵押品低于要求的阈值，头寸能否被清算？<br>如果在这些情况下无法清算头寸，这会给可能无法收回资金的贷款人带来风险。<br>确保有一个可靠的机制来清算抵押不足或违约的贷款，以保护贷款人。</p>
+<p>用户是否有可能从自我清算中获得不当利润？<br>自我清算利润漏洞可能导致潜在的系统滥用和意外的财务后果。<br>审核并测试自我清算机制，以防止任何可利用的行为。</p>
+<p>如果代币转移或抵押品增加被暂时暂停，即使用户打算存入更多资金，他们是否仍会被清算？<br>意外的暂停可能会使用户面临不必要的清算风险，尽管他们愿意增加抵押品。<br>实施保障措施，在操作暂停或中断期间保护用户免受清算。</p>
+<p>如果清算被暂时暂停，恢复清算时会有什么影响？<br>暂停清算可能会增加偿付能力风险，并在恢复时导致不可预测的行为。<br>制定明确的暂停和恢复清算的协议，确保维持偿付能力。</p>
+<p>用户是否有可能通过抢先交易并稍微增加其抵押品来操纵系统以防止清算？<br>必须防止贷款人通过抢先清算来进行恶意攻击。<br>确保无法通过任何方式阻止清算人。<br>可是这种情况不是对贷款人有利吗？</p>
+<p>所有头寸，无论大小，是否都有足够的清算激励？<br>如果没有适当的激励，小头寸可能会被忽视，导致效率低下。<br>确保有一个平衡的激励结构，激励清算人处理各种规模的头寸。</p>
+<p>在贷款价值比（LTV）计算中是否考虑利息？<br>在 LTV 计算中忽略利息可能会导致不准确的信用评估。<br>在 LTV 计算中包括应计利息，以保持准确和公平的信用评估。</p>
+<p>清算和偿还能否同时启用或禁用？<br>协议可能需要确保清算和偿还机制要么同时处于活动状态，要么同时处于非活动状态，以保持一致性。<br>审查协议逻辑，以允许或禁止清算和偿还功能共同起作用，以避免操作差异。</p>
+<p>在单个交易中是否可以借出和借入相同的代币？<br>允许在单个交易中借出和借入相同代币的协议可能容易受到利用快速价格上涨或闪电贷来操纵系统的攻击。<br>协议应实施限制，禁止在同一区块或交易中对同一代币进行借出和借入操作，降低闪电贷攻击和其他操纵行为的风险。</p>
+<p>是否存在清算人可能收到比预期更少金额的情况？<br>清算回报的差异可能会使清算人失去积极性，并影响系统稳定性。<br>确保有一个清晰且一致的清算奖励计算机制。</p>
+<p>用户是否有可能处于无法偿还贷款的情况？<br>某些情况或条件可能会使用户无法偿还贷款，导致他们永久负债。这可能是由于过度抵押、高额费用、代币价值波动或其他不可预见的事件造成的。审查借贷协议的逻辑，确保不存在可能使用户陷入永久债务的情况。实施保障措施，通知用户或保护用户避免采取可能导致不可挽回的财务状况的行动。</p>
+<p>用户能否以盈利的方式清算自己的头寸？除了提取抵押品、承担额外债务或抵押品价格大幅下跌等典型情况外，健康比率如何变化？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://oo90909.github.io/2024/08/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/lending/lending/" data-id="cm8ofd1c4004vd0ud8uu0958s" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/08/29/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/CheckList/oracle/oracle/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/08/28/javaScript/promise/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/11/">November 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/09/">September 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/07/">July 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/05/">May 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">January 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">November 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/03/24/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/%E7%BF%BB%E8%AF%91%E8%A6%81%E7%82%B9/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/23/%E6%AF%95%E8%AE%BE/%E8%AF%AD%E6%B3%95mapping/solidity2/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/20/%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AE%89%E5%85%A8/%E5%8D%8F%E8%AE%AE%E4%B8%8E%E6%A0%87%E5%87%86%E5%BA%93/ERC1155/ERC1155/">EIP712</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/19/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E5%8E%9F%E7%94%9F%E7%A8%8B%E5%BA%8F/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/03/17/solana/%E5%90%84%E7%A7%8D%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/%E7%A8%8B%E5%BA%8F%E8%B4%A6%E6%88%B7%E7%B1%BB%E5%9E%8B/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 fathergun<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
